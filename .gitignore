@@ -1,0 +1,15 @@
+# Build artifacts
+index-spa.html
+index.html.backup
+
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

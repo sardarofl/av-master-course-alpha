@@ -1,0 +1,753 @@
+<!-- Stage 7: Networked Audio Over IP -->
+<section id="stage7" class="stage">
+    <div class="stage-header">
+        <span class="stage-number">Stage 7</span>
+        <h1>Networked Audio Over IP</h1>
+        <p class="stage-subtitle">Encoder → Network Switch → Decoder</p>
+    </div>
+
+    <div class="stage-content">
+        <div class="intro-box">
+            <h3>Audio Meets IT Infrastructure</h3>
+            <p>What if instead of running hundreds of individual audio cables, you could send dozens or hundreds of audio channels over a single network cable? Welcome to <strong>Audio over IP (AoIP)</strong> - the paradigm shift that's revolutionized professional audio.</p>
+        </div>
+
+        <h2>The Traditional Problem</h2>
+        <div class="problem-solution">
+            <div class="problem-box">
+                <h3>❌ Traditional Analog/Digital Snake</h3>
+                <div class="problem-visual">
+                    <svg viewBox="0 0 500 200" class="snake-svg">
+                        <!-- Stage box -->
+                        <rect x="30" y="30" width="100" height="140" rx="5" fill="#34495e"/>
+                        <text x="80" y="55" text-anchor="middle" fill="white" font-size="12" font-weight="bold">STAGE BOX</text>
+                        <!-- 32 tiny lines representing cables -->
+                        <g id="cables">
+                            <line x1="130" y1="70" x2="350" y2="70" stroke="#e74c3c" stroke-width="2"/>
+                            <line x1="130" y1="75" x2="350" y2="75" stroke="#3498db" stroke-width="2"/>
+                            <line x1="130" y1="80" x2="350" y2="80" stroke="#27ae60" stroke-width="2"/>
+                            <line x1="130" y1="85" x2="350" y2="85" stroke="#f39c12" stroke-width="2"/>
+                            <line x1="130" y1="90" x2="350" y2="90" stroke="#9b59b6" stroke-width="2"/>
+                            <line x1="130" y1="95" x2="350" y2="95" stroke="#e74c3c" stroke-width="2"/>
+                            <line x1="130" y1="100" x2="350" y2="100" stroke="#3498db" stroke-width="2"/>
+                            <line x1="130" y1="105" x2="350" y2="105" stroke="#27ae60" stroke-width="2"/>
+                            <text x="240" y="65" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">32 individual cables!</text>
+                            <text x="240" y="125" text-anchor="middle" fill="#7f8c8d" font-size="9">Heavy, expensive, inflexible</text>
+                        </g>
+                        <!-- Mixer -->
+                        <rect x="370" y="30" width="100" height="140" rx="5" fill="#34495e"/>
+                        <text x="420" y="55" text-anchor="middle" fill="white" font-size="12" font-weight="bold">MIXER</text>
+                    </svg>
+                </div>
+                <ul>
+                    <li>Heavy, expensive multi-cable "snakes"</li>
+                    <li>Limited by cable length (~300 feet max)</li>
+                    <li>Fixed channel count (can't easily add more)</li>
+                    <li>Analog = noise, degradation over distance</li>
+                    <li>Nightmare to install and maintain</li>
+                </ul>
+            </div>
+
+            <div class="solution-box">
+                <h3>✅ Audio Over IP</h3>
+                <div class="solution-visual">
+                    <svg viewBox="0 0 500 200" class="aoip-svg">
+                        <!-- Stage interface -->
+                        <rect x="30" y="60" width="100" height="80" rx="5" fill="#27ae60"/>
+                        <text x="80" y="85" text-anchor="middle" fill="white" font-size="12" font-weight="bold">AoIP</text>
+                        <text x="80" y="100" text-anchor="middle" fill="white" font-size="11">INTERFACE</text>
+                        <text x="80" y="115" text-anchor="middle" fill="#ecf0f1" font-size="9">32 ch</text>
+                        
+                        <!-- Single network cable -->
+                        <line x1="130" y1="100" x2="230" y2="100" stroke="#3498db" stroke-width="6"/>
+                        <text x="180" y="90" text-anchor="middle" fill="#3498db" font-size="11" font-weight="bold">Single CAT6 Cable</text>
+                        <text x="180" y="120" text-anchor="middle" fill="#27ae60" font-size="9">Carries 64+ channels!</text>
+                        
+                        <!-- Network switch -->
+                        <rect x="230" y="70" width="60" height="60" rx="5" fill="#34495e"/>
+                        <text x="260" y="95" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Network</text>
+                        <text x="260" y="108" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Switch</text>
+                        
+                        <!-- Cable to mixer -->
+                        <line x1="290" y1="100" x2="370" y2="100" stroke="#3498db" stroke-width="6"/>
+                        
+                        <!-- Mixer interface -->
+                        <rect x="370" y="60" width="100" height="80" rx="5" fill="#27ae60"/>
+                        <text x="420" y="85" text-anchor="middle" fill="white" font-size="12" font-weight="bold">AoIP</text>
+                        <text x="420" y="100" text-anchor="middle" fill="white" font-size="11">MIXER</text>
+                        <text x="420" y="115" text-anchor="middle" fill="#ecf0f1" font-size="9">32 ch</text>
+                    </svg>
+                </div>
+                <ul>
+                    <li>Single lightweight network cable</li>
+                    <li>100 meters per hop, infinite with switches</li>
+                    <li>Scalable - add devices to network easily</li>
+                    <li>Digital = perfect quality regardless of distance</li>
+                    <li>Uses existing IT infrastructure</li>
+                    <li>Flexible routing - any device can talk to any other</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>How Audio Over IP Works</h2>
+        <div class="aoip-explanation">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Encode</h4>
+                    <p>Audio interface converts analog audio to digital, then packages it into <strong>network packets</strong> with timing information and channel IDs.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Transmit</h4>
+                    <p>Packets are sent over standard Ethernet network (CAT5e/CAT6 cables, network switches). Uses <strong>multicast</strong> to send one stream to multiple receivers efficiently.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Clock Sync</h4>
+                    <p>All devices share a <strong>precision clock</strong> (PTP - Precision Time Protocol) so audio stays perfectly synchronized across the network. Critical for avoiding clicks and pops!</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Receive & Decode</h4>
+                    <p>Receiving device subscribes to specific audio flows, decodes the packets, and converts back to analog audio or processes digitally.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Major AoIP Protocols</h2>
+
+        <!-- Dante -->
+        <div class="protocol-block">
+            <h3>🎵 Dante (by Audinate)</h3>
+            <div class="protocol-detail">
+                <div class="protocol-info">
+                    <p><strong>Market leader</strong> - most popular AoIP protocol in professional audio</p>
+                    
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li><strong>Plug-and-play:</strong> Automatic device discovery</li>
+                        <li><strong>Low latency:</strong> <1ms on gigabit networks</li>
+                        <li><strong>Scalable:</strong> Up to 512×512 channels per device (depending on model)</li>
+                        <li><strong>Redundant:</strong> Primary and secondary network paths for mission-critical applications</li>
+                        <li><strong>Easy routing:</strong> Dante Controller software provides simple drag-and-drop routing</li>
+                        <li><strong>Sample rate:</strong> 48kHz or 96kHz, up to 24-bit</li>
+                    </ul>
+
+                    <h4>Transport:</h4>
+                    <p>Layer 3 IP-based, uses UDP multicast, QoS-aware</p>
+
+                    <h4>Clocking:</h4>
+                    <p>PTP (Precision Time Protocol) for sample-accurate sync across devices</p>
+
+                    <h4>Popular Dante Devices:</h4>
+                    <ul class="device-list">
+                        <li>Shure wireless mic receivers (ULXD, Axient)</li>
+                        <li>Yamaha digital mixers (CL, QL, TF series)</li>
+                        <li>QSC amplifiers (DPA, DCA series)</li>
+                        <li>Focusrite RedNet interfaces</li>
+                        <li>Symetrix DSP processors</li>
+                    </ul>
+                </div>
+                <div class="protocol-visual">
+                    <div class="network-diagram">
+                        <svg viewBox="0 0 400 350" class="dante-network">
+                            <!-- Network switch (center) -->
+                            <rect x="160" y="150" width="80" height="60" rx="5" fill="#34495e"/>
+                            <text x="200" y="175" text-anchor="middle" fill="white" font-size="11" font-weight="bold">NETWORK</text>
+                            <text x="200" y="190" text-anchor="middle" fill="white" font-size="11" font-weight="bold">SWITCH</text>
+                            <text x="200" y="205" text-anchor="middle" fill="#3498db" font-size="9">(Gigabit)</text>
+                            
+                            <!-- Devices around network -->
+                            <rect x="30" y="40" width="80" height="50" rx="4" fill="#e74c3c"/>
+                            <text x="70" y="60" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Stage Box</text>
+                            <text x="70" y="75" text-anchor="middle" fill="white" font-size="8">32 inputs</text>
+                            <line x1="90" y1="90" x2="170" y2="155" stroke="#3498db" stroke-width="3"/>
+                            
+                            <rect x="290" y="40" width="80" height="50" rx="4" fill="#27ae60"/>
+                            <text x="330" y="60" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Mixer</text>
+                            <text x="330" y="75" text-anchor="middle" fill="white" font-size="8">Dante card</text>
+                            <line x1="310" y1="90" x2="230" y2="155" stroke="#3498db" stroke-width="3"/>
+                            
+                            <rect x="30" y="260" width="80" height="50" rx="4" fill="#f39c12"/>
+                            <text x="70" y="280" text-anchor="middle" fill="white" font-size="10" font-weight="bold">DSP</text>
+                            <text x="70" y="295" text-anchor="middle" fill="white" font-size="8">Processor</text>
+                            <line x1="90" y1="260" x2="170" y2="205" stroke="#3498db" stroke-width="3"/>
+                            
+                            <rect x="290" y="260" width="80" height="50" rx="4" fill="#9b59b6"/>
+                            <text x="330" y="280" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Amplifiers</text>
+                            <text x="330" y="295" text-anchor="middle" fill="white" font-size="8">Dante in</text>
+                            <line x1="310" y1="260" x2="230" y2="205" stroke="#3498db" stroke-width="3"/>
+                            
+                            <!-- Controller -->
+                            <rect x="140" y="50" width="120" height="40" rx="4" fill="#2c3e50"/>
+                            <text x="200" y="67" text-anchor="middle" fill="white" font-size="10" font-weight="bold">💻 Dante Controller</text>
+                            <text x="200" y="82" text-anchor="middle" fill="#ecf0f1" font-size="8">Route any device to any other</text>
+                            
+                            <text x="200" y="330" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">All devices see each other on network</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AES67 -->
+        <div class="protocol-block">
+            <h3>🔄 AES67 (Interoperability Standard)</h3>
+            <div class="protocol-detail">
+                <div class="protocol-info">
+                    <p><strong>Not a protocol itself</strong> - it's an <strong>interoperability standard</strong> that allows different AoIP protocols to talk to each other.</p>
+                    
+                    <h4>Purpose:</h4>
+                    <p>Before AES67, Dante couldn't talk to Ravenna, which couldn't talk to Livewire, etc. AES67 provides a common language for cross-compatibility.</p>
+
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li><strong>Open standard:</strong> Published by Audio Engineering Society (AES)</li>
+                        <li><strong>Layer 3 IP:</strong> Works over standard routed networks</li>
+                        <li><strong>Multicast streams:</strong> Efficient distribution</li>
+                        <li><strong>Sample rates:</strong> 44.1, 48, 88.2, 96 kHz</li>
+                        <li><strong>Resolution:</strong> Up to 24-bit linear PCM</li>
+                    </ul>
+
+                    <h4>How It Works:</h4>
+                    <p>Devices that support AES67 can enable an "AES67 mode" to send/receive compatible streams. Dante devices, for example, can enable AES67 to interoperate with non-Dante systems.</p>
+
+                    <div class="tech-note">
+                        <p><strong>Important:</strong> Within a Dante network, devices use native Dante for best performance. AES67 mode is enabled only when interoperating with non-Dante devices.</p>
+                    </div>
+                </div>
+                <div class="protocol-visual">
+                    <svg viewBox="0 0 400 300" class="aes67-diagram">
+                        <rect x="50" y="50" width="100" height="60" rx="5" fill="#e74c3c"/>
+                        <text x="100" y="75" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Dante Device</text>
+                        <text x="100" y="95" text-anchor="middle" fill="#ecf0f1" font-size="9">AES67 enabled</text>
+                        
+                        <rect x="250" y="50" width="100" height="60" rx="5" fill="#3498db"/>
+                        <text x="300" y="75" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Ravenna Device</text>
+                        <text x="300" y="95" text-anchor="middle" fill="#ecf0f1" font-size="9">AES67 native</text>
+                        
+                        <line x1="150" y1="80" x2="250" y2="80" stroke="#27ae60" stroke-width="4"/>
+                        <text x="200" y="70" text-anchor="middle" fill="#27ae60" font-size="12" font-weight="bold">AES67 Stream</text>
+                        
+                        <rect x="50" y="180" width="100" height="60" rx="5" fill="#f39c12"/>
+                        <text x="100" y="205" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Livewire+</text>
+                        <text x="100" y="225" text-anchor="middle" fill="#ecf0f1" font-size="9">AES67 mode</text>
+                        
+                        <rect x="250" y="180" width="100" height="60" rx="5" fill="#9b59b6"/>
+                        <text x="300" y="205" text-anchor="middle" fill="white" font-size="11" font-weight="bold">SMPTE ST 2110</text>
+                        <text x="300" y="225" text-anchor="middle" fill="#ecf0f1" font-size="9">AES67 compatible</text>
+                        
+                        <line x1="150" y1="210" x2="250" y2="210" stroke="#27ae60" stroke-width="4"/>
+                        <text x="200" y="200" text-anchor="middle" fill="#27ae60" font-size="12" font-weight="bold">AES67 Stream</text>
+                        
+                        <text x="200" y="280" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">All can interoperate via AES67</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Protocols -->
+        <div class="other-protocols">
+            <h3>Other Notable AoIP Protocols</h3>
+            <div class="protocol-grid">
+                <div class="mini-protocol">
+                    <h4>Ravenna</h4>
+                    <p>High-performance protocol from ALC NetworX (now part of Lawo). Open standard, AES67 compatible. Popular in broadcast.</p>
+                </div>
+                <div class="mini-protocol">
+                    <h4>Livewire+ (AES67)</h4>
+                    <p>Telos Alliance protocol for broadcast. Simple, rock-solid reliability. Common in radio stations.</p>
+                </div>
+                <div class="mini-protocol">
+                    <h4>SMPTE ST 2110</h4>
+                    <p>Broadcast standard for video, audio, and metadata over IP. Uses AES67 for audio. For TV studios.</p>
+                </div>
+                <div class="mini-protocol">
+                    <h4>AVB/Milan</h4>
+                    <p>Audio Video Bridging - Layer 2 Ethernet protocol. Simpler than Dante but less flexible. Used by Avid, Meyer Sound.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Network Requirements for AoIP</h2>
+        <div class="network-requirements">
+            <div class="requirement-card critical">
+                <h4>🔴 Critical: Gigabit Network</h4>
+                <p>100Mbps (Fast Ethernet) is NOT enough for serious AoIP. Use <strong>Gigabit (1000Mbps) switches</strong> minimum.</p>
+                <p class="example">Why: 64 channels of 48kHz/24-bit audio ≈ 75 Mbps. Add control data and you're pushing 100Mbps limit.</p>
+            </div>
+
+            <div class="requirement-card critical">
+                <h4>🔴 Critical: Managed Switches</h4>
+                <p>Use <strong>managed network switches</strong> with IGMP Snooping, QoS (Quality of Service), and DSCP support.</p>
+                <p class="example">Why: Multicast audio needs IGMP snooping to route efficiently. QoS prioritizes audio over other traffic.</p>
+            </div>
+
+            <div class="requirement-card important">
+                <h4>🟡 Important: Dedicated Network</h4>
+                <p>Keep audio on a <strong>separate network</strong> (VLAN or physical) from general IT traffic.</p>
+                <p class="example">Why: Video streams, file transfers, and web browsing can cause jitter and dropouts.</p>
+            </div>
+
+            <div class="requirement-card important">
+                <h4>🟡 Important: Network Topology</h4>
+                <p>Use <strong>star or daisy-chain</strong> topology. Avoid loops without proper Spanning Tree Protocol (STP).</p>
+            </div>
+
+            <div class="requirement-card">
+                <h4>✅ Recommended: Redundant Paths</h4>
+                <p>For mission-critical systems, use <strong>primary and secondary network paths</strong>. Dante supports automatic failover.</p>
+            </div>
+
+            <div class="requirement-card">
+                <h4>✅ Recommended: Power over Ethernet (PoE)</h4>
+                <p>Many AoIP devices support <strong>PoE/PoE+</strong>, eliminating separate power supplies. Cleaner installations!</p>
+            </div>
+        </div>
+
+        <h2>Real-World Scenario: University Performing Arts Center</h2>
+        <div class="scenario-detail">
+            <h3>🎭 Multi-Venue Campus Audio Network</h3>
+            <div class="scenario-specs">
+                <p><strong>Challenge:</strong> Three performance spaces (theater, recital hall, black box) plus recording studio, all need to share equipment and record/stream performances.</p>
+                
+                <p><strong>Solution:</strong> Campus-wide Dante network with fiber backbone</p>
+
+                <h4>Infrastructure:</h4>
+                <ul class="io-list">
+                    <li><strong>Core network:</strong> 10 Gigabit fiber switch in central rack room</li>
+                    <li><strong>Venue switches:</strong> Gigabit PoE switches in each space</li>
+                    <li><strong>Redundancy:</strong> Primary and secondary fiber paths to each venue</li>
+                    <li><strong>VLANs:</strong> Audio isolated from campus IT traffic</li>
+                </ul>
+
+                <h4>Connected Devices (all Dante-enabled):</h4>
+                <ul class="io-list">
+                    <li>4× Stage boxes (32 inputs each) in venues</li>
+                    <li>3× Digital mixers (one per venue)</li>
+                    <li>1× Recording studio interface (32 I/O)</li>
+                    <li>8× Powered amplifiers throughout campus</li>
+                    <li>2× Streaming encoders for online broadcasts</li>
+                    <li>Wireless mic receivers (16 channels total)</li>
+                </ul>
+
+                <h4>Capabilities:</h4>
+                <div class="capability-list">
+                    <p>✅ Any venue can access any microphone or input</p>
+                    <p>✅ Recording studio can record from any venue simultaneously</p>
+                    <p>✅ Streaming encoders can pull audio from any performance</p>
+                    <p>✅ Wireless mics can be used in any space</p>
+                    <p>✅ One operator can mix multiple spaces from central control room</p>
+                    <p>✅ System is 100% scalable - add devices to network as needed</p>
+                </div>
+
+                <div class="cost-comparison">
+                    <p><strong>Cost comparison to traditional infrastructure:</strong></p>
+                    <p>Traditional analog: ~$250,000 in copper cables, patch bays, and dedicated equipment per venue</p>
+                    <p>Dante AoIP: ~$80,000 in network infrastructure and interfaces</p>
+                    <p><strong>Savings: $670,000+</strong> across four spaces, plus far more flexibility!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+                <li><strong>Audio over IP</strong> sends multiple audio channels over standard Ethernet networks</li>
+                <li><strong>Dante</strong> is the market leader - plug-and-play, low latency, highly scalable</li>
+                <li><strong>AES67</strong> is an interoperability standard allowing different protocols to communicate</li>
+                <li><strong>Requires gigabit managed network switches</strong> with IGMP snooping and QoS</li>
+                <li><strong>PTP (Precision Time Protocol)</strong> keeps all devices sample-accurately synchronized</li>
+                <li><strong>Multicast</strong> efficiently distributes audio streams to multiple receivers</li>
+                <li><strong>Massive advantages:</strong> Flexible routing, scalability, cost savings, uses existing IT infrastructure</li>
+                <li><strong>Use cases:</strong> Campuses, corporate AV, broadcast, large venues, anywhere multiple spaces need shared audio</li>
+            </ul>
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="nav-btn prev-btn" onclick="navigateStage(6)">← Previous: DSP Processing</button>
+            <button class="nav-btn next-btn" onclick="navigateStage(8)">Next: Hybrid Systems →</button>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 8: Hybrid System -->
+<section id="stage8" class="stage">
+    <div class="stage-header">
+        <span class="stage-number">Stage 8</span>
+        <h1>Hybrid Audio System</h1>
+        <p class="stage-subtitle">Combining Multiple Technologies</p>
+    </div>
+
+    <div class="stage-content">
+        <div class="intro-box">
+            <h3>Real-World Complexity</h3>
+            <p>We've learned individual concepts in isolation. But real professional installations combine <strong>multiple technologies</strong> into integrated systems. Now we bring it all together.</p>
+        </div>
+
+        <h2>The Hybrid System Concept</h2>
+        <div class="hybrid-explanation">
+            <p>A <strong>hybrid system</strong> integrates various audio sources, transport methods, processing layers, and output types into a cohesive whole. Think of it as the difference between knowing how to drive vs. navigating a complex city.</p>
+            
+            <div class="technology-integration">
+                <h3>Technologies We'll Combine:</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="tech-icon">🎤</div>
+                        <p><strong>Wireless Microphones</strong></p>
+                        <p class="tech-detail">RF transmission, diversity reception</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">📺</div>
+                        <p><strong>HDMI Audio Extraction</strong></p>
+                        <p class="tech-detail">Pull audio from video sources</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🌐</div>
+                        <p><strong>Dante Audio Network</strong></p>
+                        <p class="tech-detail">IP-based distribution</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🎛️</div>
+                        <p><strong>DSP Matrix</strong></p>
+                        <p class="tech-detail">Processing and routing</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🔊</div>
+                        <p><strong>Networked Amplifiers</strong></p>
+                        <p class="tech-detail">Dante-enabled power</p>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">📍</div>
+                        <p><strong>Zone Distribution</strong></p>
+                        <p class="tech-detail">Multiple output areas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Hybrid System Architecture</h2>
+        <div class="system-diagram">
+            <svg viewBox="0 0 1000 700" class="hybrid-system-svg">
+                <!-- Sources (Top) -->
+                <text x="500" y="30" text-anchor="middle" fill="#2c3e50" font-size="16" font-weight="bold">INPUT SOURCES</text>
+                
+                <!-- Wireless mics -->
+                <rect x="50" y="50" width="120" height="60" rx="5" fill="#e74c3c"/>
+                <text x="110" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="bold">WIRELESS MICS</text>
+                <text x="110" y="92" text-anchor="middle" fill="#ecf0f1" font-size="9">(4 channels)</text>
+                <circle cx="165" cy="110" r="6" fill="#27ae60"/>
+                <text x="180" y="114" text-anchor="start" fill="#27ae60" font-size="8">Dante out</text>
+                
+                <!-- HDMI -->
+                <rect x="230" y="50" width="120" height="60" rx="5" fill="#3498db"/>
+                <text x="290" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="bold">VIDEO SOURCES</text>
+                <text x="290" y="92" text-anchor="middle" fill="#ecf0f1" font-size="9">HDMI + Extractor</text>
+                <circle cx="345" cy="110" r="6" fill="#27ae60"/>
+                <text x="360" y="114" text-anchor="start" fill="#27ae60" font-size="8">Analog out</text>
+                
+                <!-- Wired mics -->
+                <rect x="410" y="50" width="120" height="60" rx="5" fill="#f39c12"/>
+                <text x="470" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="bold">WIRED MICS</text>
+                <text x="470" y="92" text-anchor="middle" fill="#ecf0f1" font-size="9">(XLR × 8)</text>
+                <circle cx="525" cy="110" r="6" fill="#27ae60"/>
+                <text x="540" y="114" text-anchor="start" fill="#27ae60" font-size="8">Analog</text>
+                
+                <!-- Streaming -->
+                <rect x="590" y="50" width="120" height="60" rx="5" fill="#9b59b6"/>
+                <text x="650" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="bold">STREAMING</text>
+                <text x="650" y="92" text-anchor="middle" fill="#ecf0f1" font-size="9">Spotify/Cloud</text>
+                <circle cx="705" cy="110" r="6" fill="#27ae60"/>
+                <text x="720" y="114" text-anchor="start" fill="#27ae60" font-size="8">Analog out</text>
+                
+                <!-- Playback -->
+                <rect x="770" y="50" width="120" height="60" rx="5" fill="#1abc9c"/>
+                <text x="830" y="75" text-anchor="middle" fill="white" font-size="12" font-weight="bold">LOCAL MEDIA</text>
+                <text x="830" y="92" text-anchor="middle" fill="#ecf0f1" font-size="9">Computer/Player</text>
+                <circle cx="885" cy="110" r="6" fill="#27ae60"/>
+                <text x="900" y="114" text-anchor="start" fill="#27ae60" font-size="8">Dante</text>
+                
+                <!-- Dante Network Cloud (middle) -->
+                <ellipse cx="300" cy="200" rx="180" ry="80" fill="#ecf8f3" stroke="#27ae60" stroke-width="3"/>
+                <text x="300" y="195" text-anchor="middle" fill="#27ae60" font-size="14" font-weight="bold">DANTE AUDIO NETWORK</text>
+                <text x="300" y="215" text-anchor="middle" fill="#16a085" font-size="10">All digital sources + Dante interfaces</text>
+                
+                <!-- Analog inputs box -->
+                <rect x="550" y="150" width="140" height="100" rx="5" fill="#34495e"/>
+                <text x="620" y="175" text-anchor="middle" fill="white" font-size="12" font-weight="bold">ANALOG I/O</text>
+                <text x="620" y="190" text-anchor="middle" fill="white" font-size="12" font-weight="bold">INTERFACE</text>
+                <text x="620" y="210" text-anchor="middle" fill="#ecf0f1" font-size="9">Converts analog →</text>
+                <text x="620" y="225" text-anchor="middle" fill="#ecf0f1" font-size="9">Dante network</text>
+                <circle cx="620" cy="245" r="6" fill="#27ae60"/>
+                
+                <!-- Connections from sources -->
+                <line x1="110" y1="110" x2="200" y2="165" stroke="#27ae60" stroke-width="3"/>
+                <line x1="290" y1="110" x2="340" y2="160" stroke="#3498db" stroke-width="2"/>
+                <line x1="340" y1="160" x2="550" y2="200" stroke="#3498db" stroke-width="2"/>
+                <line x1="470" y1="110" x2="570" y2="150" stroke="#f39c12" stroke-width="2"/>
+                <line x1="650" y1="110" x2="600" y2="150" stroke="#9b59b6" stroke-width="2"/>
+                <line x1="830" y1="110" x2="420" y2="165" stroke="#1abc9c" stroke-width="3"/>
+                <line x1="620" y1="245" x2="450" y2="220" stroke="#27ae60" stroke-width="3"/>
+                
+                <!-- DSP Matrix Processor (center) -->
+                <rect x="350" y="300" width="300" height="120" rx="8" fill="#8e44ad" stroke="#9b59b6" stroke-width="3"/>
+                <text x="500" y="330" text-anchor="middle" fill="white" font-size="16" font-weight="bold">DSP MATRIX PROCESSOR</text>
+                <text x="500" y="350" text-anchor="middle" fill="#ecf0f1" font-size="11">• EQ • Compression • Limiting • Delay</text>
+                <text x="500" y="368" text-anchor="middle" fill="#ecf0f1" font-size="11">• AEC • Routing Matrix • Presets</text>
+                <text x="500" y="386" text-anchor="middle" fill="#ecf0f1" font-size="11">• Priority Ducking • Zone Control</text>
+                <text x="500" y="405" text-anchor="middle" fill="#f39c12" font-size="10">Dante In/Out + Analog I/O</text>
+                
+                <!-- Connection from network to DSP -->
+                <line x1="380" y1="240" x2="450" y2="300" stroke="#27ae60" stroke-width="4"/>
+                <line x1="620" y1="250" x2="550" y2="300" stroke="#27ae60" stroke-width="4"/>
+                
+                <!-- Output Distribution (bottom) -->
+                <text x="500" y="460" text-anchor="middle" fill="#2c3e50" font-size="16" font-weight="bold">OUTPUT DISTRIBUTION</text>
+                
+                <!-- Dante Amplifiers -->
+                <rect x="80" y="480" width="140" height="80" rx="5" fill="#e67e22"/>
+                <text x="150" y="510" text-anchor="middle" fill="white" font-size="12" font-weight="bold">DANTE AMPS</text>
+                <text x="150" y="528" text-anchor="middle" fill="white" font-size="10">(4-channel × 3)</text>
+                <text x="150" y="545" text-anchor="middle" fill="#ecf0f1" font-size="9">Network powered</text>
+                <line x1="430" y1="420" x2="150" y2="480" stroke="#27ae60" stroke-width="4"/>
+                
+                <!-- Local analog amps -->
+                <rect x="280" y="480" width="140" height="80" rx="5" fill="#c0392b"/>
+                <text x="350" y="510" text-anchor="middle" fill="white" font-size="12" font-weight="bold">LOCAL AMPS</text>
+                <text x="350" y="528" text-anchor="middle" fill="white" font-size="10">Analog in</text>
+                <text x="350" y="545" text-anchor="middle" fill="#ecf0f1" font-size="9">Zone outputs</text>
+                <line x1="470" y1="420" x2="380" y2="480" stroke="#e74c3c" stroke-width="3"/>
+                
+                <!-- Recording/streaming out -->
+                <rect x="480" y="480" width="140" height="80" rx="5" fill="#16a085"/>
+                <text x="550" y="510" text-anchor="middle" fill="white" font-size="12" font-weight="bold">RECORDING/</text>
+                <text x="550" y="528" text-anchor="middle" fill="white" font-size="12" font-weight="bold">STREAMING</text>
+                <text x="550" y="545" text-anchor="middle" fill="#ecf0f1" font-size="9">Dante out</text>
+                <line x1="530" y1="420" x2="550" y2="480" stroke="#27ae60" stroke-width="4"/>
+                
+                <!-- Remote zones via Dante -->
+                <rect x="680" y="480" width="140" height="80" rx="5" fill="#2980b9"/>
+                <text x="750" y="510" text-anchor="middle" fill="white" font-size="12" font-weight="bold">REMOTE ZONES</text>
+                <text x="750" y="528" text-anchor="middle" fill="white" font-size="10">Network switches</text>
+                <text x="750" y="545" text-anchor="middle" fill="#ecf0f1" font-size="9">Campus-wide</text>
+                <line x1="570" y1="420" x2="720" y2="480" stroke="#27ae60" stroke-width="4"/>
+                
+                <!-- Final speaker zones -->
+                <text x="500" y="600" text-anchor="middle" fill="#2c3e50" font-size="16" font-weight="bold">SPEAKER ZONES</text>
+                
+                <!-- Zone boxes -->
+                <rect x="40" y="620" width="100" height="50" rx="4" fill="#27ae60"/>
+                <text x="90" y="642" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Main Hall</text>
+                <text x="90" y="658" text-anchor="middle" fill="white" font-size="8">8 speakers</text>
+                <line x1="120" y1="560" x2="80" y2="620" stroke="#e67e22" stroke-width="2"/>
+                
+                <rect x="180" y="620" width="100" height="50" rx="4" fill="#27ae60"/>
+                <text x="230" y="642" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Breakout 1</text>
+                <text x="230" y="658" text-anchor="middle" fill="white" font-size="8">4 speakers</text>
+                <line x1="180" y1="560" x2="210" y2="620" stroke="#e67e22" stroke-width="2"/>
+                
+                <rect x="320" y="620" width="100" height="50" rx="4" fill="#27ae60"/>
+                <text x="370" y="642" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Breakout 2</text>
+                <text x="370" y="658" text-anchor="middle" fill="white" font-size="8">4 speakers</text>
+                <line x1="350" y1="560" x2="350" y2="620" stroke="#c0392b" stroke-width="2"/>
+                
+                <rect x="460" y="620" width="100" height="50" rx="4" fill="#27ae60"/>
+                <text x="510" y="642" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Lobby</text>
+                <text x="510" y="658" text-anchor="middle" fill="white" font-size="8">6 speakers</text>
+                <line x1="400" y1="560" x2="490" y2="620" stroke="#c0392b" stroke-width="2"/>
+                
+                <rect x="600" y="620" width="100" height="50" rx="4" fill="#27ae60"/>
+                <text x="650" y="642" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Overflow</text>
+                <text x="650" y="658" text-anchor="middle" fill="white" font-size="8">Remote bldg</text>
+                <line x1="730" y1="560" x2="670" y2="620" stroke="#2980b9" stroke-width="2"/>
+                
+                <rect x="740" y="620" width="100" height="50" rx="4" fill="#27ae60"/>
+                <text x="790" y="642" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Office BGM</text>
+                <text x="790" y="658" text-anchor="middle" fill="white" font-size="8">12 speakers</text>
+                <line x1="770" y1="560" x2="800" y2="620" stroke="#2980b9" stroke-width="2"/>
+            </svg>
+        </div>
+
+        <h2>Integration Challenges & Solutions</h2>
+        <div class="challenges-grid">
+            <div class="challenge-card">
+                <h3>⚠️ Challenge: Format Mismatches</h3>
+                <p><strong>Problem:</strong> Some sources are analog, some digital, some Dante, some HDMI-embedded</p>
+                <p><strong>Solution:</strong> Use <strong>format converters</strong> and <strong>Dante interfaces</strong> to normalize everything into the DSP's native format (typically Dante + analog I/O)</p>
+                <div class="example-box">
+                    <strong>Example:</strong> HDMI audio extractor → analog → Dante interface → DSP
+                </div>
+            </div>
+
+            <div class="challenge-card">
+                <h3>⚠️ Challenge: Clocking & Sync</h3>
+                <p><strong>Problem:</strong> All digital devices need a common clock reference or you get clicks, pops, and drift</p>
+                <p><strong>Solution:</strong> <strong>Dante network provides master clock</strong> via PTP. Analog devices don't need clocking (inherently async).</p>
+                <div class="example-box">
+                    <strong>Best practice:</strong> Designate one Dante device as "preferred master" clock source
+                </div>
+            </div>
+
+            <div class="challenge-card">
+                <h3>⚠️ Challenge: Control & Monitoring</h3>
+                <p><strong>Problem:</strong> System has dozens of devices - how do you control and monitor them?</p>
+                <p><strong>Solution:</strong> <strong>Centralized control system</strong> (Crestron, AMX, Q-SYS UCI) with touchpanels. Monitor via network management software.</p>
+                <div class="example-box">
+                    <strong>Dante Controller</strong> shows all Dante devices, routing, and health status
+                </div>
+            </div>
+
+            <div class="challenge-card">
+                <h3>⚠️ Challenge: Latency Accumulation</h3>
+                <p><strong>Problem:</strong> Each processing stage adds latency: wireless mic (~5ms) + network (~1ms) + DSP (~5ms) = noticeable delay</p>
+                <p><strong>Solution:</strong> <strong>Minimize processing hops</strong>. Use DSP delay compensation. For live performers, send direct monitor mixes pre-DSP.</p>
+                <div class="example-box">
+                    <strong>Total system latency budget:</strong> Try to stay under 20ms for live sound
+                </div>
+            </div>
+
+            <div class="challenge-card">
+                <h3>⚠️ Challenge: Priority & Paging</h3>
+                <p><strong>Problem:</strong> Emergency announcements must override everything instantly</p>
+                <p><strong>Solution:</strong> <strong>DSP priority routing</strong> with auto-ducking. Paging mic triggers preset that mutes/ducks all music and routes page to all zones.</p>
+                <div class="example-box">
+                    <strong>Fire alarm:</strong> Highest priority - mutes ALL audio, routes alarm to all speakers
+                </div>
+            </div>
+
+            <div class="challenge-card">
+                <h3>⚠️ Challenge: Network Failures</h3>
+                <p><strong>Problem:</strong> If network goes down, entire audio system fails</p>
+                <p><strong>Solution:</strong> <strong>Redundant network paths</strong> (primary and secondary switches), UPS power on network gear, local analog backup routing in DSP.</p>
+                <div class="example-box">
+                    <strong>Dante redundancy:</strong> Dual network interfaces with automatic failover
+                </div>
+            </div>
+        </div>
+
+        <h2>System Design Workflow</h2>
+        <div class="workflow-section">
+            <ol class="design-workflow">
+                <li>
+                    <strong>1. Gather Requirements</strong>
+                    <p>What sources? How many zones? What processing is needed? Budget? Any special needs (AEC for conferencing, streaming, recording)?</p>
+                </li>
+                <li>
+                    <strong>2. Map Signal Flow</strong>
+                    <p>Draw a block diagram showing every source, processing stage, and destination. Identify format conversions needed.</p>
+                </li>
+                <li>
+                    <strong>3. Choose Core DSP/Matrix</strong>
+                    <p>Based on I/O count, processing needs, and budget, select the brain of the system (Q-SYS, Biamp, Symetrix, etc.).</p>
+                </li>
+                <li>
+                    <strong>4. Plan Network Infrastructure</strong>
+                    <p>How many Dante devices? Calculate bandwidth. Specify switches, cabling, redundancy. Create network diagram with VLANs if needed.</p>
+                </li>
+                <li>
+                    <strong>5. Select Amplifiers & Speakers</strong>
+                    <p>Calculate power needs per zone. Decide on Dante amps (network flexibility) vs. analog amps (simpler, cheaper for small zones).</p>
+                </li>
+                <li>
+                    <strong>6. Design Control Interface</strong>
+                    <p>Will users need touchpanels? Wall controllers? Mobile app? Keep it SIMPLE - users shouldn't need training.</p>
+                </li>
+                <li>
+                    <strong>7. Document Everything</strong>
+                    <p>Create signal flow diagrams, rack elevations, network topology, DSP routing, control logic. Future you (or the next tech) will thank you!</p>
+                </li>
+                <li>
+                    <strong>8. Test & Commission</strong>
+                    <p>Build offline, test each subsystem, integrate gradually. Measure room acoustics, tune DSP. Train end users and document final configuration.</p>
+                </li>
+            </ol>
+        </div>
+
+        <h2>Real-World Example: Corporate Conference Center</h2>
+        <div class="case-study">
+            <h3>🏢 Fortune 500 Training Facility</h3>
+            <div class="case-study-content">
+                <h4>The Brief:</h4>
+                <p>Build a flexible conference system for a 3-building campus with 12 meeting rooms (various sizes), auditorium (300 seats), lobby, and cafeteria. Requirements: video conferencing in all rooms, campus-wide paging, background music, recording capability, easy user control.</p>
+
+                <h4>The Solution:</h4>
+                <p><strong>Core:</strong> QSC Q-SYS Core 510i processor (128×128 I/O capacity)</p>
+
+                <p><strong>Inputs:</strong></p>
+                <ul>
+                    <li>48× Shure wireless mics (handheld + lavalier) - Dante output</li>
+                    <li>72× Sennheiser ceiling mics (AEC for conferencing) - Dante</li>
+                    <li>12× HDMI audio de-embedders (presentation laptops) - Analog to Dante interfaces</li>
+                    <li>3× streaming service players - Dante</li>
+                    <li>4× paging stations (reception, security, AV control) - Analog to DSP</li>
+                </ul>
+
+                <p><strong>Network:</strong></p>
+                <ul>
+                    <li>Core: 10Gb fiber backbone connecting buildings</li>
+                    <li>Per-room: Gigabit PoE switches (Cisco 2960-X series)</li>
+                    <li>Dedicated audio VLAN, IGMP snooping, DSCP QoS priority</li>
+                    <li>Redundant: Primary and secondary fiber paths with SFP modules</li>
+                </ul>
+
+                <p><strong>Processing:</strong></p>
+                <ul>
+                    <li>DSP per room: Parametric EQ, compressor/limiter, AEC on conferencing mics</li>
+                    <li>Global: Emergency paging with priority ducking, campus-wide background music distribution</li>
+                    <li>Presets: "Presentation mode," "Video Conference," "Event," "Music Only," "Emergency"</li>
+                </ul>
+
+                <p><strong>Outputs:</strong></p>
+                <ul>
+                    <li>Meeting rooms: QSC CXD-Q network amplifiers (Dante in) → ceiling speakers</li>
+                    <li>Auditorium: Line array + subwoofers (bi-amped via Dante amps)</li>
+                    <li>Lobby/cafeteria: 70V distribution amps → ceiling speakers</li>
+                    <li>Recording: Dante virtual soundcard → recording PC (all rooms recordable)</li>
+                    <li>Video conferencing: Dante to Zoom Rooms appliances</li>
+                </ul>
+
+                <p><strong>Control:</strong></p>
+                <ul>
+                    <li>Per-room: 7" touchpanels (volume, source select, preset recall, room combine)</li>
+                    <li>AV staff: Q-SYS UCI web interface (full system control and monitoring)</li>
+                    <li>Emergency: Physical paging stations override everything</li>
+                </ul>
+
+                <h4>Results:</h4>
+                <p>✅ 100% uptime since installation (2 years)<br>
+                ✅ Users can operate without training ("it just works")<br>
+                ✅ IT staff can monitor network health remotely<br>
+                ✅ 40% cost savings vs. traditional per-room systems<br>
+                ✅ Scalable: already added 3 more rooms without major changes</p>
+            </div>
+        </div>
+
+        <div class="key-takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+                <li><strong>Hybrid systems combine</strong> analog, digital, networked, and wireless technologies</li>
+                <li><strong>Central DSP/matrix</strong> is the brain - handles routing, processing, control logic</li>
+                <li><strong>Dante network</strong> provides flexible, scalable distribution of digital audio</li>
+                <li><strong>Format converters</strong> normalize disparate sources into common format</li>
+                <li><strong>Key challenges:</strong> Clocking/sync, latency management, control complexity, network reliability</li>
+                <li><strong>Design workflow:</strong> Requirements → Signal flow → Core selection → Network → Amps/Speakers → Control → Documentation → Testing</li>
+                <li><strong>Redundancy is critical</strong> for mission-critical installations</li>
+                <li><strong>Keep control interfaces simple</strong> - users don't care about the complexity underneath</li>
+            </ul>
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="nav-btn prev-btn" onclick="navigateStage(7)">← Previous: Network Audio</button>
+            <button class="nav-btn next-btn" onclick="navigateStage(9)">Next: Large Venue (Capstone) →</button>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 9: Large Venue Capstone continues in the main HTML file... -->

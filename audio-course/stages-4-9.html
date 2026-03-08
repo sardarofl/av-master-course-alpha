@@ -1,0 +1,363 @@
+<!-- Stage 4: Zone Distribution -->
+<section id="stage4" class="stage">
+    <div class="stage-header">
+        <span class="stage-number">Stage 4</span>
+        <h1>Zone Distribution</h1>
+        <p class="stage-subtitle">Mixer → Distribution Amp → Multiple Zones</p>
+    </div>
+
+    <div class="stage-content">
+        <div class="intro-box">
+            <h3>One to Many Audio Distribution</h3>
+            <p>What if you need to send the same audio to multiple rooms, floors, or areas? A hotel lobby, restaurant, and hallways all playing background music? This is where <strong>zone distribution systems</strong> come in.</p>
+        </div>
+
+        <h2>The Signal Flow</h2>
+        <div class="diagram-container">
+            <svg viewBox="0 0 1100 450" class="signal-diagram">
+                <defs>
+                    <marker id="arrowhead4" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+                    </marker>
+                </defs>
+                
+                <!-- Mixer -->
+                <rect x="50" y="180" width="120" height="100" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                <text x="110" y="215" text-anchor="middle" fill="white" font-size="14" font-weight="bold">MIXER</text>
+                <g transform="translate(70, 225)">
+                    <rect x="0" y="0" width="20" height="40" rx="2" fill="#34495e"/>
+                    <rect x="2" y="30" width="16" height="2" fill="white"/>
+                </g>
+                <g transform="translate(100, 225)">
+                    <rect x="0" y="0" width="20" height="40" rx="2" fill="#34495e"/>
+                    <rect x="2" y="30" width="16" height="2" fill="white"/>
+                </g>
+                <g transform="translate(130, 225)">
+                    <rect x="0" y="0" width="20" height="40" rx="2" fill="#34495e"/>
+                    <rect x="2" y="30" width="16" height="2" fill="white"/>
+                </g>
+
+                <!-- Arrow to distribution amp -->
+                <line x1="180" y1="230" x2="290" y2="230" stroke="#3498db" stroke-width="3" marker-end="url(#arrowhead4)"/>
+                <text x="235" y="220" text-anchor="middle" fill="#3498db" font-size="11">Main Mix</text>
+
+                <!-- Distribution Amplifier -->
+                <rect x="310" y="150" width="180" height="160" rx="10" fill="#34495e" stroke="#2c3e50" stroke-width="3"/>
+                <text x="400" y="180" text-anchor="middle" fill="white" font-size="16" font-weight="bold">DISTRIBUTION</text>
+                <text x="400" y="200" text-anchor="middle" fill="white" font-size="16" font-weight="bold">AMPLIFIER</text>
+                
+                <!-- Input -->
+                <circle cx="315" cy="230" r="8" fill="#3498db"/>
+                <text x="335" y="235" text-anchor="start" fill="white" font-size="10">IN</text>
+                
+                <!-- Zone controls -->
+                <g transform="translate(330, 220)">
+                    <text x="0" y="0" text-anchor="start" fill="#27ae60" font-size="10" font-weight="bold">Zone 1</text>
+                    <rect x="0" y="5" width="50" height="8" rx="2" fill="#27ae60"/>
+                    <rect x="10" y="6" width="3" height="6" fill="white"/>
+                </g>
+                <g transform="translate(330, 245)">
+                    <text x="0" y="0" text-anchor="start" fill="#f39c12" font-size="10" font-weight="bold">Zone 2</text>
+                    <rect x="0" y="5" width="50" height="8" rx="2" fill="#f39c12"/>
+                    <rect x="25" y="6" width="3" height="6" fill="white"/>
+                </g>
+                <g transform="translate(330, 270)">
+                    <text x="0" y="0" text-anchor="start" fill="#9b59b6" font-size="10" font-weight="bold">Zone 3</text>
+                    <rect x="0" y="5" width="50" height="8" rx="2" fill="#9b59b6"/>
+                    <rect x="40" y="6" width="3" height="6" fill="white"/>
+                </g>
+
+                <!-- Outputs to zones -->
+                <circle cx="485" cy="190" r="8" fill="#27ae60"/>
+                <line x1="495" y1="190" x2="650" y2="110" stroke="#27ae60" stroke-width="3" marker-end="url(#arrowhead4)"/>
+                <text x="570" y="140" text-anchor="middle" fill="#27ae60" font-size="11" font-weight="bold">Zone 1</text>
+
+                <circle cx="485" cy="230" r="8" fill="#f39c12"/>
+                <line x1="495" y1="230" x2="650" y2="230" stroke="#f39c12" stroke-width="3" marker-end="url(#arrowhead4)"/>
+                <text x="570" y="220" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="bold">Zone 2</text>
+
+                <circle cx="485" cy="270" r="8" fill="#9b59b6"/>
+                <line x1="495" y1="270" x2="650" y2="350" stroke="#9b59b6" stroke-width="3" marker-end="url(#arrowhead4)"/>
+                <text x="570" y="320" text-anchor="middle" fill="#9b59b6" font-size="11" font-weight="bold">Zone 3</text>
+
+                <!-- Zone 1: Lobby (2 speakers) -->
+                <g id="zone1">
+                    <rect x="670" y="60" width="180" height="100" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+                    <text x="760" y="85" text-anchor="middle" fill="#27ae60" font-size="13" font-weight="bold">LOBBY</text>
+                    
+                    <rect x="690" y="95" width="60" height="55" rx="5" fill="#34495e"/>
+                    <circle cx="720" cy="120" r="15" fill="#7f8c8d"/>
+                    <circle cx="720" cy="120" r="8" fill="#34495e"/>
+                    <text x="720" y="150" text-anchor="middle" fill="white" font-size="9">Speaker</text>
+                    
+                    <rect x="770" y="95" width="60" height="55" rx="5" fill="#34495e"/>
+                    <circle cx="800" cy="120" r="15" fill="#7f8c8d"/>
+                    <circle cx="800" cy="120" r="8" fill="#34495e"/>
+                    <text x="800" y="150" text-anchor="middle" fill="white" font-size="9">Speaker</text>
+                </g>
+
+                <!-- Zone 2: Restaurant (3 speakers) -->
+                <g id="zone2">
+                    <rect x="670" y="180" width="260" height="100" rx="8" fill="#fff3e0" stroke="#f39c12" stroke-width="2"/>
+                    <text x="800" y="205" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">RESTAURANT</text>
+                    
+                    <rect x="690" y="215" width="60" height="55" rx="5" fill="#34495e"/>
+                    <circle cx="720" cy="240" r="15" fill="#7f8c8d"/>
+                    <circle cx="720" cy="240" r="8" fill="#34495e"/>
+                    
+                    <rect x="770" y="215" width="60" height="55" rx="5" fill="#34495e"/>
+                    <circle cx="800" cy="240" r="15" fill="#7f8c8d"/>
+                    <circle cx="800" cy="240" r="8" fill="#34495e"/>
+                    
+                    <rect x="850" y="215" width="60" height="55" rx="5" fill="#34495e"/>
+                    <circle cx="880" cy="240" r="15" fill="#7f8c8d"/>
+                    <circle cx="880" cy="240" r="8" fill="#34495e"/>
+                </g>
+
+                <!-- Zone 3: Hallways (4 speakers) -->
+                <g id="zone3">
+                    <rect x="670" y="300" width="340" height="100" rx="8" fill="#f3e5f5" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="840" y="325" text-anchor="middle" fill="#9b59b6" font-size="13" font-weight="bold">HALLWAYS</text>
+                    
+                    <rect x="690" y="335" width="50" height="50" rx="5" fill="#34495e"/>
+                    <circle cx="715" cy="360" r="12" fill="#7f8c8d"/>
+                    
+                    <rect x="760" y="335" width="50" height="50" rx="5" fill="#34495e"/>
+                    <circle cx="785" cy="360" r="12" fill="#7f8c8d"/>
+                    
+                    <rect x="830" y="335" width="50" height="50" rx="5" fill="#34495e"/>
+                    <circle cx="855" cy="360" r="12" fill="#7f8c8d"/>
+                    
+                    <rect x="900" y="335" width="50" height="50" rx="5" fill="#34495e"/>
+                    <circle cx="925" cy="360" r="12" fill="#7f8c8d"/>
+                </g>
+            </svg>
+        </div>
+
+        <h2>What is a Distribution Amplifier?</h2>
+        <div class="concept-grid">
+            <div class="concept-card highlight">
+                <h3>🔊 Distribution Amp Function</h3>
+                <p>A <strong>distribution amplifier</strong> (or "zone amplifier") takes one audio input and creates multiple amplified outputs, each with independent volume control.</p>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>Input:</strong> Line-level stereo signal from mixer</li>
+                        <li><strong>Outputs:</strong> Multiple speaker-level zones (typically 4-16 zones)</li>
+                        <li><strong>Per-zone control:</strong> Volume, on/off, sometimes EQ</li>
+                        <li><strong>Power:</strong> Each zone typically 15-100W</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <h3>🏢 Use Cases</h3>
+                <ul class="use-case-list">
+                    <li><strong>Hotels:</strong> Lobby, restaurant, gym, pool, hallways</li>
+                    <li><strong>Retail:</strong> Sales floor, fitting rooms, stockroom</li>
+                    <li><strong>Offices:</strong> Reception, conference rooms, break rooms</li>
+                    <li><strong>Restaurants:</strong> Dining room, bar, patio, bathrooms</li>
+                    <li><strong>Schools:</strong> Classrooms, gym, cafeteria, halls</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>70V/100V Constant Voltage Systems</h2>
+        <div class="voltage-systems">
+            <div class="system-explanation">
+                <h3>Why 70V Systems?</h3>
+                <p>For commercial installations with many speakers over long distances, we use <strong>constant voltage distribution</strong> (70V in North America, 100V in Europe/Asia).</p>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>❌ Traditional Low-Impedance (8Ω)</h4>
+                        <ul>
+                            <li>Limited number of speakers per amp</li>
+                            <li>Complex impedance calculations</li>
+                            <li>Thick cables needed for long runs</li>
+                            <li>Power loss over distance</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-card highlight">
+                        <h4>✅ 70V Constant Voltage</h4>
+                        <ul>
+                            <li>Connect dozens of speakers easily</li>
+                            <li>Simple transformer-based taps</li>
+                            <li>Thin cables work for long distances</li>
+                            <li>Minimal power loss</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transformer-section">
+                <h3>How 70V Systems Work</h3>
+                <div class="tech-explanation">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Amplifier Steps Up Voltage</h4>
+                            <p>The distribution amp outputs 70V AC signal (instead of typical speaker-level voltage)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Speakers Have Transformers</h4>
+                            <p>Each speaker has a built-in transformer that steps the voltage back down and "taps" a specific wattage (1W, 2W, 4W, 8W, etc.)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Power Budget</h4>
+                            <p>Add up all speaker taps. Total must not exceed amp power rating.</p>
+                            <p class="example">Example: 100W amp can drive 50× 2W speakers, or 25× 4W speakers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wiring-diagram">
+                    <h4>70V Wiring Topology</h4>
+                    <svg viewBox="0 0 600 250" class="wiring-svg">
+                        <!-- Amp -->
+                        <rect x="30" y="100" width="80" height="60" rx="5" fill="#2c3e50"/>
+                        <text x="70" y="135" text-anchor="middle" fill="white" font-size="12" font-weight="bold">70V AMP</text>
+                        
+                        <!-- Main cable run -->
+                        <line x1="110" y1="130" x2="550" y2="130" stroke="#e74c3c" stroke-width="4"/>
+                        <text x="330" y="120" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="bold">70V Distribution Line</text>
+                        
+                        <!-- Speaker 1 -->
+                        <line x1="180" y1="130" x2="180" y2="80" stroke="#3498db" stroke-width="2"/>
+                        <rect x="155" y="40" width="50" height="40" rx="3" fill="#34495e"/>
+                        <circle cx="180" cy="60" r="12" fill="#7f8c8d"/>
+                        <text x="180" y="95" text-anchor="middle" fill="#3498db" font-size="9">2W</text>
+                        
+                        <!-- Speaker 2 -->
+                        <line x1="280" y1="130" x2="280" y2="80" stroke="#3498db" stroke-width="2"/>
+                        <rect x="255" y="40" width="50" height="40" rx="3" fill="#34495e"/>
+                        <circle cx="280" cy="60" r="12" fill="#7f8c8d"/>
+                        <text x="280" y="95" text-anchor="middle" fill="#3498db" font-size="9">4W</text>
+                        
+                        <!-- Speaker 3 -->
+                        <line x1="380" y1="130" x2="380" y2="180" stroke="#3498db" stroke-width="2"/>
+                        <rect x="355" y="180" width="50" height="40" rx="3" fill="#34495e"/>
+                        <circle cx="380" cy="200" r="12" fill="#7f8c8d"/>
+                        <text x="380" y="235" text-anchor="middle" fill="#3498db" font-size="9">2W</text>
+                        
+                        <!-- Speaker 4 -->
+                        <line x1="480" y1="130" x2="480" y2="180" stroke="#3498db" stroke-width="2"/>
+                        <rect x="455" y="180" width="50" height="40" rx="3" fill="#34495e"/>
+                        <circle cx="480" cy="200" r="12" fill="#7f8c8d"/>
+                        <text x="480" y="235" text-anchor="middle" fill="#3498db" font-size="9">8W</text>
+                    </svg>
+                    <p class="diagram-caption">Speakers connect in parallel. Total: 2W + 4W + 2W + 8W = 16W (well under typical 100W amp capacity)</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Zone Control & Features</h2>
+        <div class="zone-features">
+            <div class="feature-block">
+                <h3>Independent Volume Control</h3>
+                <p>Each zone has its own volume knob or digital control. The restaurant can be louder than the lobby, hallways quieter at night.</p>
+            </div>
+
+            <div class="feature-block">
+                <h3>Zone Override</h3>
+                <p>Priority paging systems can override music in specific zones for announcements (e.g., "Security to the front desk").</p>
+            </div>
+
+            <div class="feature-block">
+                <h3>Scheduling</h3>
+                <p>Modern systems can schedule zones: gym music on 6am-10pm, restaurant quiet during off-hours, lobby 24/7.</p>
+            </div>
+
+            <div class="feature-block">
+                <h3>Source Selection</h3>
+                <p>Advanced systems let different zones play different sources: lobby plays corporate radio, restaurant plays Spotify, gym plays streaming service.</p>
+            </div>
+        </div>
+
+        <h2>Real-World Scenarios</h2>
+        <div class="scenario-grid">
+            <div class="scenario-card">
+                <h3>🏨 Boutique Hotel</h3>
+                <div class="scenario-details">
+                    <p><strong>System:</strong> 6-zone distribution amplifier (350W total)</p>
+                    <p><strong>Zones:</strong></p>
+                    <ul>
+                        <li>Lobby: 4× 8W ceiling speakers = 32W</li>
+                        <li>Restaurant: 8× 4W ceiling speakers = 32W</li>
+                        <li>Bar: 4× 8W wall speakers = 32W</li>
+                        <li>Pool area: 6× 8W outdoor speakers = 48W</li>
+                        <li>Gym: 4× 4W ceiling speakers = 16W</li>
+                        <li>Hallways (3 floors): 20× 2W ceiling speakers = 40W</li>
+                    </ul>
+                    <p><strong>Total:</strong> 200W (leaves 150W headroom)</p>
+                    <p><strong>Control:</strong> Wall-mounted zone controllers in each area</p>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <h3>🛍️ Retail Store Chain</h3>
+                <div class="scenario-details">
+                    <p><strong>System:</strong> 4-zone amp per store</p>
+                    <p><strong>Zones:</strong></p>
+                    <ul>
+                        <li>Sales floor: 12× 4W ceiling speakers</li>
+                        <li>Fitting rooms: 4× 2W in-ceiling speakers</li>
+                        <li>Stockroom: 3× 4W utility speakers</li>
+                        <li>Break room: 2× 4W speakers</li>
+                    </ul>
+                    <p><strong>Source:</strong> Corporate streaming service with branded playlists</p>
+                    <p><strong>Feature:</strong> Paging microphone overrides music for staff announcements</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Advantages vs. Limitations</h2>
+        <div class="pros-cons-section">
+            <div class="pros">
+                <h3>✅ Advantages of Zone Systems</h3>
+                <ul>
+                    <li><strong>Cost-effective:</strong> One source, one amp, many speakers</li>
+                    <li><strong>Centralized control:</strong> Change music/volume from one location</li>
+                    <li><strong>Simple wiring:</strong> Especially with 70V systems</li>
+                    <li><strong>Scalable:</strong> Add zones or speakers easily</li>
+                    <li><strong>Reliable:</strong> Fewer components to fail</li>
+                </ul>
+            </div>
+
+            <div class="cons">
+                <h3>⚠️ Limitations</h3>
+                <ul>
+                    <li><strong>Same content:</strong> All zones typically play the same source (unless using matrix switcher - see Stage 5!)</li>
+                    <li><strong>Audio quality:</strong> 70V transformers can color sound slightly</li>
+                    <li><strong>Not for critical listening:</strong> Fine for background music, but not studio-quality</li>
+                    <li><strong>No individual speaker control:</strong> Volume is per-zone, not per-speaker</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="key-takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+                <li><strong>Zone distribution</strong> sends one audio source to multiple areas with independent volume control</li>
+                <li><strong>Distribution amplifiers</strong> take line-level input and create multiple speaker-level zone outputs</li>
+                <li><strong>70V/100V systems</strong> use constant voltage for commercial installations with many speakers over long distances</li>
+                <li><strong>Speaker taps</strong> (1W, 2W, 4W, etc.) determine power draw; total taps must not exceed amp capacity</li>
+                <li><strong>Perfect for:</strong> Hotels, retail, restaurants, offices, schools - anywhere background music/paging is needed</li>
+                <li><strong>Each zone</strong> gets independent volume control, but usually plays the same source (next stage adds source routing!)</li>
+            </ul>
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="nav-btn prev-btn" onclick="navigateStage(3)">← Previous: Basic Mixing</button>
+            <button class="nav-btn next-btn" onclick="navigateStage(5)">Next: Matrix Switching →</button>
+        </div>
+    </div>
+</section>
+
+<!-- Stages 5-9 will be in the next file to keep this manageable -->

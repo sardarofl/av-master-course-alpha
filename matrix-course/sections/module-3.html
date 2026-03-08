@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Distribution and Switching</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Module 3: Distribution and Switching -->
+    <section id="module3" class="module">
+        <div class="module-header">
+            <span class="module-number">Module 3</span>
+            <h1>Distribution and Switching</h1>
+            <p class="module-subtitle">Splitters, Distribution Amps, Video Switchers & Meeting Room Use Cases</p>
+        </div>
+
+        <div class="module-content">
+            <div class="intro-box">
+                <h3>Expanding Beyond Point-to-Point</h3>
+                <p>Once you understand how to get a signal from point A to point B, the next challenge is distributing that signal to multiple destinations or switching between multiple sources. This module covers the fundamental technologies for <strong>one-to-many</strong> and <strong>many-to-one</strong> signal routing, which form the backbone of most commercial AV installations.</p>
+            </div>
+
+            <h2>Learning Outcomes</h2>
+            <div class="outcome-box">
+                <p>After completing this module, you will understand:</p>
+                <ul>
+                    <li>The difference between splitters and distribution amplifiers</li>
+                    <li>When to use a simple switcher vs. a matrix switcher</li>
+                    <li>Common meeting room configurations and their requirements</li>
+                    <li>How to properly wire and test distribution systems</li>
+                    <li>Troubleshooting techniques for multi-output systems</li>
+                </ul>
+            </div>
+
+            <h2>One to Many: Distribution Fundamentals</h2>
+            <p>The simplest expansion beyond point-to-point is duplicating a single source to multiple displays. This is where <strong>splitters</strong> and <strong>distribution amplifiers</strong> come into play.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 200" class="signal-diagram">
+                    <defs>
+                        <marker id="arrowhead-blue3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Source -->
+                    <rect x="30" y="60" width="100" height="80" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="80" y="105" text-anchor="middle" fill="white" font-size="12" font-weight="bold">SOURCE</text>
+                    
+                    <!-- Splitter -->
+                    <rect x="150" y="30" width="100" height="140" rx="8" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                    <text x="200" y="70" text-anchor="middle" fill="white" font-size="11" font-weight="bold">HDMI</text>
+                    <text x="200" y="88" text-anchor="middle" fill="white" font-size="11" font-weight="bold">SPLITTER</text>
+                    <text x="200" y="106" text-anchor="middle" fill="#bdc3c7" font-size="10">1x4</text>
+                    <circle cx="200" cy="140" r="6" fill="#2ecc71"/>
+                    <circle cx="200" cy="155" r="6" fill="#2ecc71"/>
+                    <circle cx="200" cy="170" r="6" fill="#2ecc71"/>
+                    <circle cx="200" cy="185" r="6" fill="#2ecc71"/>
+                    
+                    <!-- Output cables -->
+                    <line x1="260" y1="70" x2="340" y2="70" stroke="#3498db" stroke-width="2"/>
+                    <line x1="260" y1="100" x2="360" y2="100" stroke="#3498db" stroke-width="2"/>
+                    <line x1="260" y1="130" x2="380" y2="130" stroke="#3498db" stroke-width="2"/>
+                    <line x1="260" y1="160" x2="400" y2="160" stroke="#3498db" stroke-width="2"/>
+                    
+                    <!-- Displays -->
+                    <rect x="350" y="35" width="70" height="50" rx="4" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="385" y="65" text-anchor="middle" fill="#bdc3c7" font-size="8">DISPLAY 1</text>
+                    
+                    <rect x="370" y="75" width="70" height="50" rx="4" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="405" y="105" text-anchor="middle" fill="#bdc3c7" font-size="8">DISPLAY 2</text>
+                    
+                    <rect x="390" y="115" width="70" height="50" rx="4" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="425" y="145" text-anchor="middle" fill="#bdc3c7" font-size="8">DISPLAY 3</text>
+                    
+                    <rect x="410" y="155" width="70" height="50" rx="4" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="445" y="185" text-anchor="middle" fill="#bdc3c7" font-size="8">DISPLAY 4</text>
+                    
+                    <!-- Labels -->
+                    <text x="295" y="55" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">IDENTICAL SIGNALS</text>
+                    <text x="295" y="195" text-anchor="middle" fill="#7f8c8d" font-size="9">All displays show the same content</text>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>🔀 HDMI Splitter</h3>
+                    <div class="spec-box">
+                        <p><strong>Function:</strong> Duplicate 1 source to N displays</p>
+                        <p><strong>Typical Sizes:</strong> 1x2, 1x4, 1x8, 1x16</p>
+                        <p><strong>Signal:</strong> Identical output on all ports</p>
+                    </div>
+                    <p>A <strong>passive signal splitter</strong> divides the electrical signal. All outputs show <strong>exactly the same content</strong> at the same time.</p>
+                    <div class="example-box">
+                        <strong>Use Cases:</strong> Digital signage, menu boards, meeting room displays showing same content
+                    </div>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>📢 Distribution Amplifier (DA)</h3>
+                    <div class="spec-box">
+                        <p><strong>Function:</strong> Buffer + amplify 1 source to N displays</p>
+                        <p><strong>Typical Sizes:</strong> 1x2, 1x4, 1x8, 1x16</p>
+                        <p><strong>Signal:</strong> Full-strength on all outputs</p>
+                    </div>
+                    <p>An <strong>active device with signal buffering</strong>. Each output has its own amplification, preventing signal degradation when driving multiple displays.</p>
+                    <div class="example-box">
+                        <strong>Use Cases:</strong> Critical installations, long cable runs, when signal integrity is paramount
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box large">
+                <h3>⚠️ Key Difference: Passive vs Active</h3>
+                <p>While the terms "splitter" and "distribution amplifier" are sometimes used interchangeably, the distinction is crucial:</p>
+                <div class="two-column" style="margin-top: 20px;">
+                    <div class="comparison-card">
+                        <h3>Passive Splitter</h3>
+                        <ul class="feature-list">
+                            <li>Simple electrical division</li>
+                            <li>Signal strength splits (halved for 1x2)</li>
+                            <li>Lower cost</li>
+                            <li>Limited to 2-3 displays</li>
+                            <li>Short cable runs only</li>
+                            <li>No power required</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card">
+                        <h3>Distribution Amplifier</h3>
+                        <ul class="feature-list">
+                            <li>Active signal regeneration</li>
+                            <li>Full-strength on each output</li>
+                            <li>Higher cost</li>
+                            <li>Supports 4+ displays easily</li>
+                            <li>Longer cable runs supported</li>
+                            <li>Power required (AC adapter)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2>HDCP Considerations for Distribution</h2>
+            <p>Distributing HDCP-protected content requires special attention. Not all splitters support HDCP passthrough correctly.</p>
+
+            <div class="tech-note">
+                <strong>🔐 HDCP Compliance in Distribution</strong>
+                <p>When distributing protected content (Netflix, Blu-ray, etc.):</p>
+                <ul style="margin-top: 10px;">
+                    <li>All displays must be HDCP compliant</li>
+                    <li>The splitter/DA must support HDCP passthrough</li>
+                    <li>EDID must be properly managed (often by "learning" from displays)</li>
+                    <li>HDCP 2.2 required for 4K content</li>
+                </ul>
+            </div>
+
+            <h2>Many to One: Input Switching</h2>
+            <p>When you have multiple sources but only one display (or one destination), you need a <strong>switcher</strong> to select which source to show.</p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>🔘 Manual Switcher</h3>
+                    <div class="spec-box">
+                        <p><strong>Control:</strong> Push button on device</p>
+                        <p><strong>Inputs:</strong> 2-4 typical</p>
+                        <p><strong>Cost:</strong> $30-150</p>
+                    </div>
+                    <p>Simple button-press switching. No intelligence, no auto-detection. <strong>Best for:</strong> Home theater, simple meeting rooms.</p>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🤖 Auto-Switcher</h3>
+                    <div class="spec-box">
+                        <p><strong>Control:</strong> Auto-detects active input</p>
+                        <p><strong>Inputs:</strong> 2-8 typical</p>
+                        <p><strong>Cost:</strong> $100-500</p>
+                    </div>
+                    <p>Automatically switches to the most recently activated source. No user intervention required. <strong>Best for:</strong> Conference rooms, huddle spaces.</p>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>🎛️ Presentation Switcher</h3>
+                    <div class="spec-box">
+                        <p><strong>Control:</strong> Auto + manual + control system</p>
+                        <p><strong>Inputs:</strong> 4-8+ (HDMI, VGA, USB-C)</p>
+                        <p><strong>Cost:</strong> $500-2000+</p>
+                    </div>
+                    <p>Multi-format inputs, scaling, audio embedding, and control system integration. <strong>Best for:</strong> Corporate conference rooms, training rooms.</p>
+                </div>
+            </div>
+
+            <h2>Meeting Room Use Cases</h2>
+            <p>Different meeting room sizes and functions require different AV configurations:</p>
+
+            <div class="meeting-grid">
+                <div class="meeting-card">
+                    <div class="meeting-icon">🗄️</div>
+                    <h4>Huddle Space (2-4 people)</h4>
+                    <div class="meeting-config">
+                        <p><strong>Sources:</strong> 1-2 (laptop, phone)</p>
+                        <p><strong>Displays:</strong> 1 (TV or monitor)</p>
+                        <p><strong>Solution:</strong> Simple auto-switcher</p>
+                    </div>
+                    <div class="meeting-example">
+                        <strong>Example:</strong> Small meeting room with table box, 2 HDMI inputs, single display
+                    </div>
+                </div>
+
+                <div class="meeting-card">
+                    <div class="meeting-icon">🏢</div>
+                    <h4>Conference Room (6-12 people)</h4>
+                    <div class="meeting-config">
+                        <p><strong>Sources:</strong> 3-4 (laptops, document camera)</p>
+                        <p><strong>Displays:</strong> 1-2 (main display, confidence monitor)</p>
+                        <p><strong>Solution:</strong> Presentation switcher with scaling</p>
+                    </div>
+                    <div class="meeting-example">
+                        <strong>Example:</strong> Boardroom with presentation switcher, main display + confidence monitor, audio system
+                    </div>
+                </div>
+
+                <div class="meeting-card">
+                    <div class="meeting-icon">🎓</div>
+                    <h4>Training Room (10-30 people)</h4>
+                    <div class="meeting-config">
+                        <p><strong>Sources:</strong> 4-6 (multiple presenters)</p>
+                        <p><strong>Displays:</strong> 2-3 (main + auxiliary)</p>
+                        <p><strong>Solution:</strong> Matrix switcher or larger presentation switcher</p>
+                    </div>
+                    <div class="meeting-example">
+                        <strong>Example:</strong> Training room with instructor station, multiple displays for visibility
+                    </div>
+                </div>
+
+                <div class="meeting-card">
+                    <div class="meeting-icon">🎭</div>
+                    <h4>Boardroom (10-20 people)</h4>
+                    <div class="meeting-config">
+                        <p><strong>Sources:</strong> 4-8 (laptops, video conferencing)</p>
+                        <p><strong>Displays:</strong> 2-4 (main, side, confidence)</p>
+                        <p><strong>Solution:</strong> Full matrix switcher with video conferencing integration</p>
+                    </div>
+                    <div class="meeting-example">
+                        <strong>Example:</strong> Executive boardroom with dual displays, video codec, audio conferencing
+                    </div>
+                </div>
+            </div>
+
+            <h2>Video Switcher vs Matrix Switcher</h2>
+            <p>A common point of confusion is the difference between a <strong>video switcher</strong> and a <strong>matrix switcher</strong>. The key difference is flexibility:</p>
+
+            <div class="two-column">
+                <div class="comparison-card">
+                    <h3>Video Switcher (Many-to-One)</h3>
+                    <ul class="feature-list">
+                        <li><strong>3 inputs → 1 output</strong></li>
+                        <li>Only ONE source visible at a time</li>
+                        <li>Simple selection control</li>
+                        <li><strong>Fixed routing:</strong> Any input → Single output</li>
+                        <li>Lower cost</li>
+                    </ul>
+                    <div class="tech-note">
+                        <strong>Analogy:</strong> A single-pole, multi-throw switch - only one path active at a time
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Matrix Switcher (Many-to-Many)</h3>
+                    <ul class="feature-list">
+                        <li><strong>3 inputs → 3 outputs (independent)</strong></li>
+                        <li>Multiple sources visible simultaneously</li>
+                        <li>Independent routing per output</li>
+                        <li><strong>Flexible routing:</strong> Any input → Any output (simultaneously)</li>
+                        <li>Higher cost</li>
+                    </ul>
+                    <div class="tech-note">
+                        <strong>Analogy:</strong> A telephone exchange - any input can connect to any output independently
+                    </div>
+                </div>
+            </div>
+
+            <h2>Lab Exercise 1: One Source to Three Screens</h2>
+            <p><strong>Objective:</strong> Distribute a single 4K source to three displays in a digital signage configuration.</p>
+
+            <div class="lab-box">
+                <div class="lab-steps">
+                    <div class="lab-step">
+                        <span class="lab-num">1</span>
+                        <div>
+                            <strong>Select Equipment</strong>
+                            <ul>
+                                <li>4K media player or laptop (source)</li>
+                                <li>1x4 HDMI Distribution Amplifier (or 1x3)</li>
+                                <li>Three 4K displays</li>
+                                <li>Four HDMI cables (short for source and DA, appropriate length for displays)</li>
+                                <li>Power strips for all devices</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">2</span>
+                        <div>
+                            <strong>Physical Connection</strong>
+                            <ul>
+                                <li>Connect source to DA input</li>
+                                <li>Connect displays 1, 2, 3 to DA outputs 1, 2, 3</li>
+                                <li>Power on all devices</li>
+                                <li>Verify all displays show identical content</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">3</span>
+                        <div>
+                            <strong>Verify Performance</strong>
+                            <ul>
+                                <li>Confirm all displays show 4K @ 60Hz in display info</li>
+                                <li>Check for any lag or sync issues between displays</li>
+                                <li>Test with HDCP-protected content if applicable</li>
+                                <li>Verify EDID: all displays should show same source resolution</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">4</span>
+                        <div>
+                            <strong>Troubleshooting</strong>
+                            <ul>
+                                <li>If one display blank: Check HDCP compliance, replace display or cable</li>
+                                <li>If resolution lower: DA may not support 4K @ 60Hz - upgrade DA</li>
+                                <li>If intermittent: Check power, cables, and DA ventilation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Lab Exercise 2: Three Sources to One Screen</h2>
+            <p><strong>Objective:</strong> Create a meeting room where users can switch between three laptop sources on a single display.</p>
+
+            <div class="lab-box">
+                <div class="lab-steps">
+                    <div class="lab-step">
+                        <span class="lab-num">1</span>
+                        <div>
+                            <strong>Select Equipment</strong>
+                            <ul>
+                                <li>Three laptops (sources)</li>
+                                <li>3x1 HDMI Switcher with auto-switching (or manual)</li>
+                                <li>One 4K display or projector</li>
+                                <li>Four HDMI cables (short for sources, appropriate for display)</li>
+                                <li>Table top or wall plate for switcher placement</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">2</span>
+                        <div>
+                            <strong>Physical Connection</strong>
+                            <ul>
+                                <li>Connect laptops to switcher inputs 1, 2, 3</li>
+                                <li>Connect switcher output to display</li>
+                                <li>Power on all devices</li>
+                                <li>Display should auto-switch to most recently activated laptop</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">3</span>
+                        <div>
+                            <strong>Test Switching</strong>
+                            <ul>
+                                <li>Activate Laptop 1 - verify display shows Laptop 1</li>
+                                <li>Activate Laptop 2 - verify display switches to Laptop 2</li>
+                                <li>Activate Laptop 3 - verify display switches to Laptop 3</li>
+                                <li>Test rapid switching - some switchers have delay</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">4</span>
+                        <div>
+                            <strong>Common Issues</strong>
+                            <ul>
+                                <li>Auto-switch not working: Check switcher's auto-sense settings</li>
+                                <li>Resolution mismatch: Switcher may force 1080p - verify 4K support</li>
+                                <li>HDCP errors: One laptop not HDCP compliant - test individually</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Troubleshooting Distribution Systems</h2>
+            <div class="problems-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Common Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>One display blank, others working</strong></td>
+                            <td>HDCP failure on that display</td>
+                            <td>Replace display or bypass HDCP (if content allows)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>All displays blank</strong></td>
+                            <td>Source HDCP issue or splitter doesn't support HDCP</td>
+                            <td>Verify source HDCP compliance, upgrade splitter</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resolution lower on some outputs</strong></td>
+                            <td>EDID mismatch, DA forcing common resolution</td>
+                            <td>Use DA with EDID management, set to highest common</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Switcher won't switch</strong></td>
+                            <td>Auto-sense disabled or stuck on one input</td>
+                            <td>Check manual/autp-switch mode, power cycle</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flickering on some outputs</strong></td>
+                            <td>Cable too long or poor quality</td>
+                            <td>Shorten cable, use active cable, check DA power</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="summary-box">
+                <h3>📝 Module 3 Summary</h3>
+                <p><strong>Key Takeaways:</strong></p>
+                <ul>
+                    <li><strong>Splitter vs DA:</strong> Splitters divide signal passively; DAs buffer and amplify each output</li>
+                    <li><strong>HDCP Chain:</strong> All devices must be HDCP compliant - one failure blanks ALL displays</li>
+                    <li><strong>Switch Types:</strong> Manual (buttons) → Auto-switch (senses active) → Presentation (multi-format, scalable)</li>
+                    <li><strong>Meeting Rooms:</strong> Size dictates complexity - huddle (simple) → boardroom (matrix with VC)</li>
+                    <li><strong>Switcher vs Matrix:</strong> Switcher: many inputs → 1 output. Matrix: many inputs → many outputs independently</li>
+                    <li><strong>Auto-switching:</strong> Most meeting rooms benefit from auto-sensing to eliminate user intervention</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

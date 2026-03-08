@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: LED Processing Flow</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Module 7: LED Processing Flow -->
+    <section id="module7" class="module">
+        <div class="module-header">
+            <span class="module-number">Module 7</span>
+            <h1>LED Processing Flow</h1>
+            <p class="module-subtitle">LED Controller vs Processor, Canvas Concepts & Hybrid Processors</p>
+        </div>
+
+        <div class="module-content">
+            <div class="intro-box">
+                <h3>Understanding LED Display Systems</h3>
+                <p>LED walls are fundamentally different from LCD displays. They use thousands of individual LED modules that must be controlled by a sophisticated processing chain. This module covers the <strong>LED processing ecosystem</strong> - from video source to emitted light - including the critical distinction between controllers and processors, how canvas size works, and when to use hybrid solutions.</p>
+            </div>
+
+            <h2>Learning Outcomes</h2>
+            <div class="outcome-box">
+                <p>After completing this module, you will understand:</p>
+                <ul>
+                    <li>The difference between LED controllers and LED processors</li>
+                    <li>How canvas size and virtual canvas work</li>
+                    <li>The role of receiving cards and sending cards</li>
+                    <li>Major processor brands: NovaStar vs Brompton</li>
+                    <li>Hybrid processor capabilities</li>
+                    <li>How to configure an LED processing chain</li>
+                </ul>
+            </div>
+
+            <h2>LED Controller vs LED Processor: Key Differences</h2>
+            <p>These terms are often confused, but they serve <strong>different purposes</strong> in the signal chain.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 280" class="signal-diagram">
+                    <defs>
+                        <marker id="arrowhead-led" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+                        </marker>
+                    </defs>
+                    
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">LED Processing Chain: Processor vs Controller</text>
+                    
+                    <!-- Source -->
+                    <rect x="30" y="80" width="80" height="50" rx="5" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="70" y="110" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Video Source</text>
+                    <text x="70" y="125" text-anchor="middle" fill="#bdc3c7" font-size="9">(Laptop, Media Player)</text>
+                    
+                    <!-- Processor -->
+                    <rect x="140" y="50" width="120" height="120" rx="8" fill="#8e44ad" stroke="#9b59b6" stroke-width="3"/>
+                    <text x="200" y="80" text-anchor="middle" fill="white" font-size="11" font-weight="bold">LED</text>
+                    <text x="200" y="100" text-anchor="middle" fill="white" font-size="11" font-weight="bold">PROCESSOR</text>
+                    <text x="200" y="130" text-anchor="middle" fill="#bdc3c7" font-size="9">Scaling, Color,</text>
+                    <text x="200" y="145" text-anchor="middle" fill="#bdc3c7" font-size="9">Effects, PIP</text>
+                    
+                    <!-- Arrow -->
+                    <line x1="270" y1="110" x2="310" y2="110" stroke="#9b59b6" stroke-width="3" marker-end="url(#arrowhead-led)"/>
+                    <text x="290" y="100" text-anchor="middle" fill="#9b59b6" font-size="9" font-weight="bold">Video Data</text>
+                    
+                    <!-- Controller -->
+                    <rect x="320" y="50" width="120" height="120" rx="8" fill="#e67e22" stroke="#d35400" stroke-width="3"/>
+                    <text x="380" y="80" text-anchor="middle" fill="white" font-size="11" font-weight="bold">LED</text>
+                    <text x="380" y="100" text-anchor="middle" fill="white" font-size="11" font-weight="bold">CONTROLLER</text>
+                    <text x="380" y="130" text-anchor="middle" fill="#bdc3c7" font-size="9">Sending Card,</text>
+                    <text x="380" y="145" text-anchor="middle" fill="#bdc3c7" font-size="9">Panel Mapping</text>
+                    
+                    <!-- Arrow to LED panels -->
+                    <line x1="450" y1="110" x2="500" y2="110" stroke="#e67e22" stroke-width="3"/>
+                    <text x="475" y="100" text-anchor="middle" fill="#e67e22" font-size="9" font-weight="bold">Ethernet/Cat6</text>
+                    
+                    <!-- LED Panels -->
+                    <rect x="510" y="50" width="370" height="120" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="695" y="42" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">LED PANEL ARRAY</text>
+                    
+                    <rect x="520" y="55" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="580" y="55" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="640" y="55" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="700" y="55" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="760" y="55" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    
+                    <rect x="520" y="110" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="580" y="110" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="640" y="110" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="700" y="110" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="760" y="110" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    
+                    <text x="695" y="185" text-anchor="middle" fill="#2c3e50" font-size="10">Receiving Cards in Each Panel</text>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>🎛️ LED Processor</h3>
+                    <div class="spec-box">
+                        <p><strong>Role:</strong> Signal enhancement and manipulation</p>
+                        <p><strong>Inputs:</strong> HDMI, SDI, DVI, IP</p>
+                        <p><strong>Outputs:</strong> Video data to controller</p>
+                    </div>
+                    <p><strong>The "brain" that enhances video quality.</strong> Handles scaling, color correction, image effects, PIP/POP, and prepares the signal for the LED wall.</p>
+                    <div class="example-box">
+                        <strong>Functions:</strong> Scaling, color calibration, HDR, frame rate conversion, multi-source layouts
+                    </div>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>🔌 LED Controller</h3>
+                    <div class="spec-box">
+                        <p><strong>Role:</strong> Panel management and distribution</p>
+                        <p><strong>Input:</strong> Processed video data</p>
+                        <p><strong>Outputs:</strong> Ethernet/Cat6 to panels</p>
+                    </div>
+                    <p><strong>The "distribution hub" for panels.</strong> Takes processed video and maps it to the correct positions on each LED module.</p>
+                    <div class="example-box">
+                        <strong>Functions:</strong> Panel mapping, loading, receiving card management, redundancy
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box large">
+                <h3>⚠️ Essential Distinction</h3>
+                <p><strong>You need BOTH for a complete LED system:</strong></p>
+                <ul>
+                    <li><strong>Processor alone:</strong> Creates enhanced video but can't drive panels directly</li>
+                    <li><strong>Controller alone:</strong> Can drive panels but without advanced processing</li>
+                    <li><strong>Together:</strong> Complete signal chain from source to emitted light</li>
+                </ul>
+                <p>Many modern systems combine both functions into a single "processor/controller" or "hybrid" device.</p>
+            </div>
+
+            <h2>The Processing Chain: Step by Step</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-icon">📺</div>
+                    <div class="step-content">
+                        <h4>1. Video Source</h4>
+                        <p>Laptop, media server, camera, or broadcast feed provides the content.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🎨</div>
+                    <div class="step-content">
+                        <h4>2. LED Processor</h4>
+                        <p>Scales, colors, and prepares the signal for the LED canvas.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">📡</div>
+                    <div class="step-content">
+                        <h4>3. Sending Card</h4>
+                        <p>Part of the controller that outputs video data over Ethernet/Cat6.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🔗</div>
+                    <div class="step-content">
+                        <h4>4. Network</h4>
+                        <p>Ethernet cables carry video data to each panel location.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">📦</div>
+                    <div class="step-content">
+                        <h4>5. Receiving Card</h4>
+                        <p>In each panel, receives data and drives the LEDs directly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Canvas Size and Virtual Canvas</h2>
+            <p>The <strong>canvas</strong> is the total resolution area that the LED wall displays. Understanding canvas vs. output resolution is critical for proper configuration.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 250" class="signal-diagram">
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Canvas vs Panel Resolution</text>
+                    
+                    <!-- Virtual Canvas -->
+                    <rect x="50" y="50" width="300" height="150" rx="4" fill="#8e44ad" stroke="#9b59b6" stroke-width="2"/>
+                    <text x="200" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">VIRTUAL CANVAS</text>
+                    <text x="200" y="100" text-anchor="middle" fill="#bdc3c7" font-size="10">Full content area</text>
+                    <text x="200" y="130" text-anchor="middle" fill="#ecf0f1" font-size="11">1920×1080 pixels</text>
+                    
+                    <!-- Arrow -->
+                    <line x1="360" y1="125" x2="440" y2="125" stroke="#e74c3c" stroke-width="3"/>
+                    <text x="400" y="115" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="bold">Crop/Scale</text>
+                    
+                    <!-- Panel Array -->
+                    <rect x="450" y="50" width="420" height="150" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="660" y="80" text-anchor="middle" fill="#2c3e50" font-size="12" font-weight="bold">LED PANEL OUTPUT</text>
+                    
+                    <!-- 6 panels -->
+                    <rect x="460" y="90" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="530" y="90" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="600" y="90" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="670" y="90" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="740" y="90" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="810" y="90" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    
+                    <rect x="460" y="145" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="530" y="145" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="600" y="145" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="670" y="145" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="740" y="145" width="65" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="810" y="145" width="55" height="50" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    
+                    <text x="660" y="130" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">Total Panel Resolution: 3840×1920</text>
+                    <text x="660" y="220" text-anchor="middle" fill="#7f8c8d" font-size="10">Content cropped/scaled to fit panels</text>
+                </svg>
+            </div>
+
+            <div class="tech-note">
+                <strong>📐 Key Canvas Concepts</strong>
+                <div style="margin-top: 15px;">
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: #8e44ad;">Virtual Canvas Size:</strong> The total resolution area your content spans (e.g., 1920×1080 for a single 16:9 area).
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: #e74c3c;">Output Resolution:</strong> The actual pixel count of your LED panel array (e.g., 3840×1920 for a 2x2 array of 1920×960 panels).
+                    </div>
+                    <div>
+                        <strong style="color: #27ae60;">The processor must scale/crop the virtual canvas to match the output resolution.</strong>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Major LED Processor Brands</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>⭐ NovaStar</h3>
+                    <div class="spec-box">
+                        <p><strong>Market:</strong> Entry to mid-level</p>
+                        <p><strong>Strength:</strong> Cost-effective, widely compatible</p>
+                        <p><strong>Features:</strong> COEX series, NovaLCT software</p>
+                    </div>
+                    <p>The <strong>most common choice</strong> for general LED installations. Good balance of features and price.</p>
+                    <div class="example-box">
+                        <strong>Best For:</strong> Fixed installations, rental staging, cost-conscious projects
+                    </div>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>👑 Brompton</h3>
+                    <div class="spec-box">
+                        <p><strong>Market:</strong> Professional/High-end</p>
+                        <p><strong>Strength:</strong> Gold standard for live events</p>
+                        <p><strong>Features:</strong> PureTone, DarkMagic, Tessera SX40</p>
+                    </div>
+                    <p>The <strong>industry benchmark</strong> for premium processing. Superior color accuracy and feature set.</p>
+                    <div class="example-box">
+                        <strong>Best For:</strong> Broadcast, film production, high-profile live events
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🔧 Colorlight</h3>
+                    <div class="spec-box">
+                        <p><strong>Market:</strong> Budget/Entry-level</p>
+                        <p><strong>Strength:</strong> Lowest cost option</p>
+                        <p><strong>Features:</strong> Basic processing, LEDVISION software</p>
+                    </div>
+                    <p><strong>Entry-level choice</strong> for simple LED installations. Limited advanced features.</p>
+                    <div class="example-box">
+                        <strong>Best For:</strong> Small venues, basic advertising displays
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Colorlight</th>
+                            <th>NovaStar</th>
+                            <th>Brompton</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Price Range</strong></td>
+                            <td>$-$$</td>
+                            <td>$$-$$$</td>
+                            <td>$$$-$$$$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Color Accuracy</strong></td>
+                            <td>Basic</td>
+                            <td>Good</td>
+                            <td>Excellent</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Frame Rate</strong></td>
+                            <td>Standard</td>
+                            <td>High</td>
+                            <td>Very High (3840Hz+)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advanced Features</strong></td>
+                            <td>Limited</td>
+                            <td>Comprehensive</td>
+                            <td>Industry-leading</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Camera Processing</strong></td>
+                            <td>Poor</td>
+                            <td>Good</td>
+                            <td>Excellent (no artifacts)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Typical Use</strong></td>
+                            <td>Small venues</td>
+                            <td>General AV</td>
+                            <td>Broadcast/Events</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Hybrid Processors: All-in-One Solutions</h2>
+            <p>Modern LED systems often use <strong>hybrid processors</strong> that combine controller and processor functions in a single unit.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 200" class="signal-diagram">
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Hybrid Processor System</text>
+                    
+                    <!-- Source -->
+                    <rect x="30" y="70" width="80" height="60" rx="5" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="70" y="105" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Source</text>
+                    
+                    <!-- Hybrid -->
+                    <rect x="140" y="40" width="200" height="120" rx="8" fill="linear-gradient(135deg, #8e44ad 0%, #e67e22 100%)" stroke="#9b59b6" stroke-width="3"/>
+                    <text x="240" y="70" text-anchor="middle" fill="white" font-size="12" font-weight="bold">HYBRID PROCESSOR</text>
+                    <text x="240" y="90" text-anchor="middle" fill="#bdc3c7" font-size="10">Processor + Controller in One</text>
+                    
+                    <rect x="155" y="105" width="80" height="40" rx="3" fill="#8e44ad"/>
+                    <text x="195" y="128" text-anchor="middle" fill="white" font-size="9">Processor</text>
+                    
+                    <rect x="245" y="105" width="80" height="40" rx="3" fill="#e67e22"/>
+                    <text x="285" y="128" text-anchor="middle" fill="white" font-size="9">Controller</text>
+                    
+                    <!-- Arrow to panels -->
+                    <line x1="350" y1="100" x2="420" y2="100" stroke="#e74c3c" stroke-width="3"/>
+                    
+                    <!-- LED Panels -->
+                    <rect x="430" y="50" width="440" height="100" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="650" y="42" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">LED PANEL ARRAY</text>
+                    
+                    <rect x="440" y="55" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="510" y="55" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="580" y="55" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="650" y="55" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="720" y="55" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="790" y="55" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    
+                    <rect x="440" y="100" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="510" y="100" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="580" y="100" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="650" y="100" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="720" y="100" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="790" y="100" width="65" height="40" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>✅ Advantages of Hybrid</h3>
+                    <ul class="feature-list">
+                        <li>Single device to purchase and configure</li>
+                        <li>Lower total cost for simple installations</li>
+                        <li>Simpler signal chain, fewer points of failure</li>
+                        <li>Compact form factor</li>
+                        <li>Integrated control software</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card">
+                    <h3>⚠️ Limitations of Hybrid</h3>
+                    <ul class="feature-list">
+                        <li>Limited input count (typically 2-4 inputs)</li>
+                        <li>Fixed output capacity (can't scale to massive walls)</li>
+                        <li>Fewer advanced features than separate systems</li>
+                        <li>Less redundancy options</li>
+                        <li>Not suitable for broadcast/camera work</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>Lab Exercise: Configure LED Processing Chain</h2>
+            <p><strong>Objective:</strong> Configure an LED processor and controller for a 3×3 LED wall display.</p>
+
+            <div class="lab-box">
+                <div class="lab-steps">
+                    <div class="lab-step">
+                        <span class="lab-num">1</span>
+                        <div>
+                            <strong>Gather Equipment</strong>
+                            <ul>
+                                <li>3×3 LED wall (9 panels, 640×360 each = 1920×1080 total)</li>
+                                <li>LED processor with scaling and color management</li>
+                                <li>LED controller with sending card</li>
+                                <li>Video source (4K laptop)</li>
+                                <li>Ethernet cables for panel connections</li>
+                                <li>Processor software (NovaLCT, LEDVision, or similar)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">2</span>
+                        <div>
+                            <strong>Physical Setup</strong>
+                            <ul>
+                                <li>Mount LED panels in 3×3 grid</li>
+                                <li>Connect panels to controller via Ethernet</li>
+                                <li>Connect controller to processor output</li>
+                                <li>Connect video source to processor input</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">3</span>
+                        <div>
+                            <strong>Software Configuration</strong>
+                            <ul>
+                                <li>Define panel configuration: 3×3 grid</li>
+                                <li>Set canvas resolution: Match source or desired output</li>
+                                <li>Configure output resolution: 1920×1080</li>
+                                <li>Map panels to correct positions</li>
+                                <li>Set bezel compensation if applicable</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">4</span>
+                        <div>
+                            <strong>Test and Calibrate</strong>
+                            <ul>
+                                <li>Display test pattern (color bars, grid)</li>
+                                <li>Verify each panel receives correct portion of image</li>
+                                <li>Adjust color calibration if needed</li>
+                                <li>Test scaling with different source resolutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>📝 Module 7 Summary</h3>
+                <p><strong>Key Takeaways:</strong></p>
+                <ul>
+                    <li><strong>Processor vs Controller:</strong> Processor enhances/colors video; Controller maps/distributes to panels</li>
+                    <li><strong>Processing Chain:</strong> Source → Processor → Sending Card → Network → Receiving Card → LEDs</li>
+                    <li><strong>Canvas Size:</strong> Virtual canvas is content area; output resolution is panel array size</li>
+                    <li><strong>Processor Brands:</strong> Colorlight (budget), NovaStar (mid-market), Brompton (premium)</li>
+                    <li><strong>Brompton Advantages:</strong> Superior color, no camera artifacts, broadcast-quality</li>
+                    <li><strong>Hybrid Processors:</strong> Combine both functions in one device - simpler but limited</li>
+                    <li><strong>Sending/Receiving Cards:</strong> Sending cards output data; Receiving cards in panels drive LEDs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

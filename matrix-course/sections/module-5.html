@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Resolution Management</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Module 5: Resolution Management -->
+    <section id="module5" class="module">
+        <div class="module-header">
+            <span class="module-number">Module 5</span>
+            <h1>Resolution Management</h1>
+            <p class="module-subtitle">Scaling Fundamentals, EDID Strategy & Aspect Ratio Control</p>
+        </div>
+
+        <div class="module-content">
+            <div class="intro-box">
+                <h3>The Resolution Mismatch Challenge</h3>
+                <p>In an ideal world, all sources would output the same resolution as all displays. In reality, you'll have 4K sources feeding 1080p displays, 1080p sources driving 4K screens, and everything in between. This module covers <strong>how to manage resolution mismatches</strong> through scaling and smart EDID management, ensuring every display shows the best possible image regardless of source resolution.</p>
+            </div>
+
+            <h2>Learning Outcomes</h2>
+            <div class="outcome-box">
+                <p>After completing this module, you will understand:</p>
+                <ul>
+                    <li>How video scalers convert between resolutions</li>
+                    <li>When to upscale vs. downscale (and the trade-offs)</li>
+                    <li>Aspect ratio fundamentals (4:3, 16:9, 21:9)</li>
+                    <li>How letterbox and pillarbox work</li>
+                    <li>EDID strategy for mixed-resolution environments</li>
+                    <li>How to configure scaling in matrix switchers</li>
+                </ul>
+            </div>
+
+            <h2>What is Video Scaling?</h2>
+            <p>A <strong>video scaler</strong> is a device or function that converts video from one resolution to another. It adjusts the pixel count to match the target display while attempting to maintain image quality.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 250" class="signal-diagram">
+                    <defs>
+                        <marker id="arrowhead-scale" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Title -->
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Video Scaling: Converting Resolutions</text>
+                    
+                    <!-- Upscaling Path -->
+                    <rect x="30" y="60" width="100" height="60" rx="8" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                    <text x="80" y="95" text-anchor="middle" fill="white" font-size="11" font-weight="bold">1080p Source</text>
+                    
+                    <rect x="160" y="50" width="120" height="80" rx="8" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+                    <text x="220" y="80" text-anchor="middle" fill="white" font-size="11" font-weight="bold">SCALER</text>
+                    <text x="220" y="98" text-anchor="middle" fill="#bdc3c7" font-size="10">UPSCALE</text>
+                    
+                    <rect x="310" y="60" width="100" height="60" rx="8" fill="#27ae60" stroke="#1e8449" stroke-width="2"/>
+                    <text x="360" y="95" text-anchor="middle" fill="white" font-size="11" font-weight="bold">4K Display</text>
+                    
+                    <line x1="130" y1="90" x2="160" y2="90" stroke="#3498db" stroke-width="2"/>
+                    <line x1="280" y1="90" x2="310" y2="90" stroke="#3498db" stroke-width="2"/>
+                    
+                    <text x="220" y="140" text-anchor="middle" fill="#27ae60" font-size="10" font-weight="bold">↑ 1920×1080 → 3840×2160</text>
+                    
+                    <!-- Divider -->
+                    <line x1="450" y1="40" x2="450" y2="220" stroke="#bdc3c7" stroke-width="2" stroke-dasharray="5,5"/>
+                    
+                    <!-- Downscaling Path -->
+                    <rect x="480" y="60" width="100" height="60" rx="8" fill="#27ae60" stroke="#1e8449" stroke-width="2"/>
+                    <text x="530" y="95" text-anchor="middle" fill="white" font-size="11" font-weight="bold">4K Source</text>
+                    
+                    <rect x="610" y="50" width="120" height="80" rx="8" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+                    <text x="670" y="80" text-anchor="middle" fill="white" font-size="11" font-weight="bold">SCALER</text>
+                    <text x="670" y="98" text-anchor="middle" fill="#bdc3c7" font-size="10">DOWNSCALE</text>
+                    
+                    <rect x="760" y="60" width="100" height="60" rx="8" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                    <text x="810" y="95" text-anchor="middle" fill="white" font-size="11" font-weight="bold">1080p Display</text>
+                    
+                    <line x1="580" y1="90" x2="610" y2="90" stroke="#3498db" stroke-width="2"/>
+                    <line x1="730" y1="90" x2="760" y2="90" stroke="#3498db" stroke-width="2"/>
+                    
+                    <text x="670" y="140" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">↓ 3840×2160 → 1920×1080</text>
+                    
+                    <!-- Legend -->
+                    <rect x="200" y="170" width="500" height="70" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="450" y="195" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">Scaling Considerations</text>
+                    <text x="230" y="218" fill="#27ae60" font-size="10">Upscaling: Adds pixels -</text>
+                    <text x="350" y="218" fill="#7f8c8d" font-size="10">May soften image, no detail added</text>
+                    <text x="550" y="218" fill="#e74c3c" font-size="10">Downscaling: Removes pixels -</text>
+                    <text x="680" y="218" fill="#7f8c8d" font-size="10">Best quality, all detail preserved</text>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>📈 Upscaling</h3>
+                    <div class="spec-box">
+                        <p><strong>Process:</strong> Low resolution → High resolution</p>
+                        <p><strong>Example:</strong> 1080p → 4K</p>
+                        <p><strong>Pixel Count:</strong> 2.25x increase</p>
+                    </div>
+                    <p>The scaler <strong>interpolates</strong> new pixels based on surrounding pixels to fill the larger frame. Modern scalers use sophisticated algorithms to smooth edges and reduce artifacts.</p>
+                    <div class="warning-box">
+                        <strong>Limitation:</strong> Upscaling cannot create detail that wasn't in the original. A 1080p source will never have 4K detail on a 4K display.
+                    </div>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>📉 Downscaling</h3>
+                    <div class="spec-box">
+                        <p><strong>Process:</strong> High resolution → Low resolution</p>
+                        <p><strong>Example:</strong> 4K → 1080p</p>
+                        <p><strong>Pixel Count:</strong> 4x reduction</p>
+                    </div>
+                    <p>The scaler <strong>combines or averages pixels</strong> to fit the smaller frame. This is generally <strong>higher quality</strong> than upscaling because information is removed rather than invented.</p>
+                    <div class="example-box">
+                        <strong>Best Practice:</strong> Always downscale when possible - it's mathematically cleaner and preserves the source's full detail at the output resolution.
+                    </div>
+                </div>
+            </div>
+
+            <h2>Scaling Algorithms: How Scalers Work</h2>
+            <p>Different scaling algorithms produce different quality results. Understanding them helps you choose the right scaler for your application.</p>
+
+            <div class="scaling-grid">
+                <div class="scaling-card">
+                    <h4>Nearest Neighbor</h4>
+                    <div class="scaling-visual">
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;">
+                            <div style="background: #3498db; height: 20px;"></div>
+                            <div style="background: #3498db; height: 20px;"></div>
+                            <div style="background: #3498db; height: 20px;"></div>
+                            <div style="background: #3498db; height: 20px;"></div>
+                        </div>
+                    </div>
+                    <p>Simple pixel duplication. Blocky, poor quality.</p>
+                    <div class="scaling-badge">Fastest / Lowest Quality</div>
+                </div>
+
+                <div class="scaling-card">
+                    <h4>Bilinear</h4>
+                    <div class="scaling-visual">
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;">
+                            <div style="background: linear-gradient(135deg, #3498db, #2ecc71); height: 20px;"></div>
+                            <div style="background: linear-gradient(135deg, #3498db, #2ecc71); height: 20px;"></div>
+                            <div style="background: linear-gradient(135deg, #2ecc71, #f39c12); height: 20px;"></div>
+                            <div style="background: linear-gradient(135deg, #f39c12, #e74c3c); height: 20px;"></div>
+                        </div>
+                    </div>
+                    <p>Basic averaging of adjacent pixels. Smoother but blurry.</p>
+                    <div class="scaling-badge">Basic / Moderate Quality</div>
+                </div>
+
+                <div class="scaling-card">
+                    <h4>Bicubic</h4>
+                    <div class="scaling-visual">
+                        <div style="background: linear-gradient(90deg, #3498db, #2ecc71, #f39c12, #e74c3c); height: 25px; border-radius: 3px;"></div>
+                    </div>
+                    <p>Uses more pixels for calculation. Sharpness preserved.</p>
+                    <div class="scaling-badge good">Good Quality / Standard</div>
+                </div>
+
+                <div class="scaling-card">
+                    <h4>Lanczos</h4>
+                    <div class="scaling-visual">
+                        <div style="background: linear-gradient(90deg, #3498db, #2980b9, #2ecc71, #27ae60, #f39c12, #e67e22, #e74c3c); height: 30px; border-radius: 3px;"></div>
+                    </div>
+                    <p>Advanced algorithm. Excellent detail preservation.</p>
+                    <div class="scaling-badge best">Best Quality / Professional</div>
+                </div>
+            </div>
+
+            <div class="tech-note">
+                <strong>🎯 Professional Scalers</strong>
+                <p>Professional-grade scalers (like those in Extron, Crestron, and DigitalMedia systems) use proprietary algorithms optimized for video content, not still images. They handle motion, edge enhancement, and noise reduction differently than consumer scalers.</p>
+            </div>
+
+            <h2>Aspect Ratio Fundamentals</h2>
+            <p><strong>Aspect ratio</strong> is the relationship between a video's width and height, expressed as a ratio (W:H). Different formats use different aspect ratios, and converting between them requires careful handling.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 200" class="signal-diagram">
+                    <!-- Title -->
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Common Aspect Ratios</text>
+                    
+                    <!-- 4:3 -->
+                    <rect x="50" y="50" width="160" height="120" rx="4" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+                    <text x="130" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">4:3</text>
+                    <text x="130" y="135" text-anchor="middle" fill="#ecf0f1" font-size="10">SD Television</text>
+                    <text x="130" y="155" text-anchor="middle" fill="#bdc3c7" font-size="9">1.33:1</text>
+                    
+                    <!-- 16:9 -->
+                    <rect x="230" y="65" width="213" height="90" rx="4" fill="#27ae60" stroke="#1e8449" stroke-width="2"/>
+                    <text x="336" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">16:9</text>
+                    <text x="336" y="135" text-anchor="middle" fill="#ecf0f1" font-size="10">HD Television</text>
+                    <text x="336" y="155" text-anchor="middle" fill="#bdc3c7" font-size="9">1.78:1</text>
+                    
+                    <!-- 21:9 -->
+                    <rect x="460" y="80" width="280" height="60" rx="4" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+                    <text x="600" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">21:9</text>
+                    <text x="600" y="135" text-anchor="middle" fill="#ecf0f1" font-size="10">Ultrawide / Cinema</text>
+                    <text x="600" y="155" text-anchor="middle" fill="#bdc3c7" font-size="9">2.39:1</text>
+                    
+                    <!-- 1.85:1 -->
+                    <rect x="760" y="72" width="120" height="75" rx="4" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                    <text x="820" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">1.85:1</text>
+                    <text x="820" y="135" text-anchor="middle" fill="#ecf0f1" font-size="9">Academy Flat</text>
+                </svg>
+            </div>
+
+            <h2>Aspect Ratio Conversion Methods</h2>
+            <p>When source and display aspect ratios don't match, the scaler must decide how to handle the mismatch. Common methods include:</p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>📦 Letterbox</h3>
+                    <div class="aspect-visual">
+                        <div style="background: #2c3e50; padding: 20px 10px; text-align: center;">
+                            <div style="background: #3498db; height: 80px; margin: 10px 20px; border-radius: 2px;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Use when:</strong> Wider content (2.35:1) on narrower display (16:9)</p>
+                    <p><strong>Result:</strong> Black bars added top and bottom</p>
+                    <div class="example-box">
+                        <strong>Example:</strong> Watching a movie on a TV - black bars above and below the image
+                    </div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>📐 Pillarbox</h3>
+                    <div class="aspect-visual">
+                        <div style="background: #2c3e50; padding: 10px 20px; display: flex; align-items: center; justify-content: center;">
+                            <div style="background: #3498db; width: 60px; height: 80px; margin: 0 10px; border-radius: 2px;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Use when:</strong> Narrower content (4:3) on wider display (16:9)</p>
+                    <p><strong>Result:</strong> Black bars added left and right</p>
+                    <div class="example-box">
+                        <strong>Example:</strong> Watching old TV shows on a modern 16:9 TV
+                    </div>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>🔍 Zoom / Stretch</h3>
+                    <div class="aspect-visual">
+                        <div style="background: #2c3e50; padding: 10px 20px;">
+                            <div style="background: #3498db; height: 80px; margin: 0 10px; border-radius: 2px; transform: scaleX(1.33);"></div>
+                        </div>
+                    </div>
+                    <p><strong>Use when:</strong> Filling the screen is more important than preserving aspect</p>
+                    <p><strong>Result:</strong> Image stretched to fill display</p>
+                    <div class="warning-box">
+                        <strong>Warning:</strong> Stretched images look distorted - people appear wider or taller than normal
+                    </div>
+                </div>
+            </div>
+
+            <h2>EDID Strategy for Mixed Resolution Environments</h2>
+            <p>One of the most challenging scenarios is when you have <strong>mixed resolutions</strong> - some displays are 4K, some are 1080p, and they all need to work with the same sources.</p>
+
+            <div class="warning-box large">
+                <h3>⚠️ The EDID Challenge</h3>
+                <p>Without scaling, if you have a 4K display and a 1080p display on the same matrix output:</p>
+                <ul>
+                    <li>The 4K display can show 4K content</li>
+                    <li>The 1080p display cannot show 4K content at all</li>
+                    <li><strong>Result:</strong> Either the 4K display is underutilized (forced to 1080p) or the 1080p display shows nothing</li>
+                </ul>
+            </div>
+
+            <div class="tech-note">
+                <strong>📋 EDID Strategy Options</strong>
+                <div style="margin-top: 15px;">
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: #e74c3c;">Option 1: Highest Common Denominator</strong>
+                        <p style="margin: 5px 0 0 15px;">Set all inputs to output 1080p EDID. All displays work, but 4K displays are underutilized. Simple but wasteful.</p>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: #f39c12;">Option 2: Per-Output Scaling</strong>
+                        <p style="margin: 5px 0 0 15px;">Use a matrix with per-output scalers. Sources output at native resolution; each output scales to match its display.</p>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: #27ae60;">Option 3: Scalable Matrix</strong>
+                        <p style="margin: 5px 0 0 15px;">Use a matrix with built-in scaling on inputs. Each input can be scaled to match specific outputs. Most flexible but expensive.</p>
+                    </div>
+                    <div>
+                        <strong style="color: #3498db;">Option 4: 4K Matrix with Downscaling Outputs</strong>
+                        <p style="margin: 5px 0 0 15px;">Some matrices can output 4K to one output and 1080p to another from the same input. Best of both worlds.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Lab Exercise: Mixed Resolution Routing Scenario</h2>
+            <p><strong>Objective:</strong> Configure a system where 4K and 1080p displays must share sources, with each display showing the best possible image.</p>
+
+            <div class="lab-box">
+                <div class="lab-steps">
+                    <div class="lab-step">
+                        <span class="lab-num">1</span>
+                        <div>
+                            <strong>Scenario Setup</strong>
+                            <ul>
+                                <li>4K laptop (source)</li>
+                                <li>1080p laptop (source)</li>
+                                <li>4K display (main room)</li>
+                                <li>1080p display (secondary room)</li>
+                                <li>Matrix switcher with per-output scaling (or use external scalers)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">2</span>
+                        <div>
+                            <strong>EDID Configuration</strong>
+                            <ul>
+                                <li>Set 4K laptop EDID: 4K @ 60Hz (for 4K display)</li>
+                                <li>Set 1080p laptop EDID: 1080p @ 60Hz (for 1080p display)</li>
+                                <li>Or use matrix EDID management to copy display EDID to respective inputs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">3</span>
+                        <div>
+                            <strong>Routing Configuration</strong>
+                            <ul>
+                                <li>Route 4K laptop → 4K display (direct, native resolution)</li>
+                                <li>Route 4K laptop → 1080p display (through scaler, downscale to 1080p)</li>
+                                <li>Route 1080p laptop → 4K display (through scaler, upscale to 4K)</li>
+                                <li>Route 1080p laptop → 1080p display (direct, native resolution)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">4</span>
+                        <div>
+                            <strong>Verification</strong>
+                            <ul>
+                                <li>4K display: Shows 4K content at 4K resolution</li>
+                                <li>1080p display: Shows 4K content downscaled to 1080p (best quality)</li>
+                                <li>Both laptops work on both displays</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Common Resolution Combinations</h2>
+            <div class="problems-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Source Resolution</th>
+                            <th>Display Resolution</th>
+                            <th>Recommended Action</th>
+                            <th>Quality Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4K (3840×2160)</td>
+                            <td>4K (3840×2160)</td>
+                            <td>Pass-through native</td>
+                            <td>✅ Best - no processing</td>
+                        </tr>
+                        <tr>
+                            <td>4K (3840×2160)</td>
+                            <td>1080p (1920×1080)</td>
+                            <td>Downscale</td>
+                            <td>✅ Excellent - detail preserved</td>
+                        </tr>
+                        <tr>
+                            <td>1080p (1920×1080)</td>
+                            <td>4K (3840×2160)</td>
+                            <td>Upscale</td>
+                            <td>⚠️ Good - soft but acceptable</td>
+                        </tr>
+                        <tr>
+                            <td>1080p (1920×1080)</td>
+                            <td>1080p (1920×1080)</td>
+                            <td>Pass-through native</td>
+                            <td>✅ Best - no processing</td>
+                        </tr>
+                        <tr>
+                            <td>1080p (1920×1080)</td>
+                            <td>720p (1280×720)</td>
+                            <td>Downscale</td>
+                            <td>✅ Good - minor quality loss</td>
+                        </tr>
+                        <tr>
+                            <td>720p (1280×720)</td>
+                            <td>1080p (1920×1080)</td>
+                            <td>Upscale</td>
+                            <td>⚠️ Moderate - visible softness</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Best Practices for Resolution Management</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-icon">📊</div>
+                    <div class="step-content">
+                        <h4>1. Survey Displays</h4>
+                        <p>Document all display resolutions in the system before designing.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🎯</div>
+                    <div class="step-content">
+                        <h4>2. Choose Target Resolution</h4>
+                        <p>Select the most common resolution or highest required resolution.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🔧</div>
+                    <div class="step-content">
+                        <h4>3. Select Equipment</h4>
+                        <p>Choose matrix/scaler that can handle required conversions.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">📋</div>
+                    <div class="step-content">
+                        <h4>4. Configure EDID</h4>
+                        <p>Set EDID to match display capabilities, not source capabilities.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">✅</div>
+                    <div class="step-content">
+                        <h4>5. Test All Paths</h4>
+                        <p>Verify every source works on every display.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>📝 Module 5 Summary</h3>
+                <p><strong>Key Takeaways:</strong></p>
+                <ul>
+                    <li><strong>Scaling Basics:</strong> Upscaling (low→high) adds pixels via interpolation; downscaling (high→low) removes pixels via averaging</li>
+                    <li><strong>Quality Rule:</strong> Downscaling is always higher quality than upscaling - preserve detail by reducing pixels</li>
+                    <li><strong>Algorithm Types:</strong> Nearest Neighbor (poor) → Bilinear (basic) → Bicubic (good) → Lanczos (best)</li>
+                    <li><strong>Aspect Ratios:</strong> 4:3 (1.33:1), 16:9 (1.78:1), 21:9 (2.39:1) - different formats require different handling</li>
+                    <li><strong>Letterbox vs Pillarbox:</strong> Letterbox = bars top/bottom (wider content); Pillarbox = bars left/right (narrower content)</li>
+                    <li><strong>Mixed Resolution Strategy:</strong> Use per-output scaling or downscaling matrices to serve both 4K and 1080p displays</li>
+                    <li><strong>EDID is Key:</strong> Set EDID to tell sources what resolution displays can accept, not what sources can output</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

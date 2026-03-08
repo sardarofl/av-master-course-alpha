@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 6: Video Wall Basics</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Module 6: Video Wall Basics -->
+    <section id="module6" class="module">
+        <div class="module-header">
+            <span class="module-number">Module 6</span>
+            <h1>Video Wall Basics</h1>
+            <p class="module-subtitle">2x2 and 3x3 Walls, Tiling Logic, Bezel Compensation & Multi-Window Layouts</p>
+        </div>
+
+        <div class="module-content">
+            <div class="intro-box">
+                <h3>From Single Displays to Massive Screens</h3>
+                <p>When a single display isn't large enough, <strong>video walls</strong> combine multiple screens to create one massive, seamless canvas. This module covers the fundamentals of building video walls - from simple 2x2 configurations to complex multi-window displays.</p>
+            </div>
+
+            <h2>Learning Outcomes</h2>
+            <div class="outcome-box">
+                <p>After completing this module, you will understand:</p>
+                <ul>
+                    <li>Common video wall configurations (2x2, 3x3, custom layouts)</li>
+                    <li>How video wall processors tile and distribute content</li>
+                    <li>Bezel compensation techniques for seamless appearance</li>
+                    <li>Multi-window layouts: PIP, POP, and custom zones</li>
+                    <li>How to design and configure a basic video wall system</li>
+                </ul>
+            </div>
+
+            <h2>Video Wall Configurations</h2>
+            <p>Video walls are described by their <strong>rows × columns</strong> configuration. The most common sizes range from simple 2x2 to large professional installations.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 300" class="signal-diagram">
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Common Video Wall Configurations</text>
+                    
+                    <!-- 2x2 Wall -->
+                    <rect x="50" y="50" width="180" height="180" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <rect x="55" y="55" width="85" height="85" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="145" y="55" width="85" height="85" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="55" y="145" width="85" height="85" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="145" y="145" width="85" height="85" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="140" y="255" text-anchor="middle" fill="#2c3e50" font-size="12" font-weight="bold">2x2 Video Wall</text>
+                    <text x="140" y="275" text-anchor="middle" fill="#7f8c8d" font-size="10">4 displays → 3840×2160 total</text>
+                    
+                    <!-- 3x3 Wall -->
+                    <rect x="300" y="50" width="270" height="180" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <rect x="305" y="55" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="395" y="55" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="485" y="55" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="305" y="115" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="395" y="115" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="485" y="115" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="305" y="175" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="395" y="175" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="485" y="175" width="85" height="55" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="435" y="255" text-anchor="middle" fill="#2c3e50" font-size="12" font-weight="bold">3x3 Video Wall</text>
+                    <text x="435" y="275" text-anchor="middle" fill="#7f8c8d" font-size="10">9 displays → 5760×3240 total</text>
+                    
+                    <!-- L-Shaped -->
+                    <rect x="650" y="50" width="200" height="200" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <rect x="655" y="55" width="90" height="90" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="750" y="55" width="95" height="90" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="655" y="150" width="90" height="95" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="750" y="150" width="95" height="95" rx="2" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="750" y="275" text-anchor="middle" fill="#2c3e50" font-size="12" font-weight="bold">Custom Layout</text>
+                    <text x="750" y="295" text-anchor="middle" fill="#7f8c8d" font-size="10">L-shaped, artistic, irregular</text>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>📐 2x2 Video Wall</h3>
+                    <div class="spec-box">
+                        <p><strong>Displays:</strong> 4 screens (2×2)</p>
+                        <p><strong>Resolution:</strong> 4× native display resolution</p>
+                        <p><strong>Use Case:</strong> Control rooms, retail, small venues</p>
+                    </div>
+                    <p>The <strong>entry point</strong> into video walls. Four 1080p displays create a 4K canvas.</p>
+                </div>
+
+                <div class="concept-card">
+                    <h3>📐 3x3 Video Wall</h3>
+                    <div class="spec-box">
+                        <p><strong>Displays:</strong> 9 screens (3×3)</p>
+                        <p><strong>Resolution:</strong> 9× native display resolution</p>
+                        <p><strong>Use Case:</strong> Lobbies, command centers, sports bars</p>
+                    </div>
+                    <p>The <strong>standard professional size</strong>. Nine 1080p displays create over 5K resolution.</p>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>📐 Large Scale (5×5, 10×6, Custom)</h3>
+                    <div class="spec-box">
+                        <p><strong>Displays:</strong> 25+ screens</p>
+                        <p><strong>Resolution:</strong> Ultra-high resolution canvas</p>
+                        <p><strong>Use Case:</strong> Stadiums, broadcast studios</p>
+                    </div>
+                    <p><strong>Enterprise installations</strong> require dedicated processors and precise mounting.</p>
+                </div>
+            </div>
+
+            <h2>How Video Wall Processors Work</h2>
+            <p>A <strong>video wall processor</strong> takes input signals and distributes them across multiple displays, handling scaling, positioning, and bezel compensation.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 280" class="signal-diagram">
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Video Wall Processing Flow</text>
+                    
+                    <!-- Sources -->
+                    <rect x="30" y="80" width="80" height="50" rx="5" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="70" y="110" text-anchor="middle" fill="white" font-size="10" font-weight="bold">4K Source</text>
+                    
+                    <!-- Processor -->
+                    <rect x="150" y="50" width="150" height="200" rx="8" fill="#8e44ad" stroke="#9b59b6" stroke-width="3"/>
+                    <text x="225" y="80" text-anchor="middle" fill="white" font-size="12" font-weight="bold">VIDEO WALL</text>
+                    <text x="225" y="100" text-anchor="middle" fill="white" font-size="12" font-weight="bold">PROCESSOR</text>
+                    <text x="225" y="130" text-anchor="middle" fill="#bdc3c7" font-size="9">Tiling Engine</text>
+                    <text x="225" y="150" text-anchor="middle" fill="#bdc3c7" font-size="9">Scaling</text>
+                    <text x="225" y="170" text-anchor="middle" fill="#bdc3c7" font-size="9">Bezel Comp</text>
+                    
+                    <!-- Output arrows -->
+                    <line x1="310" y1="75" x2="370" y2="75" stroke="#3498db" stroke-width="2"/>
+                    <line x1="310" y1="125" x2="370" y2="125" stroke="#3498db" stroke-width="2"/>
+                    <line x1="310" y1="175" x2="370" y2="175" stroke="#3498db" stroke-width="2"/>
+                    <line x1="310" y1="225" x2="370" y2="225" stroke="#3498db" stroke-width="2"/>
+                    
+                    <!-- 3x3 Displays -->
+                    <rect x="380" y="50" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="460" y="50" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="540" y="50" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="380" y="110" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="460" y="110" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="540" y="110" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="380" y="170" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="460" y="170" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="540" y="170" width="70" height="50" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    
+                    <text x="495" y="250" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">3×3 Video Wall Output</text>
+                </svg>
+            </div>
+
+            <div class="tech-note">
+                <strong>🔧 Processing Methods</strong>
+                <div style="margin-top: 15px;">
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: #9b59b6;">Dedicated Hardware Processor:</strong> Standalone device, high reliability, expensive.
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <strong style="color: #3498db;">Video Wall Controller Card:</strong> PCIe card in PC, flexible, scalable.
+                    </div>
+                    <div>
+                        <strong style="color: #27ae60;">Matrix with Video Wall Mode:</strong> Built-in modes for simple walls, cost-effective.
+                    </div>
+                </div>
+            </div>
+
+            <h2>Bezel Compensation: Making Seams Disappear</h2>
+            <p>The physical borders (bezels) between displays create visible seams. <strong>Bezel compensation</strong> adjusts the image so content flows across borders.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 200" class="signal-diagram">
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Bezel Compensation</text>
+                    
+                    <!-- Without compensation -->
+                    <rect x="50" y="50" width="170" height="100" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="135" y="42" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">WITHOUT</text>
+                    <rect x="55" y="55" width="82" height="90" rx="2" fill="#3498db"/>
+                    <rect x="142" y="55" width="73" height="90" rx="2" fill="#3498db"/>
+                    <rect x="137" y="50" width="6" height="100" fill="#2c3e50"/>
+                    
+                    <!-- With compensation -->
+                    <rect x="260" y="50" width="170" height="100" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="345" y="42" text-anchor="middle" fill="#27ae60" font-size="10" font-weight="bold">WITH</text>
+                    <rect x="265" y="55" width="85" height="90" rx="2" fill="#3498db"/>
+                    <rect x="355" y="55" width="70" height="90" rx="2" fill="#3498db"/>
+                    <rect x="350" y="50" width="5" height="100" fill="#2c3e50"/>
+                    
+                    <rect x="265" y="70" width="15" height="60" fill="#2ecc71" opacity="0.5"/>
+                    <rect x="430" y="70" width="15" height="60" fill="#2ecc71" opacity="0.5"/>
+                    
+                    <!-- Explanation -->
+                    <rect x="470" y="50" width="380" height="100" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="660" y="75" text-anchor="middle" fill="#2c3e50" font-size="11" font-weight="bold">How Bezel Compensation Works</text>
+                    <text x="490" y="100" fill="#2c3e50" font-size="10">1. Measure bezel width (horizontal + vertical)</text>
+                    <text x="490" y="120" fill="#2c3e50" font-size="10">2. Processor extends image past bezel zone</text>
+                    <text x="490" y="140" fill="#2c3e50" font-size="10">3. Content on bezel zone shown on both displays</text>
+                    <text x="490" y="160" fill="#2c3e50" font-size="10">4. Visual result: seamless image across seams</text>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>📏 Bezel Measurement</h3>
+                    <div class="spec-box">
+                        <p><strong>Horizontal:</strong> Left + right bezel width in pixels</p>
+                        <p><strong>Vertical:</strong> Top + bottom bezel height in pixels</p>
+                    </div>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>🎯 Compensation Methods</h3>
+                    <div class="spec-box">
+                        <p><strong>Full Overlap:</strong> Image extends fully across bezel</p>
+                        <p><strong>Partial Crop:</strong> Image edges cropped at bezel edge</p>
+                        <p><strong>Auto-Align:</strong> Test pattern for manual adjustment</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Multi-Window Layouts</h2>
+            <p>Video walls can display <strong>multiple independent windows</strong> - different sources in different areas.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 200" class="signal-diagram">
+                    <text x="450" y="25" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">Multi-Window Layout Options</text>
+                    
+                    <!-- PIP -->
+                    <rect x="50" y="50" width="180" height="100" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="140" y="42" text-anchor="middle" fill="#2c3e50" font-size="10" font-weight="bold">PIP</text>
+                    <rect x="55" y="55" width="175" height="90" rx="2" fill="#3498db"/>
+                    <rect x="145" y="80" width="70" height="50" rx="2" fill="#2ecc71"/>
+                    
+                    <!-- POP -->
+                    <rect x="260" y="50" width="180" height="100" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="350" y="42" text-anchor="middle" fill="#2c3e50" font-size="10" font-weight="bold">POP</text>
+                    <rect x="265" y="55" width="85" height="90" rx="2" fill="#3498db"/>
+                    <rect x="355" y="55" width="80" height="90" rx="2" fill="#2ecc71"/>
+                    
+                    <!-- Custom -->
+                    <rect x="470" y="50" width="180" height="100" rx="4" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+                    <text x="560" y="42" text-anchor="middle" fill="#2c3e50" font-size="10" font-weight="bold">Custom</text>
+                    <rect x="475" y="55" width="85" height="45" rx="2" fill="#3498db"/>
+                    <rect x="475" y="105" width="40" height="40" rx="2" fill="#2ecc71"/>
+                    <rect x="520" y="105" width="40" height="40" rx="2" fill="#f39c12"/>
+                    <rect x="565" y="55" width="80" height="90" rx="2" fill="#9b59b6"/>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>🖼️ PIP (Picture-in-Picture)</h3>
+                    <p>Main source with small overlay in corner.</p>
+                    <div class="example-box"><strong>Use:</strong> Monitoring secondary source during presentation</div>
+                </div>
+
+                <div class="concept-card">
+                    <h3>🖼️ POP (Picture-outside-Picture)</h3>
+                    <p>Multiple sources in grid without overlap.</p>
+                    <div class="example-box"><strong>Use:</strong> Comparing sources, sports bar with multiple games</div>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>🎨 Custom Layouts</h3>
+                    <p>Arbitrary window placement, sizing, and layering.</p>
+                    <div class="example-box"><strong>Use:</strong> Command centers, branded presentations</div>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>📝 Module 6 Summary</h3>
+                <p><strong>Key Takeaways:</strong></p>
+                <ul>
+                    <li><strong>Video Wall Config:</strong> 2x2 = 4 displays, 3x3 = 9 displays; resolution = sum of all</li>
+                    <li><strong>Video Wall Processor:</strong> Tiles/scales content, outputs to each display</li>
+                    <li><strong>Bezel Compensation:</strong> Extends image past bezel zone so content flows across seams</li>
+                    <li><strong>Bezel Measurement:</strong> Measure horizontal (L+R) and vertical (T+B) widths</li>
+                    <li><strong>Multi-Window:</strong> PIP (small overlay), POP (grid), Custom (arbitrary zones)</li>
+                    <li><strong>Display Type:</strong> Use video wall displays (narrow bezel, 24/7 rated)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional CCTV Systems - Light Current Courses</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <h2>CCTV Course</h2>
+            <p>Light Current Training</p>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('phase1')">
+                <span>Phase 1: Foundations</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-phase1" style="display:block;">
+                <li><a href="#module1" class="nav-link active" onclick="loadSection('module1')">Module 1: How CCTV Works</a></li>
+                <li><a href="#module2" class="nav-link" onclick="loadSection('module2')">Module 2: Camera Types</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('phase2')">
+                <span>Phase 2: Image Quality</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-phase2">
+                <li><a href="#module3" class="nav-link" onclick="loadSection('module3')">Module 3: Resolution & Optics</a></li>
+                <li><a href="#module4" class="nav-link" onclick="loadSection('module4')">Module 4: Lighting & Night</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('phase3')">
+                <span>Phase 3: Recording</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-phase3">
+                <li><a href="#module5" class="nav-link" onclick="loadSection('module5')">Module 5: NVR & VMS</a></li>
+                <li><a href="#module6" class="nav-link" onclick="loadSection('module6')">Module 6: Storage Calculation</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('phase4')">
+                <span>Phase 4: Networking</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-phase4">
+                <li><a href="#module7" class="nav-link" onclick="loadSection('module7')">Module 7: Networking Basics</a></li>
+                <li><a href="#module8" class="nav-link" onclick="loadSection('module8')">Module 8: Advanced Network</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('phase5')">
+                <span>Phase 5: Monitoring</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-phase5">
+                <li><a href="#module9" class="nav-link" onclick="loadSection('module9')">Module 9: Displays & Walls</a></li>
+                <li><a href="#module10" class="nav-link" onclick="loadSection('module10')">Module 10: PTZ & Analytics</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('phase6')">
+                <span>Phase 6: Installation</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-phase6">
+                <li><a href="#module11" class="nav-link" onclick="loadSection('module11')">Module 11: Design Process</a></li>
+                <li><a href="#module12" class="nav-link" onclick="loadSection('module12')">Module 12: Best Practices</a></li>
+                <li><a href="#module13" class="nav-link" onclick="loadSection('module13')">Module 13: Testing & Handover</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('phase7')">
+                <span>Phase 7: Professional</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-phase7">
+                <li><a href="#module14" class="nav-link" onclick="loadSection('module14')">Module 14: Troubleshooting</a></li>
+                <li><a href="#module15" class="nav-link" onclick="loadSection('module15')">Module 15: Pricing & Quoting</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-category">
+            <div class="category-title" onclick="toggleCategory('capstone')">
+                <span>Final Capstone</span>
+                <span class="toggle">▼</span>
+            </div>
+            <ul class="category-sections" id="cat-capstone">
+                <li><a href="#capstone" class="nav-link" onclick="loadSection('capstone')">Complete System Design</a></li>
+            </ul>
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="masterProgress" style="width: 0%"></div>
+            </div>
+            <span id="progressText">0 of 16 modules</span>
+        </div>
+        <a href="../" class="back-portal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Back to Portal
+        </a>
+    </nav>
+    
+    <main class="content">
+        <div class="content-header">
+            <h1 id="sectionTitle">Professional CCTV Systems</h1>
+            <p id="sectionSubtitle">From Camera to Control Room</p>
+        </div>
+        
+        <div class="content-body" id="contentArea">
+            <!-- Content loads here -->
+        </div>
+        
+        <div class="content-footer">
+            <button class="nav-btn prev" id="prevBtn" onclick="navigateSection(-1)">Previous</button>
+            <span id="sectionIndicator">Module 1 of 16</span>
+            <button class="nav-btn next" id="nextBtn" onclick="navigateSection(1)">Next</button>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>loadSection('module1');</script>
+</body>
+</html>

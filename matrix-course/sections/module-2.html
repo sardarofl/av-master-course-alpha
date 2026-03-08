@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Point to Point and Extension</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Module 2: Point to Point and Extension -->
+    <section id="module2" class="module">
+        <div class="module-header">
+            <span class="module-number">Module 2</span>
+            <h1>Point to Point and Extension</h1>
+            <p class="module-subtitle">Direct Connections, Extenders, Distance Limitations & Latency</p>
+        </div>
+
+        <div class="module-content">
+            <div class="intro-box">
+                <h3>Understanding Signal Extension</h3>
+                <p>In an ideal world, every source would connect directly to its display with a simple cable. In the real world, sources and displays are often separated by significant distances — sometimes hundreds of feet. This module covers the technologies that bridge those gaps and the trade-offs you need to understand when choosing an extension solution.</p>
+            </div>
+
+            <h2>Learning Outcomes</h2>
+            <div class="outcome-box">
+                <p>After completing this module, you will understand:</p>
+                <ul>
+                    <li>Why copper HDMI cables have strict length limitations</li>
+                    <li>How HDBaseT extenders work and their 100m capability</li>
+                    <li>When to use fiber optic extenders for long distances</li>
+                    <li>Latency considerations for different extension technologies</li>
+                    <li>How to properly install and troubleshoot extenders</li>
+                </ul>
+            </div>
+
+            <h2>The Direct HDMI Connection</h2>
+            <p>A direct HDMI connection is the simplest solution when the source and display are within cable length limitations.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 800 200" class="signal-diagram">
+                    <defs>
+                        <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#3498db" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Source Device -->
+                    <rect x="30" y="50" width="120" height="100" rx="10" fill="#2c3e50" stroke="#34495e" stroke-width="3"/>
+                    <rect x="40" y="70" width="40" height="30" rx="3" fill="#34495e"/>
+                    <circle cx="110" cy="85" r="10" fill="#e74c3c"/>
+                    <text x="90" y="125" text-anchor="middle" fill="white" font-size="13" font-weight="bold">SOURCE</text>
+                    
+                    <!-- HDMI Cable -->
+                    <line x1="160" y1="100" x2="500" y2="100" stroke="#3498db" stroke-width="6"/>
+                    <text x="330" y="85" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">HDMI CABLE</text>
+                    <text x="330" y="130" text-anchor="middle" fill="#7f8c8d" font-size="11">Direct Connection</text>
+                    
+                    <!-- Distance markers -->
+                    <text x="330" y="160" text-anchor="middle" fill="#e74c3c" font-size="12" font-weight="bold">Max Length: 3-5 meters (10-15 ft)</text>
+                    
+                    <!-- Display -->
+                    <rect x="520" y="30" width="120" height="140" rx="5" fill="#2c3e50" stroke="#34495e" stroke-width="3"/>
+                    <rect x="530" y="40" width="100" height="80" rx="3" fill="#34495e"/>
+                    <text x="580" y="145" text-anchor="middle" fill="white" font-size="13" font-weight="bold">DISPLAY</text>
+                </svg>
+            </div>
+
+            <div class="warning-box large">
+                <h3>⚠️ Copper HDMI Cable Limitations</h3>
+                <p>Standard copper HDMI cables have strict distance limitations that decrease as bandwidth increases:</p>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>HDMI 1.4 (10.2 Gbps)</h3>
+                        <div class="spec-box">
+                            <p><strong>1080p @ 60Hz:</strong> 10-15 meters (33-50 ft)</p>
+                            <p><strong>4K @ 30Hz:</strong> 5-8 meters (16-26 ft)</p>
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <h3>HDMI 2.0 (18 Gbps)</h3>
+                        <div class="spec-box">
+                            <p><strong>1080p @ 60Hz:</strong> 7-10 meters (23-33 ft)</p>
+                            <p><strong>4K @ 60Hz:</strong> 3-5 meters (10-16 ft)</p>
+                        </div>
+                    </div>
+                    <div class="concept-card">
+                        <h3>HDMI 2.1 (48 Gbps)</h3>
+                        <div class="spec-box">
+                            <p><strong>4K @ 60Hz:</strong> 2-3 meters (6-10 ft)</p>
+                            <p><strong>8K @ 60Hz:</strong> 1-2 meters (3-6 ft)</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px;"><strong>Why the limitation?</strong> At high data rates (18-48 Gbps), signal integrity degrades over copper due to attenuation (signal loss), electromagnetic interference (EMI), and skin effect at high frequencies.</p>
+            </div>
+
+            <h2>Types of HDMI Cables</h2>
+            <div class="two-column">
+                <div class="comparison-card">
+                    <h3>Standard HDMI Cable (Passive)</h3>
+                    <div class="cable-visual">
+                        <svg viewBox="0 0 300 60" class="cable-svg">
+                            <rect x="10" y="15" width="40" height="30" fill="#34495e" rx="3"/>
+                            <line x1="50" y1="30" x2="250" y2="30" stroke="#7f8c8d" stroke-width="8"/>
+                            <rect x="250" y="15" width="40" height="30" fill="#34495e" rx="3"/>
+                        </svg>
+                    </div>
+                    <ul class="feature-list">
+                        <li><strong>Length Limit:</strong> 3-15 meters depending on bandwidth</li>
+                        <li><strong>Cost:</strong> Inexpensive ($10-30)</li>
+                        <li><strong>Best For:</strong> Short runs, home theater, desktop setups</li>
+                        <li><strong>Limitation:</strong> No signal regeneration</li>
+                    </ul>
+                    <div class="tech-note">
+                        <strong>Tip:</strong> Look for "Premium High Speed" certification for HDMI 2.0 compliance.
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Active HDMI Cable</h3>
+                    <div class="cable-visual">
+                        <svg viewBox="0 0 300 60" class="cable-svg">
+                            <rect x="10" y="15" width="40" height="30" fill="#34495e" rx="3"/>
+                            <circle cx="60" cy="30" r="12" fill="#e74c3c"/>
+                            <line x1="75" y1="30" x2="220" y2="30" stroke="#3498db" stroke-width="4"/>
+                            <rect x="220" y="15" width="40" height="30" fill="#34495e" rx="3"/>
+                            <circle cx="240" cy="30" r="8" fill="#2ecc71"/>
+                        </svg>
+                    </div>
+                    <ul class="feature-list">
+                        <li><strong>Length Limit:</strong> Up to 25-30 meters (82-100 ft)</li>
+                        <li><strong>Cost:</strong> Moderate ($50-100)</li>
+                        <li><strong>Best For:</strong> Medium runs, cleaner installation</li>
+                        <li><strong>Feature:</strong> Built-in signal amplification</li>
+                    </ul>
+                    <div class="tech-note warning">
+                        <strong>Caution:</strong> Directional! The transmitter end must connect to the source.
+                    </div>
+                </div>
+            </div>
+
+            <h2>HDBaseT: The Industry Standard Extender</h2>
+            <p>HDBaseT is the dominant technology for extending HDMI signals over standard network cable. Developed by the HDBaseT Alliance (now part of the Valens semiconductor company), it transmits uncompressed video, audio, power, controls, and Ethernet over a single CAT cable.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 250" class="signal-diagram">
+                    <defs>
+                        <marker id="arrowhead-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#e67e22" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Source -->
+                    <rect x="30" y="80" width="100" height="90" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="80" y="120" text-anchor="middle" fill="white" font-size="12" font-weight="bold">SOURCE</text>
+                    <text x="80" y="140" text-anchor="middle" fill="#bdc3c7" font-size="10">Laptop / PC</text>
+                    
+                    <!-- Transmitter -->
+                    <rect x="150" y="50" width="100" height="150" rx="8" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                    <text x="200" y="90" text-anchor="middle" fill="white" font-size="11" font-weight="bold">HDBaseT</text>
+                    <text x="200" y="108" text-anchor="middle" fill="white" font-size="11" font-weight="bold">TRANSMITTER</text>
+                    <rect x="165" y="120" width="70" height="25" rx="3" fill="#2c3e50"/>
+                    <text x="200" y="137" text-anchor="middle" fill="#e74c3c" font-size="9">HDMI IN</text>
+                    
+                    <!-- CAT Cable -->
+                    <line x1="260" y1="125" x2="540" y2="125" stroke="#e67e22" stroke-width="5" stroke-dasharray="8,4"/>
+                    <text x="400" y="110" text-anchor="middle" fill="#e67e22" font-size="13" font-weight="bold">CAT5e/6/6a CABLE</text>
+                    <text x="400" y="150" text-anchor="middle" fill="#e74c3c" font-size="11">Up to 100 meters (328 ft)</text>
+                    
+                    <!-- Receiver -->
+                    <rect x="560" y="50" width="100" height="150" rx="8" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                    <text x="610" y="90" text-anchor="middle" fill="white" font-size="11" font-weight="bold">HDBaseT</text>
+                    <text x="610" y="108" text-anchor="middle" fill="white" font-size="11" font-weight="bold">RECEIVER</text>
+                    <rect x="575" y="120" width="70" height="25" rx="3" fill="#2c3e50"/>
+                    <text x="610" y="137" text-anchor="middle" fill="#2ecc71" font-size="9">HDMI OUT</text>
+                    
+                    <!-- Display -->
+                    <rect x="680" y="80" width="100" height="90" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="690" y="90" width="80" height="50" rx="3" fill="#34495e"/>
+                    <text x="730" y="160" text-anchor="middle" fill="white" font-size="12" font-weight="bold">DISPLAY</text>
+                    
+                    <!-- Controls pass-through -->
+                    <rect x="200" y="165" width="60" height="20" rx="3" fill="#9b59b6"/>
+                    <text x="230" y="179" text-anchor="middle" fill="white" font-size="8">IR / RS-232</text>
+                    
+                    <rect x="550" y="165" width="60" height="20" rx="3" fill="#9b59b6"/>
+                    <text x="580" y="179" text-anchor="middle" fill="white" font-size="8">IR / RS-232</text>
+                    
+                    <!-- PoC indicator -->
+                    <rect x="340" y="155" width="80" height="18" rx="3" fill="#27ae60"/>
+                    <text x="380" y="168" text-anchor="middle" fill="white" font-size="9">PoC (Optional)</text>
+                </svg>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>📡 HDBaseT 2.0</h3>
+                    <div class="spec-box">
+                        <p><strong>Bandwidth:</strong> 10.2 Gbps</p>
+                        <p><strong>Max Distance:</strong> 100m (328 ft) over CAT5e/6</p>
+                        <p><strong>Max Resolution:</strong> 4K @ 30Hz</p>
+                        <p><strong>Released:</strong> 2012</p>
+                    </div>
+                    <p>The original HDBaseT standard, still widely used. Supports 5Play feature set: video, audio, controls, Ethernet, and power.</p>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>📡 HDBaseT 3.0</h3>
+                    <div class="spec-box">
+                        <p><strong>Bandwidth:</strong> 18 Gbps (uncompressed)</p>
+                        <p><strong>Max Distance:</strong> 100m (328 ft) over CAT6a</p>
+                        <p><strong>Max Resolution:</strong> 4K @ 60Hz 4:4:4</p>
+                        <p><strong>Released:</strong> 2019</p>
+                    </div>
+                    <p>The <strong>current standard</strong>. Supports full 18Gbps HDMI 2.0 with zero latency, better immunity to cable quality, and enhanced 5Play features.</p>
+                </div>
+            </div>
+
+            <h2>The 5Play Feature Set</h2>
+            <p>HDBaseT's power comes from bundling multiple signals over a single cable:</p>
+
+            <div class="fiveplay-grid">
+                <div class="fiveplay-item">
+                    <div class="fiveplay-icon">📺</div>
+                    <h4>Uncompressed Video</h4>
+                    <p>Full-bandwidth HDMI up to 4K @ 60Hz with zero latency</p>
+                </div>
+                <div class="fiveplay-item">
+                    <div class="fiveplay-icon">🔊</div>
+                    <h4>Audio</h4>
+                    <p>All HDMI audio formats including Dolby Atmos, DTS:X</p>
+                </div>
+                <div class="fiveplay-item">
+                    <div class="fiveplay-icon">🎮</div>
+                    <h4>Controls</h4>
+                    <p>IR, RS-232, and CEC pass-through for device control</p>
+                </div>
+                <div class="fiveplay-item">
+                    <div class="fiveplay-icon">🌐</div>
+                    <h4>Ethernet</h4>
+                    <p>100Mbps Ethernet pass-through for network access</p>
+                </div>
+                <div class="fiveplay-item">
+                    <div class="fiveplay-icon">⚡</div>
+                    <h4>Power (PoC)</h4>
+                    <p>Up to 100W power over cable - receiver can be powered from transmitter</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ HDBaseT Requirements</h3>
+                <p>To achieve maximum distance and performance with HDBaseT:</p>
+                <ul>
+                    <li><strong>CAT6a cable</strong> recommended for HDBaseT 3.0 (CAT5e/6 works for shorter runs)</li>
+                    <li><strong>Solid copper conductors</strong> - CCA (copper-clad aluminum) will cause failures</li>
+                    <li><strong>Proper termination</strong> - use 8P8C connectors with correct pinout (T568A or T568B)</li>
+                    <li><strong>No patch panels in middle</strong> - direct cable run preferred</li>
+                </ul>
+            </div>
+
+            <h2>Fiber Optic Extenders</h2>
+            <p>For distances beyond 100m, or in environments with high electromagnetic interference, fiber optic extenders are the solution. Fiber transmits light rather than electrical signals, eliminating EMI concerns and enabling transmission over many kilometers.</p>
+
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 280" class="signal-diagram">
+                    <defs>
+                        <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Source -->
+                    <rect x="30" y="100" width="100" height="80" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <text x="80" y="140" text-anchor="middle" fill="white" font-size="12" font-weight="bold">SOURCE</text>
+                    
+                    <!-- Fiber Transmitter -->
+                    <rect x="150" y="60" width="100" height="160" rx="8" fill="#27ae60" stroke="#1e8449" stroke-width="2"/>
+                    <text x="200" y="100" text-anchor="middle" fill="white" font-size="11" font-weight="bold">FIBER</text>
+                    <text x="200" y="118" text-anchor="middle" fill="white" font-size="11" font-weight="bold">TRANSMITTER</text>
+                    <rect x="165" y="130" width="70" height="25" rx="3" fill="#2c3e50"/>
+                    <text x="200" y="147" text-anchor="middle" fill="#e74c3c" font-size="9">HDMI IN</text>
+                    <rect x="175" y="170" width="50" height="15" rx="2" fill="#f39c12"/>
+                    <text x="200" y="181" text-anchor="middle" fill="white" font-size="8">SFP+</text>
+                    
+                    <!-- Fiber Cable -->
+                    <line x1="260" y1="140" x2="540" y2="140" stroke="#27ae60" stroke-width="4"/>
+                    <text x="400" y="125" text-anchor="middle" fill="#27ae60" font-size="13" font-weight="bold">FIBER OPTIC CABLE</text>
+                    <text x="400" y="175" text-anchor="middle" fill="#7f8c8d" font-size="11">Single-mode: Unlimited | Multi-mode: 300-400m</text>
+                    
+                    <!-- Fiber Receiver -->
+                    <rect x="560" y="60" width="100" height="160" rx="8" fill="#27ae60" stroke="#1e8449" stroke-width="2"/>
+                    <text x="610" y="100" text-anchor="middle" fill="white" font-size="11" font-weight="bold">FIBER</text>
+                    <text x="610" y="118" text-anchor="middle" fill="white" font-size="11" font-weight="bold">RECEIVER</text>
+                    <rect x="575" y="130" width="70" height="25" rx="3" fill="#2c3e50"/>
+                    <text x="610" y="147" text-anchor="middle" fill="#2ecc71" font-size="9">HDMI OUT</text>
+                    <rect x="585" y="170" width="50" height="15" rx="2" fill="#f39c12"/>
+                    <text x="610" y="181" text-anchor="middle" fill="white" font-size="8">SFP+</text>
+                    
+                    <!-- Display -->
+                    <rect x="680" y="100" width="100" height="80" rx="8" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                    <rect x="690" y="110" width="80" height="45" rx="3" fill="#34495e"/>
+                    <text x="730" y="170" text-anchor="middle" fill="white" font-size="12" font-weight="bold">DISPLAY</text>
+                    
+                    <!-- Distance markers -->
+                    <rect x="380" y="195" width="60" height="25" rx="3" fill="#34495e"/>
+                    <text x="410" y="212" text-anchor="middle" fill="white" font-size="10">SINGLE-MODE</text>
+                    <text x="410" y="225" text-anchor="middle" fill="#bdc3c7" font-size="9">Up to 10+ km</text>
+                </svg>
+            </div>
+
+            <div class="two-column">
+                <div class="comparison-card">
+                    <h3>Multi-Mode Fiber (OM3/OM4)</h3>
+                    <div class="spec-box">
+                        <p><strong>Distance:</strong> 300-400 meters (984-1312 ft)</p>
+                        <p><strong>Bandwidth:</strong> Up to 18 Gbps</p>
+                        <p><strong>Cost:</strong> Lower per meter than single-mode</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li>Uses 850nm wavelength (typically)</li>
+                        <li>Higher modal dispersion limits distance</li>
+                        <li>Less expensive optics and cable</li>
+                        <li><strong>Best For:</strong> Campus buildings, moderate distances</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Single-Mode Fiber (OS1/OS2)</h3>
+                    <div class="spec-box">
+                        <p><strong>Distance:</strong> 10+ km (6+ miles) - unlimited for AV</p>
+                        <p><strong>Bandwidth:</strong> Up to 48+ Gbps</p>
+                        <p><strong>Cost:</strong> Higher per meter but lower long-term</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li>Uses 1310nm or 1550nm wavelength</li>
+                        <li>No modal dispersion - virtually unlimited distance</li>
+                        <li>More expensive optics required</li>
+                        <li><strong>Best For:</strong> Stadiums, campuses, long-haul</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tech-note">
+                <strong>🔬 SFP+ Modules:</strong> Most fiber extenders use pluggable SFP+ (Small Form-factor Pluggable) transceivers. Common types include:
+                <ul style="margin-top: 10px;">
+                    <li><strong>Multi-mode SFP+ (850nm):</strong> For OM3/OM4 fiber, up to 300-400m</li>
+                    <li><strong>Single-mode SFP+ (1310nm):</strong> For OS1/OS2 fiber, up to 10km+</li>
+                    <li><strong>Bi-directional (BiDi):</strong> Uses single fiber strand (Tx/Rx on different wavelengths)</li>
+                </ul>
+            </div>
+
+            <h2>Distance Comparison Chart</h2>
+            <div class="problems-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Technology</th>
+                            <th>Max Distance</th>
+                            <th>4K @ 60Hz</th>
+                            <th>Best Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Passive HDMI (Copper)</strong></td>
+                            <td>3-5 meters (10-16 ft)</td>
+                            <td>✅ Yes</td>
+                            <td>Desktop, short runs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Active HDMI</strong></td>
+                            <td>25-30 meters (82-100 ft)</td>
+                            <td>✅ Yes</td>
+                            <td>Single room, clean install</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HDBaseT 2.0</strong></td>
+                            <td>100 meters (328 ft)</td>
+                            <td>❌ 4K @ 30Hz only</td>
+                            <td>Classrooms, meeting rooms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HDBaseT 3.0</strong></td>
+                            <td>100 meters (328 ft)</td>
+                            <td>✅ Yes (4:4:4)</td>
+                            <td>Professional AV, control rooms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multi-Mode Fiber</strong></td>
+                            <td>300-400 meters (1000-1300 ft)</td>
+                            <td>✅ Yes</td>
+                            <td>Campus buildings, venues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Single-Mode Fiber</strong></td>
+                            <td>10+ kilometers (6+ miles)</td>
+                            <td>✅ Yes</td>
+                            <td>Stadiums, large campuses</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SDVoE / IP Video</strong></td>
+                            <td>Unlimited (with network)</td>
+                            <td>✅ Yes</td>
+                            <td>Enterprise, distributed systems</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Understanding Video Latency</h2>
+            <p>Latency is the time delay between a source generating a signal and it appearing on the display. For most applications, latency below 50ms is imperceptible. For interactive applications (gaming, video conferencing), lower latency is critical.</p>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>⚡ HDBaseT</h3>
+                    <div class="spec-box">
+                        <p><strong>Latency:</strong> Near zero (~0ms)</p>
+                        <p><strong>Compression:</strong> None</p>
+                    </div>
+                    <p>HDBaseT transmits <strong>uncompressed</strong> video, resulting in virtually zero added latency. This makes it ideal for live video, gaming, and interactive applications.</p>
+                </div>
+
+                <div class="concept-card highlight">
+                    <h3>⚡ SDVoE / IP Video</h3>
+                    <div class="spec-box">
+                        <p><strong>Latency:</strong> 1-5ms (typical)</p>
+                        <p><strong>Compression:</strong> JPEG 2000 or none</p>
+                    </div>
+                    <p>SDVoE using <strong>uncompressed</strong> or lightly compressed (JPEG 2000) video maintains very low latency. Perfect for latency-critical applications when properly configured.</p>
+                </div>
+
+                <div class="concept-card">
+                    <h3>⚡ H.265/HEVC Extenders</h3>
+                    <div class="spec-box">
+                        <p><strong>Latency:</strong> 30-100ms+</p>
+                        <p><strong>Compression:</strong> Heavy (H.265)</p>
+                    </div>
+                    <p>Compression-based extenders introduce significant latency due to encoding/decoding delay. May cause lip-sync issues and is unsuitable for real-time interaction.</p>
+                </div>
+            </div>
+
+            <div class="warning-box large">
+                <h3>⚠️ Latency Requirements by Application</h3>
+                <div class="latency-grid">
+                    <div class="latency-item">
+                        <span class="latency-badge critical">Critical</span>
+                        <strong>Interactive Gaming</strong>
+                        <p>&lt; 16ms (60Hz frame = 16.67ms per frame)</p>
+                    </div>
+                    <div class="latency-item">
+                        <span class="latency-badge critical">Critical</span>
+                        <strong>Video Conferencing</strong>
+                        <p>&lt; 150ms for natural conversation</p>
+                    </div>
+                    <div class="latency-item">
+                        <span class="latency-badge moderate">Moderate</span>
+                        <strong>Presentation Systems</strong>
+                        <p>&lt; 100ms generally acceptable</p>
+                    </div>
+                    <div class="latency-item">
+                        <span class="latency-badge acceptable">Acceptable</span>
+                        <strong>Digital Signage</strong>
+                        <p>&lt; 500ms typically fine</p>
+                    </div>
+                    <div class="latency-item">
+                        <span class="latency-badge acceptable">Acceptable</span>
+                        <strong>Surveillance/Monitoring</strong>
+                        <p>&lt; 500ms typically fine</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>🔧 Installation Best Practices</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-icon">📏</div>
+                    <div class="step-content">
+                        <h4>1. Measure Distance</h4>
+                        <p>Measure the actual cable run distance, not straight-line distance. Add 10-15% for slack and termination.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🔌</div>
+                    <div class="step-content">
+                        <h4>2. Choose Technology</h4>
+                        <p>Match extender technology to distance and latency requirements. Don't over-spec or under-spec.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-content">
+                        <h4>3. Verify Cable Quality</h4>
+                        <p>Test cable continuity and quality before installation. CCA cable will cause HDBaseT failures.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🔧</div>
+                    <div class="step-content">
+                        <h4>4. Terminate Properly</h4>
+                        <p>Use proper termination techniques. For HDBaseT, use 8P8C connectors with T568A/B pinout.</p>
+                    </div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">✅</div>
+                    <div class="step-content">
+                        <h4>5. Test Before Mounting</h4>
+                        <p>Verify end-to-end signal before final installation. It's much harder to troubleshoot after mounting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>🔍 Troubleshooting Common Issues</h2>
+            <div class="problems-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Common Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>No Signal</strong></td>
+                            <td>CCA (copper-clad aluminum) cable</td>
+                            <td>Replace with solid copper CAT6a</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intermittent Signal</strong></td>
+                            <td>Poor termination or damaged cable</td>
+                            <td>Re-terminate or replace cable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HDCP Errors</strong></td>
+                            <td>Non-HDCP compliant extender</td>
+                            <td>Verify extender supports HDCP 2.2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4K Not Working</strong></td>
+                            <td>HDBaseT 2.0 extender used</td>
+                            <td>Upgrade to HDBaseT 3.0 or use fiber</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IR Not Working</strong></td>
+                            <td>IR blaster/eye not positioned correctly</td>
+                            <td>Adjust IR eye placement toward device</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PoC Not Working</strong></td>
+                            <td>Power delivery not enabled</td>
+                            <td>Check PoC switch on transmitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="lab-box">
+                <h3>🔬 Lab Exercise: Laptop to Remote Display</h3>
+                <p><strong>Objective:</strong> Successfully extend a laptop's 4K output to a display located 50 meters away using proper extender technology.</p>
+                
+                <div class="lab-steps">
+                    <div class="lab-step">
+                        <span class="lab-num">1</span>
+                        <div>
+                            <strong>Gather Equipment</strong>
+                            <ul>
+                                <li>Laptop with HDMI 2.0 output</li>
+                                <li>4K display (TV or monitor)</li>
+                                <li>HDBaseT 3.0 extender kit</li>
+                                <li>100m CAT6a solid copper cable</li>
+                                <li>HDMI cables (short, for connections)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">2</span>
+                        <div>
+                            <strong>Connect Transmitter</strong>
+                            <ul>
+                                <li>Connect laptop to transmitter's HDMI IN</li>
+                                <li>Connect CAT6a cable to transmitter's LAN OUT</li>
+                                <li>Enable PoC if using (optional)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lab-step">
+                        <span class="lab-num">3

@@ -1,0 +1,614 @@
+<!-- Stage 9: Large Venue Capstone -->
+<section id="stage9" class="stage">
+    <div class="stage-header">
+        <span class="stage-number">Stage 9</span>
+        <h1>Large Venue Scenario (Capstone)</h1>
+        <p class="stage-subtitle">Enterprise Conference Hall - Everything Together</p>
+    </div>
+
+    <div class="stage-content">
+        <div class="intro-box">
+            <h3>🎓 The Final Challenge</h3>
+            <p>You've learned the fundamentals. Now we design a complete, real-world system that incorporates EVERYTHING: wireless mics, DSP with AEC, recording, streaming, overflow rooms, lobby speakers, and network audio distribution. This is what professional AV integrators build every day.</p>
+        </div>
+
+        <h2>The Scenario</h2>
+        <div class="scenario-description">
+            <h3>Client: International Corporate Headquarters</h3>
+            <p><strong>Venue:</strong> Main Conference Hall + Support Spaces</p>
+            
+            <div class="venue-specs">
+                <h4>🏛️ Main Hall Specifications:</h4>
+                <ul>
+                    <li><strong>Capacity:</strong> 500 people</li>
+                    <li><strong>Dimensions:</strong> 80ft × 120ft × 20ft ceiling</li>
+                    <li><strong>Use:</strong> Town halls, product launches, training, quarterly meetings</li>
+                    <li><strong>Acoustic treatment:</strong> Moderate (carpeted, acoustic panels)</li>
+                </ul>
+
+                <h4>📋 Requirements:</h4>
+                <ul class="requirements-list">
+                    <li>✅ 8 wireless microphones (handheld + lapel) for presenters and Q&A</li>
+                    <li>✅ Presentation audio from laptop/video sources</li>
+                    <li>✅ High-quality sound reinforcement (speech intelligibility priority)</li>
+                    <li>✅ 2 overflow rooms (100 people each) with live audio/video</li>
+                    <li>✅ Recording capability for internal archive</li>
+                    <li>✅ Live streaming to remote offices (500+ viewers)</li>
+                    <li>✅ Video conferencing for remote presenters</li>
+                    <li>✅ Lobby audio/video for event promotion</li>
+                    <li>✅ Background music in lobby (when hall not in use)</li>
+                    <li>✅ Assisted listening system (hearing impaired)</li>
+                    <li>✅ Emergency paging override all zones</li>
+                    <li>✅ Simple control for non-technical presenters</li>
+                </ul>
+
+                <h4>💰 Budget: $450,000 (equipment + installation)</h4>
+            </div>
+        </div>
+
+        <h2>System Architecture</h2>
+        <div class="architecture-diagram">
+            <svg viewBox="0 0 1100 900" class="capstone-svg">
+                <!-- Main Hall Section -->
+                <rect x="50" y="50" width="400" height="350" rx="10" fill="#ecf0f1" stroke="#34495e" stroke-width="3"/>
+                <text x="250" y="80" text-anchor="middle" fill="#2c3e50" font-size="16" font-weight="bold">MAIN CONFERENCE HALL (500 cap)</text>
+                
+                <!-- Stage area -->
+                <rect x="80" y="100" width="340" height="80" rx="5" fill="#34495e"/>
+                <text x="250" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="bold">STAGE</text>
+                
+                <!-- Wireless mics -->
+                <ellipse cx="120" cy="145" rx="15" ry="25" fill="#e74c3c"/>
+                <text x="120" y="175" text-anchor="middle" fill="#e74c3c" font-size="8">Wireless</text>
+                <ellipse cx="160" cy="145" rx="15" ry="25" fill="#e74c3c"/>
+                <ellipse cx="200" cy="145" rx="15" ry="25" fill="#e74c3c"/>
+                <text x="180" y="195" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="bold">8× Wireless Mics</text>
+                
+                <!-- Lectern -->
+                <rect x="280" y="130" width="40" height="35" fill="#95a5a6"/>
+                <text x="300" y="175" text-anchor="middle" fill="#7f8c8d" font-size="8">Lectern</text>
+                <text x="300" y="195" text-anchor="middle" fill="#7f8c8d" font-size="10" font-weight="bold">Podium Mic (wired)</text>
+                
+                <!-- Video sources -->
+                <rect x="340" y="130" width="60" height="30" rx="3" fill="#3498db"/>
+                <text x="370" y="150" text-anchor="middle" fill="white" font-size="9" font-weight="bold">Video</text>
+                <text x="370" y="195" text-anchor="middle" fill="#3498db" font-size="10" font-weight="bold">HDMI sources (3×)</text>
+                
+                <!-- Main PA speakers -->
+                <rect x="70" y="220" width="50" height="70" rx="5" fill="#2c3e50"/>
+                <circle cx="95" cy="245" r="15" fill="#7f8c8d"/>
+                <circle cx="95" cy="270" r="12" fill="#7f8c8d"/>
+                <text x="95" y="300" text-anchor="middle" fill="white" font-size="8">Main L</text>
+                
+                <rect x="370" y="220" width="50" height="70" rx="5" fill="#2c3e50"/>
+                <circle cx="395" cy="245" r="15" fill="#7f8c8d"/>
+                <circle cx="395" cy="270" r="12" fill="#7f8c8d"/>
+                <text x="395" y="300" text-anchor="middle" fill="white" font-size="8">Main R</text>
+                
+                <!-- Fill speakers -->
+                <ellipse cx="180" cy="230" rx="12" ry="18" fill="#7f8c8d"/>
+                <ellipse cx="220" cy="230" rx="12" ry="18" fill="#7f8c8d"/>
+                <ellipse cx="260" cy="230" rx="12" ry="18" fill="#7f8c8d"/>
+                <ellipse cx="300" cy="230" rx="12" ry="18" fill="#7f8c8d"/>
+                <text x="240" y="255" text-anchor="middle" fill="#7f8c8d" font-size="9">Front Fill (4×)</text>
+                
+                <!-- Audience area -->
+                <rect x="100" y="310" width="300" height="70" rx="5" fill="#bdc3c7"/>
+                <text x="250" y="350" text-anchor="middle" fill="#2c3e50" font-size="13" font-weight="bold">AUDIENCE (500)</text>
+                
+                <!-- Tech booth -->
+                <rect x="350" y="320" width="70" height="60" rx="5" fill="#34495e"/>
+                <text x="385" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="bold">FOH</text>
+                <text x="385" y="360" text-anchor="middle" fill="#ecf0f1" font-size="8">Mixer</text>
+                <text x="385" y="372" text-anchor="middle" fill="#ecf0f1" font-size="8">Control</text>
+
+                <!-- DSP Core (central) -->
+                <rect x="500" y="200" width="220" height="140" rx="8" fill="#8e44ad" stroke="#9b59b6" stroke-width="3"/>
+                <text x="610" y="225" text-anchor="middle" fill="white" font-size="15" font-weight="bold">Q-SYS CORE 510i</text>
+                <text x="610" y="243" text-anchor="middle" fill="white" font-size="13" font-weight="bold">DSP MATRIX + ROUTING</text>
+                <text x="610" y="265" text-anchor="middle" fill="#ecf0f1" font-size="10">• All wireless mic receivers (Dante)</text>
+                <text x="610" y="280" text-anchor="middle" fill="#ecf0f1" font-size="10">• HDMI audio extraction (analog in)</text>
+                <text x="610" y="295" text-anchor="middle" fill="#ecf0f1" font-size="10">• Video conference (AEC processing)</text>
+                <text x="610" y="310" text-anchor="middle" fill="#ecf0f1" font-size="10">• Matrix routing to all zones</text>
+                <text x="610" y="325" text-anchor="middle" fill="#ecf0f1" font-size="10">• Recording mix output</text>
+                
+                <!-- Connections from hall to DSP -->
+                <line x1="450" y1="155" x2="500" y2="240" stroke="#e74c3c" stroke-width="3"/>
+                <text x="470" y="190" text-anchor="middle" fill="#e74c3c" font-size="9">Wireless</text>
+                <text x="470" y="200" text-anchor="middle" fill="#e74c3c" font-size="9">(Dante)</text>
+                
+                <line x1="420" y1="350" x2="500" y2="290" stroke="#3498db" stroke-width="2"/>
+                <text x="455" y="315" text-anchor="middle" fill="#3498db" font-size="9">Control</text>
+                
+                <!-- Dante Network Cloud -->
+                <ellipse cx="610" cy="450" rx="200" ry="70" fill="#d5f4e6" stroke="#27ae60" stroke-width="3"/>
+                <text x="610" y="440" text-anchor="middle" fill="#27ae60" font-size="15" font-weight="bold">DANTE AUDIO NETWORK</text>
+                <text x="610" y="460" text-anchor="middle" fill="#16a085" font-size="11">Gigabit fiber + redundant switches</text>
+                <text x="610" y="475" text-anchor="middle" fill="#16a085" font-size="10">All buildings connected</text>
+                
+                <!-- Connection DSP to network -->
+                <line x1="610" y1="340" x2="610" y2="380" stroke="#27ae60" stroke-width="4"/>
+                
+                <!-- Overflow Room 1 -->
+                <rect x="50" y="550" width="200" height="120" rx="8" fill="#fff3e0" stroke="#f39c12" stroke-width="2"/>
+                <text x="150" y="575" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">OVERFLOW ROOM 1</text>
+                <text x="150" y="592" text-anchor="middle" fill="#e67e22" font-size="10">(100 cap)</text>
+                <rect x="70" y="600" width="60" height="50" rx="4" fill="#34495e"/>
+                <text x="100" y="625" text-anchor="middle" fill="white" font-size="9">Display</text>
+                <text x="100" y="638" text-anchor="middle" fill="white" font-size="9">+ Audio</text>
+                <ellipse cx="170" cy="615" rx="10" ry="15" fill="#7f8c8d"/>
+                <ellipse cx="200" cy="615" rx="10" ry="15" fill="#7f8c8d"/>
+                <text x="185" y="645" text-anchor="middle" fill="#7f8c8d" font-size="8">Ceiling</text>
+                <text x="185" y="655" text-anchor="middle" fill="#7f8c8d" font-size="8">Speakers</text>
+                
+                <line x1="490" y1="480" x2="150" y2="550" stroke="#f39c12" stroke-width="3"/>
+                <text x="300" y="510" text-anchor="middle" fill="#f39c12" font-size="9">Video + Audio</text>
+                <text x="300" y="520" text-anchor="middle" fill="#f39c12" font-size="9">(Dante)</text>
+                
+                <!-- Overflow Room 2 -->
+                <rect x="280" y="550" width="200" height="120" rx="8" fill="#fff3e0" stroke="#f39c12" stroke-width="2"/>
+                <text x="380" y="575" text-anchor="middle" fill="#f39c12" font-size="13" font-weight="bold">OVERFLOW ROOM 2</text>
+                <text x="380" y="592" text-anchor="middle" fill="#e67e22" font-size="10">(100 cap)</text>
+                <rect x="300" y="600" width="60" height="50" rx="4" fill="#34495e"/>
+                <text x="330" y="625" text-anchor="middle" fill="white" font-size="9">Display</text>
+                <text x="330" y="638" text-anchor="middle" fill="white" font-size="9">+ Audio</text>
+                <ellipse cx="400" cy="615" rx="10" ry="15" fill="#7f8c8d"/>
+                <ellipse cx="430" cy="615" rx="10" ry="15" fill="#7f8c8d"/>
+                <text x="415" y="645" text-anchor="middle" fill="#7f8c8d" font-size="8">Ceiling</text>
+                <text x="415" y="655" text-anchor="middle" fill="#7f8c8d" font-size="8">Speakers</text>
+                
+                <line x1="540" y1="480" x2="380" y2="550" stroke="#f39c12" stroke-width="3"/>
+                
+                <!-- Lobby -->
+                <rect x="750" y="80" width="320" height="140" rx="8" fill="#e8f6f3" stroke="#16a085" stroke-width="2"/>
+                <text x="910" y="110" text-anchor="middle" fill="#16a085" font-size="13" font-weight="bold">LOBBY / RECEPTION</text>
+                <rect x="780" y="130" width="100" height="60" rx="4" fill="#34495e"/>
+                <text x="830" y="155" text-anchor="middle" fill="white" font-size="10">Video</text>
+                <text x="830" y="170" text-anchor="middle" fill="white" font-size="10">Display</text>
+                <text x="830" y="185" text-anchor="middle" fill="#ecf0f1" font-size="8">(event info)</text>
+                
+                <ellipse cx="930" cy="140" rx="12" ry="18" fill="#7f8c8d"/>
+                <ellipse cx="970" cy="140" rx="12" ry="18" fill="#7f8c8d"/>
+                <ellipse cx="1010" cy="140" rx="12" ry="18" fill="#7f8c8d"/>
+                <text x="970" y="165" text-anchor="middle" fill="#7f8c8d" font-size="9">6× Ceiling</text>
+                <text x="970" y="175" text-anchor="middle" fill="#7f8c8d" font-size="9">Speakers</text>
+                
+                <rect x="780" y="195" width="250" height="18" rx="3" fill="#f39c12"/>
+                <text x="905" y="208" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Background Music (when hall idle)</text>
+                
+                <line x1="710" y1="440" x2="850" y2="220" stroke="#16a085" stroke-width="3"/>
+                <text x="770" y="320" text-anchor="middle" fill="#16a085" font-size="9">Audio/Video</text>
+                <text x="770" y="330" text-anchor="middle" fill="#16a085" font-size="9">(Dante)</text>
+                
+                <!-- Recording / Streaming -->
+                <rect x="750" y="260" width="160" height="100" rx="8" fill="#e8eaf6" stroke="#5e35b1" stroke-width="2"/>
+                <text x="830" y="285" text-anchor="middle" fill="#5e35b1" font-size="13" font-weight="bold">RECORDING</text>
+                <text x="830" y="300" text-anchor="middle" fill="#5e35b1" font-size="13" font-weight="bold">& STREAMING</text>
+                <text x="830" y="320" text-anchor="middle" fill="#7e57c2" font-size="9">• Record PC (Dante)</text>
+                <text x="830" y="333" text-anchor="middle" fill="#7e57c2" font-size="9">• Stream encoder</text>
+                <text x="830" y="346" text-anchor="middle" fill="#7e57c2" font-size="9">• Archive to NAS</text>
+                
+                <line x1="710" y1="450" x2="830" y2="360" stroke="#5e35b1" stroke-width="3"/>
+                <text x="760" y="400" text-anchor="middle" fill="#5e35b1" font-size="9">Dante out</text>
+                
+                <!-- Video Conference -->
+                <rect x="750" y="390" width="160" height="80" rx="8" fill="#fce4ec" stroke="#c2185b" stroke-width="2"/>
+                <text x="830" y="415" text-anchor="middle" fill="#c2185b" font-size="13" font-weight="bold">VIDEO CONF</text>
+                <text x="830" y="435" text-anchor="middle" fill="#e91e63" font-size="9">Zoom Rooms</text>
+                <text x="830" y="448" text-anchor="middle" fill="#e91e63" font-size="9">appliance</text>
+                <text x="830" y="461" text-anchor="middle" fill="#e91e63" font-size="9">(Dante + HDMI)</text>
+                
+                <line x1="700" y1="460" x2="750" y2="440" stroke="#c2185b" stroke-width="3"/>
+                
+                <!-- Amplifier Room -->
+                <rect x="50" y="720" width="250" height="100" rx="8" fill="#ffe0b2" stroke="#ef6c00" stroke-width="2"/>
+                <text x="175" y="745" text-anchor="middle" fill="#ef6c00" font-size="13" font-weight="bold">AMPLIFIER RACK ROOM</text>
+                <rect x="70" y="760" width="60" height="40" rx="3" fill="#34495e"/>
+                <text x="100" y="783" text-anchor="middle" fill="white" font-size="9">QSC</text>
+                <text x="100" y="793" text-anchor="middle" fill="white" font-size="8">8ch Dante</text>
+                
+                <rect x="145" y="760" width="60" height="40" rx="3" fill="#34495e"/>
+                <text x="175" y="783" text-anchor="middle" fill="white" font-size="9">QSC</text>
+                <text x="175" y="793" text-anchor="middle" fill="white" font-size="8">8ch Dante</text>
+                
+                <rect x="220" y="760" width="60" height="40" rx="3" fill="#34495e"/>
+                <text x="250" y="783" text-anchor="middle" fill="white" font-size="9">70V Dist</text>
+                <text x="250" y="793" text-anchor="middle" fill="white" font-size="8">(Lobby)</text>
+                
+                <line x1="490" y1="500" x2="175" y2="720" stroke="#ef6c00" stroke-width="4"/>
+                <text x="320" y="600" text-anchor="middle" fill="#ef6c00" font-size="9">Dante network</text>
+                
+                <!-- Network Core -->
+                <rect x="500" y="550" width="200" height="80" rx="8" fill="#37474f" stroke="#263238" stroke-width="2"/>
+                <text x="600" y="575" text-anchor="middle" fill="white" font-size="13" font-weight="bold">NETWORK CORE</text>
+                <text x="600" y="595" text-anchor="middle" fill="#90a4ae" font-size="9">Cisco SG350 switches</text>
+                <text x="600" y="608" text-anchor="middle" fill="#90a4ae" font-size="9">Primary + Secondary</text>
+                <text x="600" y="621" text-anchor="middle" fill="#90a4ae" font-size="9">Fiber backbone</text>
+                
+                <line x1="610" y1="520" x2="600" y2="550" stroke="#27ae60" stroke-width="4"/>
+                
+                <!-- Control -->
+                <rect x="750" y="500" width="160" height="80" rx="8" fill="#fff9c4" stroke="#f57f17" stroke-width="2"/>
+                <text x="830" y="525" text-anchor="middle" fill="#f57f17" font-size="13" font-weight="bold">CONTROL</text>
+                <text x="830" y="545" text-anchor="middle" fill="#fbc02d" font-size="9">Touch panels (3×)</text>
+                <text x="830" y="558" text-anchor="middle" fill="#fbc02d" font-size="9">iPad control app</text>
+                <text x="830" y="571" text-anchor="middle" fill="#fbc02d" font-size="9">Web UCI access</text>
+                
+                <line x1="700" y1="480" x2="750" y2="535" stroke="#f57f17" stroke-width="2"/>
+                
+                <!-- Emergency Paging -->
+                <rect x="940" y="500" width="140" height="70" rx="8" fill="#ffcdd2" stroke="#d32f2f" stroke-width="3"/>
+                <text x="1010" y="525" text-anchor="middle" fill="#d32f2f" font-size="12" font-weight="bold">EMERGENCY</text>
+                <text x="1010" y="540" text-anchor="middle" fill="#d32f2f" font-size="12" font-weight="bold">PAGING</text>
+                <text x="1010" y="558" text-anchor="middle" fill="#e57373" font-size="9">Overrides all zones</text>
+                
+                <line x1="720" y1="300" x2="940" y2="530" stroke="#d32f2f" stroke-width="3" stroke-dasharray="5,5"/>
+                <text x="820" y="400" text-anchor="middle" fill="#d32f2f" font-size="9">Priority override</text>
+            </svg>
+        </div>
+
+        <h2>Detailed System Design</h2>
+
+        <!-- Equipment List -->
+        <div class="equipment-section">
+            <h3>📋 Equipment Bill of Materials (BOM)</h3>
+            
+            <div class="equipment-category">
+                <h4>Microphones & Wireless (Main Hall)</h4>
+                <ul class="bom-list">
+                    <li>6× Shure ULXD2/SM58 Wireless Handheld Mics with charging station - $9,600</li>
+                    <li>2× Shure ULXD1 Bodypack with WL185 Lavalier Mics - $3,600</li>
+                    <li>1× Shure MX412D/C Podium Microphone (wired, XLR) - $400</li>
+                    <li>8× Sennheiser TeamConnect Ceiling 2 Mics (for video conferencing AEC) - $16,000</li>
+                    <li><strong>Subtotal: $29,600</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>Main PA System (Main Hall)</h4>
+                <ul class="bom-list">
+                    <li>2× d&b audiotechnik Ci60 Column Arrays (main L/R) - $12,000</li>
+                    <li>4× QSC AD-C4T Ceiling Speakers (front fill) - $1,200</li>
+                    <li>2× QSC CXD4.5 Dante Amplifiers (4ch, 500W each) - $5,000</li>
+                    <li><strong>Subtotal: $18,200</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>DSP & Core Processing</h4>
+                <ul class="bom-list">
+                    <li>1× QSC Q-SYS Core 510i Processor (128×128, Dante, PoE) - $15,000</li>
+                    <li>1× QSC I/O-22 Dante/Analog Interface (for HDMI audio, paging) - $1,800</li>
+                    <li>3× Atlona AT-HDVS-150-TX HDMI Receivers (presentationaudio extraction) - $2,700</li>
+                    <li>1× Q-SYS NL-C10 Controller (network licensing) - $500</li>
+                    <li><strong>Subtotal: $20,000</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>Overflow Rooms (2×)</h4>
+                <ul class="bom-list">
+                    <li>2× Sony 75" Professional Displays - $4,000</li>
+                    <li>8× QSC AD-C4T Ceiling Speakers (4 per room) - $2,400</li>
+                    <li>2× QSC CXD2.8 Dante Amplifiers (2ch, 800W) - $2,400</li>
+                    <li>2× Dante AVIO Adapters (HDMI to Dante) - $800</li>
+                    <li><strong>Subtotal: $9,600</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>Lobby System</h4>
+                <ul class="bom-list">
+                    <li>1× Samsung 85" Commercial Display (event info/video) - $3,500</li>
+                    <li>6× QSC AD-C6T-LP Ceiling Speakers - $1,800</li>
+                    <li>1× QSC CX254 4-channel Amplifier (70V output) - $1,200</li>
+                    <li>1× Sonos Port (background music streaming) - $449</li>
+                    <li><strong>Subtotal: $6,949</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>Network Infrastructure</h4>
+                <ul class="bom-list">
+                    <li>2× Cisco SG350-28P Managed PoE Switches (primary + redundant) - $2,000</li>
+                    <li>5× Cisco SG300-10SFP Fiber Switches (building interconnects) - $2,500</li>
+                    <li>Fiber optic cabling (OM3, LC-LC) 2000ft + termination - $5,000</li>
+                    <li>CAT6A cabling (shielded, plenum) 5000ft + termination - $8,000</li>
+                    <li>1× Tripp Lite PDUMH30HV PDU (rack power distribution, networked) - $800</li>
+                    <li>2× APC SMX3000HVNC UPS (3kVA, network monitoring) - $4,000</li>
+                    <li><strong>Subtotal: $22,300</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>Recording, Streaming & Video Conferencing</h4>
+                <ul class="bom-list">
+                    <li>1× Recording PC (i9, 64GB RAM, 4TB NVMe, Dante Virtual Soundcard) - $4,000</li>
+                    <li>1× Zoom Rooms Appliance (for video conferencing with Dante integration) - $2,500</li>
+                    <li>1× Pearl-2 Streaming/Recording Appliance (backup encoder) - $5,000</li>
+                    <li>1× Synology 16TB NAS (RAID 5, video/audio archive) - $2,000</li>
+                    <li><strong>Subtotal: $13,500</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>Control & User Interface</h4>
+                <ul class="bom-list">
+                    <li>3× Q-SYS TSC-7 Touch Screen Controllers (main hall, overflow rooms) - $4,500</li>
+                    <li>1× Apple iPad Pro 12.9" (roaming control, AV tech) - $1,200</li>
+                    <li>3× Shure MXA910 Boundary Mics (for conferencing in overflow) - $6,000</li>
+                    <li>1× Rauland Telecenter IPS Paging Station (emergency override) - $3,500</li>
+                    <li><strong>Subtotal: $15,200</strong></li>
+                </ul>
+            </div>
+
+            <div class="equipment-category">
+                <h4>Racks, Mounts & Accessories</h4>
+                <ul class="bom-list">
+                    <li>2× Middle Atlantic 42U Racks with thermostat fans - $3,000</li>
+                    <li>Speaker mounts, rigging, fly rails (main PA) - $4,000</li>
+                    <li>Misc: patch cables, Dante adapters, rack shelves, cable mgmt - $5,000</li>
+                    <li><strong>Subtotal: $12,000</strong></li>
+                </ul>
+            </div>
+
+            <div class="cost-summary">
+                <h3>💰 Cost Summary</h3>
+                <table class="cost-table">
+                    <tr><td>Equipment Subtotal:</td><td>$147,349</td></tr>
+                    <tr><td>Installation Labor (300 hours @ $150/hr):</td><td>$45,000</td></tr>
+                    <tr><td>Programming & Commissioning (100 hours):</td><td>$15,000</td></tr>
+                    <tr><td>Project Management (10%):</td><td>$20,735</td></tr>
+                    <tr><td>Contingency (10%):</td><td>$22,808</td></tr>
+                    <tr class="total-row"><td><strong>TOTAL PROJECT COST:</strong></td><td><strong>$250,892</strong></td></tr>
+                </table>
+                <p class="cost-note">✅ Under budget by $199,108! (Client approved upgrades: better speakers, redundant network)</p>
+            </div>
+        </div>
+
+        <h2>System Capabilities</h2>
+        <div class="capabilities-showcase">
+            <div class="capability-block">
+                <h4>🎤 Wireless Microphone Management</h4>
+                <p>8 wireless mics on ULXD system with Dante output. Frequency coordination ensures zero interference. Automatic charging stations keep batteries topped up. DSP includes individual EQ and dynamics per mic channel.</p>
+            </div>
+
+            <div class="capability-block">
+                <h4>🎛️ Advanced DSP Processing</h4>
+                <p>Q-SYS Core handles all processing:</p>
+                <ul>
+                    <li><strong>AEC (Acoustic Echo Cancellation)</strong> for video conferencing - ceiling mics can hear remote participants through room speakers without echo</li>
+                    <li><strong>Automatic Gain Control (AGC)</strong> keeps presenter volume consistent</li>
+                    <li><strong>Feedback suppression</strong> automatically detects and notches ringing frequencies</li>
+                    <li><strong>Compressor/Limiter</strong> protects speakers and maintains consistent loudness</li>
+                    <li><strong>Parametric EQ</strong> optimized for speech intelligibility and room acoustics</li>
+                    <li><strong>Delay compensation</strong> time-aligns main PA with front-fill speakers</li>
+                </ul>
+            </div>
+
+            <div class="capability-block">
+                <h4>📹 Multi-Format Recording & Streaming</h4>
+                <p><strong>Recording PC</strong> captures Dante mix-minus feed (all sources except video conference return). Archives to NAS in WAV + MP4 video. <strong>Pearl-2</strong> provides backup encoding and can stream to YouTube Live, Facebook Live, or RTMP endpoints simultaneously. Bitrate: 1080p60 @ 8Mbps.</p>
+            </div>
+
+            <div class="capability-block">
+                <h4>🌐 Video Conferencing Integration</h4>
+                <p>Zoom Rooms appliance connects to Dante network for audio I/O. <strong>Room audio</strong> (wireless mics + ceiling mics) → Zoom. <strong>Zoom participants</strong> → Main PA + overflow rooms. AEC processing ensures zero echo. Camera tracks active speaker automatically.</p>
+            </div>
+
+            <div class="capability-block">
+                <h4>📺 Overflow Room Distribution</h4>
+                <p>Video and audio from main hall distributed to overflow rooms via Dante network. Independent volume control per room. Overflow rooms can also host independent meetings with local sources when main hall not in use.</p>
+            </div>
+
+            <div class="capability-block">
+                <h4>🏛️ Lobby Information System</h4>
+                <p>85" display shows event schedule, countdown timers, and live video preview of main hall during events. Audio switches between background music (Sonos) when idle and live event audio during programs. Automated scheduling.</p>
+            </div>
+
+            <div class="capability-block">
+                <h4>🚨 Emergency Paging Override</h4>
+                <p>Rauland paging station at security desk. Press PTT button → instantly mutes ALL zones (main hall, overflow, lobby) and routes emergency announcement everywhere. When released, system returns to previous state. Fire alarm integration triggers automated evacuation messages.</p>
+            </div>
+
+            <div class="capability-block">
+                <h4>🎮 Simple User Control</h4>
+                <p>Presenters use Q-SYS touch panel:</p>
+                <ul>
+                    <li><strong>Source select:</strong> "Laptop," "Wireless Mic 1-8," "Video Conference," "Media Player"</li>
+                    <li><strong>Presets:</strong> "Presentation Mode," "Town Hall," "Video Conference," "Training," "Event"</li>
+                    <li><strong>Volume:</strong> Main hall master, overflow rooms, lobby (independent sliders)</li>
+                    <li><strong>Recording:</strong> "Start Recording" / "Stop Recording" with visual confirmation</li>
+                    <li><strong>Emergency:</strong> Panic button calls AV support instantly</li>
+                </ul>
+                <p>Presenter sees ONLY these controls - all complexity hidden. IT/AV staff have full system access via web UCI.</p>
+            </div>
+        </div>
+
+        <h2>Operational Scenarios</h2>
+
+        <!-- Scenario blocks -->
+        <div class="operational-scenarios">
+            <div class="scenario-block">
+                <h3>📅 Scenario 1: Quarterly Town Hall</h3>
+                <p><strong>Setup:</strong> CEO and 3 VPs presenting to 500 employees + 200 remote viewers</p>
+                <p><strong>System Configuration:</strong></p>
+                <ol class="scenario-steps">
+                    <li>AV tech recalls "Town Hall" preset → routes 4 wireless mics to main PA, overflow rooms, recording, and stream</li>
+                    <li>CEO's laptop HDMI → audio extracted → added to mix (for video playback)</li>
+                    <li>Recording starts automatically (scheduled in system)</li>
+                    <li>Streaming encoder sends to corporate intranet (RTMP)</li>
+                    <li>Overflow rooms show live video feed + synchronized audio</li>
+                    <li>Lobby display shows "Town Hall in Progress" with live preview</li>
+                    <li>During Q&A, employees use wireless handheld mics - auto-ducking lowers CEO mic when audience member speaks</li>
+                </ol>
+                <p><strong>Result:</strong> Seamless 2-hour event. Recording archived automatically. Zero technical issues.</p>
+            </div>
+
+            <div class="scenario-block">
+                <h3>💼 Scenario 2: Remote Executive Presentation</h3>
+                <p><strong>Setup:</strong> VP in London presenting to 300 people in main hall + overflow</p>
+                <p><strong>System Configuration:</strong></p>
+                <ol class="scenario-steps">
+                    <li>AV tech recalls "Video Conference" preset → enables AEC on ceiling mics, routes Zoom audio to PA</li>
+                    <li>London VP joins Zoom meeting → appears on main screen, voice through PA system</li>
+                    <li>Audience members ask questions using wireless mics → mics go to Zoom (London hears them clearly)</li>
+                    <li>Zero echo - AEC processing subtracts PA output from ceiling mic input</li>
+                    <li>Recording captures both local and remote audio in sync</li>
+                    <li>Chat moderator monitors Zoom chat on iPad, relays questions to presenter</li>
+                </ol>
+                <p><strong>Result:</strong> Remote presenter feels "in the room." Audience hears both sides perfectly. Natural conversation flow.</p>
+            </div>
+
+            <div class="scenario-block">
+                <h3>🚨 Scenario 3: Emergency Evacuation</h3>
+                <p><strong>Setup:</strong> Fire alarm triggered during event with 500 people in main hall</p>
+                <p><strong>System Response:</strong></p>
+                <ol class="scenario-steps">
+                    <li>Fire panel sends dry contact closure to DSP</li>
+                    <li>DSP <strong>immediately</strong> mutes all audio sources (presentation, music, mics)</li>
+                    <li>Automated voice message plays on loop: "Attention. This is an emergency. Please evacuate the building using the nearest exit. Do not use elevators."</li>
+                    <li>Message plays through ALL zones at maximum safe volume: main hall, overflow rooms, lobby, hallways</li>
+                    <li>Security can override with live paging microphone for additional instructions</li>
+                    <li>When fire alarm clears, DSP returns to previous state (or requires manual reset based on policy)</li>
+                </ol>
+                <p><strong>Result:</strong> Life safety compliance. Everyone hears evacuation instructions clearly. No confusion or missed announcements.</p>
+            </div>
+
+            <div class="scenario-block">
+                <h3>🎵 Scenario 4: Background Music & Idle State</h3>
+                <p><strong>Setup:</strong> No scheduled events. Building open for business.</p>
+                <p><strong>System Configuration:</strong></p>
+                <ol class="scenario-steps">
+                    <li>Scheduled preset activates at 7:00 AM: "Background Music Mode"</li>
+                    <li>Sonos Port streams curated corporate playlist (Spotify)</li>
+                    <li>Music routed to lobby speakers only (low volume, -15dB)</li>
+                    <li>Main hall and overflow rooms silent (no audio)</li>
+                    <li>If paging station used, music ducks to -25dB, page plays, music returns</li>
+                    <li>At 10:00 PM, scheduled preset: "After Hours" → all audio off except emergency paging</li>
+                </ol>
+                <p><strong>Result:</strong> Welcoming lobby atmosphere. Zero energy wasted in unused spaces. Fully automated.</p>
+            </div>
+        </div>
+
+        <h2>Lessons Learned & Best Practices</h2>
+        <div class="lessons-section">
+            <div class="lesson-card">
+                <h4>✅ DO: Plan for Redundancy</h4>
+                <p>We specified primary and secondary network switches with automatic failover. During commissioning, we tested failover - system switched to backup path in <2 seconds with zero audio dropout. Worth every penny.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>✅ DO: Invest in Quality Wireless</h4>
+                <p>Shure ULXD with Dante is expensive but rock-solid. Cheap wireless systems fail during critical moments. The client didn't want a backup plan - they wanted a system that doesn't fail. ULXD delivered.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>✅ DO: Proper Acoustic Measurement</h4>
+                <p>We used Smaart to measure room acoustics before finalizing DSP tuning. Discovered a nasty room mode at 180Hz. Parametric EQ notch fixed it. Speech intelligibility went from "acceptable" to "excellent." Always measure!</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>✅ DO: Simplify User Interface</h4>
+                <p>Initial control panel had 25 buttons. Presenters were intimidated. We reduced to 8 buttons: 4 presets, volume, record, help, power. User satisfaction jumped from 60% to 95%. Less is more.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>❌ DON'T: Skimp on Network Infrastructure</h4>
+                <p>Original spec used unmanaged switches (save $1,500). During testing, multicast storms crashed the network. We upgraded to managed switches with IGMP snooping. Cost more but saved the project.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>❌ DON'T: Forget About Training</h4>
+                <p>We delivered the system but didn't schedule formal training (assumed "intuitive" was enough). First event was chaos - staff didn't know where to start. We came back for 4-hour training session. Should have done it from day one.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>❌ DON'T: Overlook Cable Management</h4>
+                <p>Initial rack wiring was functional but messy. When we needed to troubleshoot 6 months later, it took 3× longer to trace signals. We re-did racks with proper labeling and velcro ties. Future maintenance became trivial.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>❌ DON'T: Ignore Life Safety Integration</h4>
+                <p>Fire marshal inspection flagged that emergency paging wasn't loud enough in main hall (during max PA volume). We had to add dedicated ceiling speakers for life safety announcements. Should have verified code compliance earlier.</p>
+            </div>
+        </div>
+
+        <h2>🎓 Congratulations - You're Now a Systems Designer!</h2>
+        <div class="completion-section">
+            <div class="achievement-box">
+                <h3>🏆 Course Complete</h3>
+                <p>You've journeyed from a simple mic-to-speaker connection to designing a complete enterprise audio system with:</p>
+                <ul class="achievement-list">
+                    <li>✅ Wireless microphone systems</li>
+                    <li>✅ Digital Signal Processing (DSP)</li>
+                    <li>✅ Acoustic Echo Cancellation (AEC)</li>
+                    <li>✅ Dante networked audio distribution</li>
+                    <li>✅ Multi-zone routing and control</li>
+                    <li>✅ Recording and streaming integration</li>
+                    <li>✅ Video conferencing systems</li>
+                    <li>✅ Emergency life safety compliance</li>
+                    <li>✅ User-friendly control interfaces</li>
+                </ul>
+            </div>
+
+            <div class="next-steps">
+                <h3>🚀 What's Next?</h3>
+                <div class="next-steps-grid">
+                    <div class="next-step-card">
+                        <h4>📚 Deepen Your Knowledge</h4>
+                        <ul>
+                            <li>Get Dante Level 1-3 Certification (Audinate)</li>
+                            <li>Learn Q-SYS or Biamp programming</li>
+                            <li>Study room acoustics (Acoustic Fields, Master Handbook)</li>
+                            <li>Get CTS (Certified Technology Specialist) credential</li>
+                        </ul>
+                    </div>
+
+                    <div class="next-step-card">
+                        <h4>🛠️ Get Hands-On</h4>
+                        <ul>
+                            <li>Buy a small Dante interface - experiment at home</li>
+                            <li>Volunteer for church/school AV (real-world practice)</li>
+                            <li>Shadow a professional AV integrator</li>
+                            <li>Build a home studio with proper monitoring</li>
+                        </ul>
+                    </div>
+
+                    <div class="next-step-card">
+                        <h4>💼 Career Paths</h4>
+                        <ul>
+                            <li>AV Systems Integrator / Designer</li>
+                            <li>Live Sound Engineer</li>
+                            <li>Broadcast Audio Engineer</li>
+                            <li>Corporate AV Manager</li>
+                            <li>Consultant / Acoustician</li>
+                        </ul>
+                    </div>
+
+                    <div class="next-step-card">
+                        <h4>🌐 Join Communities</h4>
+                        <ul>
+                            <li>AVNation / Reddit r/livesound</li>
+                            <li>Gearslutz / Sound on Sound forums</li>
+                            <li>Local AVIXA / AES chapters</li>
+                            <li>Dante Practitioner Facebook group</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-message">
+                <h3>Thank You for Learning!</h3>
+                <p>Audio systems engineering is a blend of art, science, and problem-solving. You now have the foundational knowledge to understand, design, and troubleshoot professional audio installations.</p>
+                <p><strong>Remember:</strong> The best way to learn is by doing. Start small, make mistakes (in safe environments!), and never stop asking "why does this work this way?"</p>
+                <p>Good luck on your audio journey! 🎵</p>
+            </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="nav-btn prev-btn" onclick="navigateStage(8)">← Previous: Hybrid Systems</button>
+            <button class="nav-btn complete-btn" onclick="alert('Course Complete! 🎉 You can now navigate back to review any stage.')">🎓 Course Complete!</button>
+        </div>
+    </div>
+</section>
