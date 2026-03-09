@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 AV Master Course - SPA Assembler
-Combines all 5 HTML pages into a single-file SPA.
+Combines all 6 HTML pages into a single-file SPA.
 """
 import re, os
 
@@ -73,11 +73,13 @@ audio_content  = prepare_course(f'{BASE}/audio-course/index.html')
 matrix_content = prepare_course(f'{BASE}/matrix-course/index.html')
 led_content    = prepare_course(f'{BASE}/led-course/index.html')
 cctv_content   = prepare_course(f'{BASE}/cctv-course/index.html')
+access_content = prepare_course(f'{BASE}/access-course/index.html')
 
 audio_css  = prepare_css(f'{BASE}/audio-course/styles.css',    'view-audio')
 matrix_css = prepare_css(f'{BASE}/matrix-course/styles.css',   'view-matrix')
 led_css    = prepare_css(f'{BASE}/led-course/styles.css',      'view-led')
 cctv_css   = prepare_css(f'{BASE}/cctv-course/css/styles.css', 'view-cctv')
+access_css = prepare_css(f'{BASE}/access-course/styles.css',   'view-access')
 
 cctv_js = read_file(f'{BASE}/cctv-course/js/script.js')
 # Scope CCTV nav-link queries to its own view to avoid cross-course matches
@@ -162,7 +164,8 @@ var _courseInit = {
     'view-cctv':   function() {
         var saved = localStorage.getItem('av_cctv') || 'module1';
         if (typeof loadSection === 'function') loadSection(saved);
-    }
+    },
+    'view-access': function() { initStageCourse({{viewId:'view-access', total:16, prefix:'stage', key:'av_access'}}); }
 };
 """
 
@@ -236,6 +239,11 @@ SPA = f"""<!DOCTYPE html>
 {cctv_css}
     </style>
 
+    <!-- Access Control course styles (accent: #f59e0b) -->
+    <style>
+{access_css}
+    </style>
+
     <style>
         /* ── SPA Shell ───────────────────────────────────────── */
         .spa-view {{ display: none; }}
@@ -269,6 +277,11 @@ SPA = f"""<!DOCTYPE html>
 {cctv_content}
 </div>
 
+<!-- ══════════════════════ ACCESS CONTROL ═══════════════════════ -->
+<div id="view-access" class="spa-view">
+{access_content}
+</div>
+
 <!-- ═══════════════════════════ SCRIPTS ═════════════════════════ -->
 <script>
 {CTRL_JS}
@@ -300,3 +313,4 @@ print(f"  Audio    : {len(audio_content):,} chars")
 print(f"  Matrix   : {len(matrix_content):,} chars")
 print(f"  LED      : {len(led_content):,} chars")
 print(f"  CCTV     : {len(cctv_content):,} chars")
+print(f"  Access   : {len(access_content):,} chars")
