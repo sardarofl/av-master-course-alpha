@@ -69,7 +69,7 @@ for comment_text, view_id in course_css_markers:
     # --- *, *::before, *::after { ... } → #view-X *, ... ---
     css = re.sub(
         r'\*\s*,\s*\*::before\s*,\s*\*::after\s*\{',
-        scope + ' *, ' + scope + ' *::before, ' + scope + ' *::after {',
+        ':where(' + scope + ') *, :where(' + scope + ') *::before, :where(' + scope + ') *::after {',
         css
     )
 

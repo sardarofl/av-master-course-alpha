@@ -4216,7 +4216,7 @@ li { margin-bottom: 8px; line-height: 1.65; }
     --text-light:      var(--text-muted);
 }
 
-#view-access *, #view-access *::before, #view-access *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:where(#view-access) *, :where(#view-access) *::before, :where(#view-access) *::after { margin: 0; padding: 0; box-sizing: border-box; }
 #view-access { scroll-behavior: smooth; }
 
 #view-access {
@@ -4956,7 +4956,7 @@ li strong { color: var(--text-bright); }
 }
 
 /* ── Reset ─────────────────────────────────────────────────── */
-#view-fire *, #view-fire *::before, #view-fire *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:where(#view-fire) *, :where(#view-fire) *::before, :where(#view-fire) *::after { box-sizing: border-box; margin: 0; padding: 0; }
 #view-fire { scroll-behavior: smooth; }
 #view-fire {
     font-family: 'Inter', sans-serif;
@@ -5569,7 +5569,7 @@ li strong { color: var(--text-bright); }
 }
 
 /* ── Reset & Base ─────────────────────────────────────────── */
-#view-matv *, #view-matv *::before, #view-matv *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:where(#view-matv) *, :where(#view-matv) *::before, :where(#view-matv) *::after { box-sizing: border-box; margin: 0; padding: 0; }
 #view-matv { scroll-behavior: smooth; }
 
 #view-matv {
@@ -17717,8 +17717,8 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-phase1" style="display:block;">
-                <li><a href="#module1" class="nav-link active" onclick="loadSection('module1')">Module 1: How CCTV Works</a></li>
-                <li><a href="#module2" class="nav-link" onclick="loadSection('module2')">Module 2: Camera Types</a></li>
+                <li><a href="javascript:void(0)" class="nav-link active" onclick="loadSection('module1')">Module 1: How CCTV Works</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module2')">Module 2: Camera Types</a></li>
             </ul>
         </div>
         
@@ -17728,8 +17728,8 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-phase2">
-                <li><a href="#module3" class="nav-link" onclick="loadSection('module3')">Module 3: Resolution & Optics</a></li>
-                <li><a href="#module4" class="nav-link" onclick="loadSection('module4')">Module 4: Lighting & Night</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module3')">Module 3: Resolution & Optics</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module4')">Module 4: Lighting & Night</a></li>
             </ul>
         </div>
         
@@ -17739,8 +17739,8 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-phase3">
-                <li><a href="#module5" class="nav-link" onclick="loadSection('module5')">Module 5: NVR & VMS</a></li>
-                <li><a href="#module6" class="nav-link" onclick="loadSection('module6')">Module 6: Storage Calculation</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module5')">Module 5: NVR & VMS</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module6')">Module 6: Storage Calculation</a></li>
             </ul>
         </div>
         
@@ -17750,8 +17750,8 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-phase4">
-                <li><a href="#module7" class="nav-link" onclick="loadSection('module7')">Module 7: Networking Basics</a></li>
-                <li><a href="#module8" class="nav-link" onclick="loadSection('module8')">Module 8: Advanced Network</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module7')">Module 7: Networking Basics</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module8')">Module 8: Advanced Network</a></li>
             </ul>
         </div>
         
@@ -17761,8 +17761,8 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-phase5">
-                <li><a href="#module9" class="nav-link" onclick="loadSection('module9')">Module 9: Displays & Walls</a></li>
-                <li><a href="#module10" class="nav-link" onclick="loadSection('module10')">Module 10: PTZ & Analytics</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module9')">Module 9: Displays & Walls</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module10')">Module 10: PTZ & Analytics</a></li>
             </ul>
         </div>
         
@@ -17772,9 +17772,9 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-phase6">
-                <li><a href="#module11" class="nav-link" onclick="loadSection('module11')">Module 11: Design Process</a></li>
-                <li><a href="#module12" class="nav-link" onclick="loadSection('module12')">Module 12: Best Practices</a></li>
-                <li><a href="#module13" class="nav-link" onclick="loadSection('module13')">Module 13: Testing & Handover</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module11')">Module 11: Design Process</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module12')">Module 12: Best Practices</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module13')">Module 13: Testing & Handover</a></li>
             </ul>
         </div>
         
@@ -17784,8 +17784,8 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-phase7">
-                <li><a href="#module14" class="nav-link" onclick="loadSection('module14')">Module 14: Troubleshooting</a></li>
-                <li><a href="#module15" class="nav-link" onclick="loadSection('module15')">Module 15: Pricing & Quoting</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module14')">Module 14: Troubleshooting</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('module15')">Module 15: Pricing & Quoting</a></li>
             </ul>
         </div>
         
@@ -17795,7 +17795,7 @@ li strong { color: var(--text-bright); }
                 <span class="toggle">▼</span>
             </div>
             <ul class="category-sections" id="cat-capstone">
-                <li><a href="#capstone" class="nav-link" onclick="loadSection('capstone')">Complete System Design</a></li>
+                <li><a href="javascript:void(0)" class="nav-link" onclick="loadSection('capstone')">Complete System Design</a></li>
             </ul>
         </div>
         
