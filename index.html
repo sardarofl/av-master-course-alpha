@@ -4216,15 +4216,14 @@ li { margin-bottom: 8px; line-height: 1.65; }
     --text-light:      var(--text-muted);
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+#view-access *, #view-access *::before, #view-access *::after { margin: 0; padding: 0; box-sizing: border-box; }
+#view-access { scroll-behavior: smooth; }
 
-body {
+#view-access {
     font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
     background: var(--bg-dark);
     color: var(--text-main);
     line-height: 1.65;
-    min-height: 100vh;
     font-size: 15px;
     overflow-x: hidden;
 }
@@ -4957,15 +4956,13 @@ li strong { color: var(--text-bright); }
 }
 
 /* ── Reset ─────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
+#view-fire *, #view-fire *::before, #view-fire *::after { box-sizing: border-box; margin: 0; padding: 0; }
+#view-fire { scroll-behavior: smooth; }
+#view-fire {
     font-family: 'Inter', sans-serif;
     background: var(--bg-deep);
     color: var(--text-primary);
     line-height: 1.7;
-    min-height: 100vh;
-    display: flex;
     overflow-x: hidden;
 }
 
@@ -5530,7 +5527,7 @@ body {
     .three-column { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
-    body { flex-direction: column; }
+    #view-fire { flex-direction: column; }
     .sidebar { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
     .content { margin-left: 0; }
     .stage-header, .stage-content { padding: 28px 22px; }
@@ -5539,7 +5536,7 @@ body {
 }
 @media print {
     .sidebar, .content-footer { display: none !important; }
-    body { background: white; color: #1a1a1a; }
+    #view-fire { background: white; color: #1a1a1a; }
     .content { margin-left: 0; }
 }
 
@@ -5572,16 +5569,14 @@ body {
 }
 
 /* ── Reset & Base ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+#view-matv *, #view-matv *::before, #view-matv *::after { box-sizing: border-box; margin: 0; padding: 0; }
+#view-matv { scroll-behavior: smooth; }
 
-body {
+#view-matv {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: var(--bg-deep);
     color: var(--text-primary);
     line-height: 1.7;
-    min-height: 100vh;
-    display: flex;
 }
 
 /* ── Layout ───────────────────────────────────────────────── */
@@ -22119,22 +22114,22 @@ body {
         <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
     </div>
     <nav class="stage-nav" id="stage-nav">
-        <div class="nav-item" data-stage="stage1"><div class="nav-num">1</div>RF &amp; Signal Fundamentals</div>
-        <div class="nav-item" data-stage="stage2"><div class="nav-num">2</div>MATV Headend — Receive Side</div>
-        <div class="nav-item" data-stage="stage3"><div class="nav-num">3</div>Dish Farm &amp; Satellite Reception</div>
-        <div class="nav-item" data-stage="stage4"><div class="nav-num">4</div>MATV Distribution Infrastructure</div>
-        <div class="nav-item" data-stage="stage5"><div class="nav-num">5</div>DVB Standards &amp; Digital Broadcast</div>
-        <div class="nav-item" data-stage="stage6"><div class="nav-num">6</div>IPTV Architecture Overview</div>
-        <div class="nav-item" data-stage="stage7"><div class="nav-num">7</div>IPTV Headend Hardware</div>
-        <div class="nav-item" data-stage="stage8"><div class="nav-num">8</div>Video Encoding &amp; Compression</div>
-        <div class="nav-item" data-stage="stage9"><div class="nav-num">9</div>IPTV Network Architecture</div>
-        <div class="nav-item" data-stage="stage10"><div class="nav-num">10</div>Middleware &amp; Software Platforms</div>
-        <div class="nav-item" data-stage="stage11"><div class="nav-num">11</div>VOD — Video on Demand</div>
-        <div class="nav-item" data-stage="stage12"><div class="nav-num">12</div>DRM &amp; Content Security</div>
-        <div class="nav-item" data-stage="stage13"><div class="nav-num">13</div>Set-Top Boxes &amp; End Devices</div>
-        <div class="nav-item" data-stage="stage14"><div class="nav-num">14</div>Hospitality IPTV Systems</div>
-        <div class="nav-item" data-stage="stage15"><div class="nav-num">15</div>Vendor Ecosystem &amp; Licensing</div>
-        <div class="nav-item" data-stage="stage16"><div class="nav-num">16</div>System Design Capstone</div>
+        <div class="nav-link" data-stage="1"><div class="nav-num">1</div>RF &amp; Signal Fundamentals</div>
+        <div class="nav-link" data-stage="2"><div class="nav-num">2</div>MATV Headend — Receive Side</div>
+        <div class="nav-link" data-stage="3"><div class="nav-num">3</div>Dish Farm &amp; Satellite Reception</div>
+        <div class="nav-link" data-stage="4"><div class="nav-num">4</div>MATV Distribution Infrastructure</div>
+        <div class="nav-link" data-stage="5"><div class="nav-num">5</div>DVB Standards &amp; Digital Broadcast</div>
+        <div class="nav-link" data-stage="6"><div class="nav-num">6</div>IPTV Architecture Overview</div>
+        <div class="nav-link" data-stage="7"><div class="nav-num">7</div>IPTV Headend Hardware</div>
+        <div class="nav-link" data-stage="8"><div class="nav-num">8</div>Video Encoding &amp; Compression</div>
+        <div class="nav-link" data-stage="9"><div class="nav-num">9</div>IPTV Network Architecture</div>
+        <div class="nav-link" data-stage="10"><div class="nav-num">10</div>Middleware &amp; Software Platforms</div>
+        <div class="nav-link" data-stage="11"><div class="nav-num">11</div>VOD — Video on Demand</div>
+        <div class="nav-link" data-stage="12"><div class="nav-num">12</div>DRM &amp; Content Security</div>
+        <div class="nav-link" data-stage="13"><div class="nav-num">13</div>Set-Top Boxes &amp; End Devices</div>
+        <div class="nav-link" data-stage="14"><div class="nav-num">14</div>Hospitality IPTV Systems</div>
+        <div class="nav-link" data-stage="15"><div class="nav-num">15</div>Vendor Ecosystem &amp; Licensing</div>
+        <div class="nav-link" data-stage="16"><div class="nav-num">16</div>System Design Capstone</div>
     </nav>
 </aside>
 
@@ -24251,7 +24246,18 @@ function initStageCourse(cfg) {
         if (e.key === 'ArrowRight' && n < cfg.total) showItem(n + 1);
     });
 
-    showItem(parseInt(localStorage.getItem(cfg.key) || 1));
+    var _cur = parseInt(localStorage.getItem(cfg.key) || 1);
+    showItem(_cur);
+
+    // Expose next/prev as globals (last-init wins — safe because only one view active at a time)
+    window.nextStage = window.nextModule = window.nextSection = function() {
+        var n = parseInt(localStorage.getItem(cfg.key) || 1);
+        if (n < cfg.total) showItem(n + 1);
+    };
+    window.prevStage = window.prevModule = window.prevSection = function() {
+        var n = parseInt(localStorage.getItem(cfg.key) || 1);
+        if (n > 1) showItem(n - 1);
+    };
 }
 
 var _inited = {};
