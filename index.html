@@ -273,7 +273,7 @@
             z-index: 1;
         }
 
-        .btn-primary {
+        .portal-btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -289,13 +289,19 @@
             letter-spacing: 0.01em;
         }
 
-        .btn-primary:hover {
+        .portal-btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px var(--gold-glow);
+            box-shadow: 0 14px 44px rgba(240,165,0,0.32);
             background: linear-gradient(135deg, var(--gold-light), var(--gold));
         }
 
-        .btn-secondary {
+        .portal-btn-primary:focus-visible,
+        .portal-btn-secondary:focus-visible {
+            outline: 2px solid var(--gold-light);
+            outline-offset: 3px;
+        }
+
+        .portal-btn-secondary {
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -311,7 +317,7 @@
             backdrop-filter: blur(10px);
         }
 
-        .btn-secondary:hover {
+        .portal-btn-secondary:hover {
             background: rgba(255,255,255,0.08);
             border-color: rgba(255,255,255,0.25);
             transform: translateY(-2px);
@@ -6152,10 +6158,10 @@ li strong { color: var(--text-bright); }
             <span class="nav-logo-text">AV <span>Master</span></span>
         </a>
         <ul class="nav-links">
-            <li><a href="#courses">Courses</a></li>
-            <li><a href="#features">Features</a></li>
+            <li><a href="#courses" onclick="return scrollToPortalSection('courses');">Courses</a></li>
+            <li><a href="#features" onclick="return scrollToPortalSection('features');">Features</a></li>
             <li><a href="#path">Learning Path</a></li>
-            <li><a href="#courses" class="nav-cta">Start Learning</a></li>
+            <li><a href="#courses" class="nav-cta" onclick="return scrollToPortalSection('courses');">Start Learning</a></li>
         </ul>
     </nav>
 
@@ -6181,11 +6187,11 @@ li strong { color: var(--text-bright); }
         </p>
 
         <div class="hero-cta-group">
-            <a href="#courses" class="btn-primary">
+            <a href="#courses" class="portal-btn-primary" onclick="return scrollToPortalSection('courses');">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 Explore Courses
             </a>
-            <a href="#features" class="btn-secondary">
+            <a href="#features" class="portal-btn-secondary" onclick="return scrollToPortalSection('features');">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                 Platform Overview
             </a>
@@ -6866,11 +6872,11 @@ li strong { color: var(--text-bright); }
                 No prerequisites. No fluff. Just the real knowledge.
             </p>
             <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
-                <a href="#courses" class="btn-primary" style="font-size:1.05rem; padding:18px 36px;">
+                <a href="#courses" class="portal-btn-primary" onclick="return scrollToPortalSection('courses');" style="font-size:1.05rem; padding:18px 36px;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                     Browse All Courses
                 </a>
-                <a href="#" onclick="showView('view-audio'); return false;" class="btn-secondary">
+                <a href="#" onclick="showView('view-audio'); return false;" class="portal-btn-secondary">
                     Start with Audio →
                 </a>
             </div>
@@ -6915,9 +6921,9 @@ li strong { color: var(--text-bright); }
                 <div>
                     <div class="footer-col-title">Platform</div>
                     <ul class="footer-links">
-                        <li><a href="#features">Features</a></li>
+                        <li><a href="#features" onclick="return scrollToPortalSection('features');">Features</a></li>
                         <li><a href="#path">Learning Path</a></li>
-                        <li><a href="#courses">All Courses</a></li>
+                        <li><a href="#courses" onclick="return scrollToPortalSection('courses');">All Courses</a></li>
                     </ul>
                 </div>
             </div>
@@ -24437,6 +24443,29 @@ function showView(viewId) {
         setTimeout(function() { _courseInit[viewId](); }, 10);
     }
     history.pushState({}, '', '#' + viewId);
+}
+
+function scrollToPortalSection(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (!section) return false;
+
+    if (location.hash !== '#view-portal') {
+        document.querySelectorAll('.spa-view').forEach(function(v) {
+            v.style.display = 'none';
+        });
+        var portal = document.getElementById('view-portal');
+        if (portal) portal.style.display = 'block';
+        history.pushState({}, '', '#view-portal');
+    }
+
+    window.requestAnimationFrame(function() {
+        var nav = document.querySelector('.nav');
+        var navOffset = nav ? nav.offsetHeight + 24 : 96;
+        var top = section.getBoundingClientRect().top + window.pageYOffset - navOffset;
+        window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+    });
+
+    return false;
 }
 
 // Browser back/forward
